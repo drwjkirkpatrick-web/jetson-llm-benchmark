@@ -36,6 +36,22 @@ JetPack R36.4.7 contains a **critical regression** in the CUDA contiguous memory
 
 **Fix:** Upgrade to **JetPack R36.5.2** (or later). This is a kernel-level fix — no workaround exists in user space.
 
+**What we did today:**
+1. Checked current version: `cat /etc/nv_tegra_release` → showed R36.4.7
+2. Updated APT sources to r36.5:
+   ```bash
+   sudo sed -i 's/r36.3/r36.5/g' /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
+   sudo sed -i 's/r36.4/r36.5/g' /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
+   ```
+3. Upgraded packages:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
+4. Rebooted
+5. Verified: `cat /etc/nv_tegra_release` → now shows R36.5.2
+
+After this upgrade, Q4_K_M 7B models loaded cleanly on GPU for the first time — fixing the `NvMapMemAllocInternalTagged: error 12` that previously blocked any model > ~1.1 GB.
+
 ### CMA Fragmentation (Desktop Session)
 
 Even after the JetPack fix, running the GNOME desktop leaves CMA memory fragmented. Loading a 7B model requires contiguous GPU-addressable memory that may not be available with Xorg + GNOME Shell running.
