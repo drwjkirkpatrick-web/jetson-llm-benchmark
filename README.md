@@ -155,15 +155,39 @@ Ollama Q2_K                    |  5.1  |  6.5    | 6.8/10
 
 llama.cpp bypasses Ollama's HTTP API overhead, model management layer, and multi-model scheduling. It loads the GGUF directly into CUDA memory and runs inference with minimal indirection. For single-model benchmarking on resource-constrained devices, this 2× speedup is significant.
 
-## Clinic Deployment Recommendation
+## Coding Deployment Recommendation
 
-For a naturopathic clinic assistant running on Jetson Orin Nano 8GB:
+For developers and coders running local LLMs on Jetson Orin Nano 8GB:
 
-1. **Use llama.cpp with Q4_K_M** for production inference (12.4 tok/s)
-2. **Keep Ollama as a fallback** for tools that expect the HTTP API
-3. **Always stop gdm3** before loading 7B models
-4. **Monitor CmaFree** — if < 50 MB, models won't load on GPU
-5. **Use `--flash-attn on`** for ~10–15% throughput improvement
+1. **Use a 7B Q4_K_M model** — This is the recommended configuration regardless of raw tok/s.
+   - 7B models retain significantly more reasoning capability for code generation, debugging, and architecture decisions
+   - Q4_K_M (4-bit quantization) preserves enough weight precision to avoid the quality degradation seen in Q2_K and Q3_K_M
+   - Even at ~6.4 tok/s (Ollama) or ~12.4 tok/s (llama.cpp), the slower speed is acceptable for coding workflows where accuracy matters more than conversational latency
+
+2. **Use llama.cpp for maximum throughput** when you need the fastest possible local inference
+   - Direct GGUF loading without HTTP overhead
+   - 2× faster than Ollama for the same model
+
+3. **Keep Ollama as a fallback** for tools that expect the HTTP API (IDE plugins, Copilot alternatives, agent frameworks)
+
+4. **Always stop gdm3** before loading 7B models — GUI sessions fragment CMA memory
+
+5. **Monitor CmaFree** — if < 50 MB, models won't load on GPU even with free RAM
+
+6. **Cap context at 1024–2048 tokens** for coding tasks — enough for function-level generation without OOM
+
+**Why 7B Q4_K_M over 3B models for coding:**
+- Better multi-file context understanding
+- More accurate API usage and library calls
+- Fewer hallucinated function signatures
+- Superior error explanation and debugging assistance
+- The 2× speed penalty vs 3B is worth the quality gain for non-interactive coding assistance (drafting, reviewing, explaining)
+
+**Backends compared (Q4_K_M, 7B):**
+| Backend | tok/s | Best For |
+|---------|-------|----------|
+| llama.cpp | **12.4** | Primary daily driver |
+| Ollama | **6.4** | API-compatible fallback |
 
 ## File Structure
 
