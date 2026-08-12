@@ -191,7 +191,3 @@ jetson-llm-benchmark/
 ## License
 
 MIT — See LICENSE file.
-
-## Credits
-
-Benchmark methodology and fixes developed by Walker Kirkpatrick, ND for clinic edge-AI deployment on Jetson Orin Nano.
