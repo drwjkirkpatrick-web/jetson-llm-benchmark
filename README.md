@@ -155,6 +155,16 @@ Ollama Q2_K                    |  5.1  |  6.5    | 6.8/10
 
 llama.cpp bypasses Ollama's HTTP API overhead, model management layer, and multi-model scheduling. It loads the GGUF directly into CUDA memory and runs inference with minimal indirection. For single-model benchmarking on resource-constrained devices, this 2× speedup is significant.
 
+## The Paradox: Why Q4_K_M Is Faster Than Q2/Q3
+
+You'd think smaller is faster. That's the whole point of quantization, right? Squeeze a 7B model down to 2-bit or 3-bit, and it should scream compared to a chunky 4-bit version. But that's not what happened.
+
+On our Jetson, **Q4_K_M was the fastest** — outpacing both Q2_K and Q3_K_M. On llama.cpp it hit 12.4 tok/s, while Q2_K only managed 11.0 and Q3_K_M crawled at 9.2. Same hardware, same prompt, same everything.
+
+The reason? **Tensor cores.** Jetson's Ampere GPU has dedicated hardware for 4-bit matrix math. At Q4, the model lands in a sweet spot where those tensor cores can do their job efficiently. Drop to Q2 or Q3 and you lose that hardware pathway — the GPU falls back to less efficient compute modes, and paradoxically, the "smaller" model runs slower.
+
+So if you're coding on a Jetson and want the best output *and* the best speed, ignore the intuition that "smaller is faster." Go Q4. Your tensor cores will thank you.
+
 ## Coding Deployment Recommendation
 
 For developers and coders running local LLMs on Jetson Orin Nano 8GB:
