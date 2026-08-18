@@ -340,168 +340,188 @@
       "code": {
         "label": "Code Generation",
         "gen_tps": 27.1,
-        "prompt_tps": 250.0,
-        "tokens_generated": 257,
-        "wall_time_s": 14.3,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3-dense-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C    "
+        "prompt_tps": 279.5,
+        "tokens_generated": 129,
+        "wall_time_s": 14.4,
+        "output_preview": "Here is the function that meets your requirements:\n\n```python\nfrom typing import List\n\ndef filter_even_numbers(numbers: List[int]) -> List[int]:\n    \"\"\"\n    This function takes a list of integers and returns a new list with only the even numbers,\n    sorted in ascending order.\n\n    Parameters:\n    numbers (List[int]): A list of integers.\n\n    Returns:\n    List[int]: A new list with only the even numbers, sorted in ascending order.\n    \"\"\"\n    return sorted([num for num in numbers if num % 2 == 0])\n```\n\nTo test this function, you can use the following unit tests:\n\n```python\nimport unittest\n\nclass TestFilterEvenNumbers(unittest.TestCase):\n    def test_filter_even_numbers(self):\n        self.assertEqual(filter_even_numbers([1, 2, 3, 4, 5, 6]), [2, 4, 6])\n        self.assertEqual(filter_even_n",
+        "output_full_len": 1062
       },
       "iambic": {
         "label": "Iambic Pentameter",
-        "gen_tps": 27.4,
-        "prompt_tps": 337.1,
-        "tokens_generated": 181,
-        "wall_time_s": 7.9,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3-dense-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  "
+        "gen_tps": 27.1,
+        "prompt_tps": 351.5,
+        "tokens_generated": 133,
+        "wall_time_s": 10.8,
+        "output_preview": "Autumn's hues in crimson, gold, do fade,\nAs winter's chill begins to take its hold.\nThe leaves, once vibrant, now lay on the ground,\nIn silence, they whisper tales of seasons past.\n\nThe air grows crisp, the nights grow long and cold,\nA blanket of white covers the earth below.\nThe world, once bustling, now lies still and quiet,\nAs winter's gentle touch begins to take its hold.\n\nThe snowflakes dance, a ballet in the sky,\nA symphony of white, a canvas of cold.\nThe world, once warm, now lies in a peaceful slumber,\nAs winter's gentle touch begins to take its hold.\n\nThe seasons change, as they always will,\nA cycle of life, a story to tell.\nFrom autumn's warmth to winter's chill,\nA journey of change, a tale to tell.\n\nExiting...",
+        "output_full_len": 730
       },
       "prose": {
         "label": "Clinical Prose",
-        "gen_tps": 27.4,
-        "prompt_tps": 347.7,
-        "tokens_generated": 127,
-        "wall_time_s": 13.1,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3-dense-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /reg"
+        "gen_tps": 27.3,
+        "prompt_tps": 298.3,
+        "tokens_generated": 237,
+        "wall_time_s": 17.9,
+        "output_preview": "Hypothyroidism and hyperthyroidism are two common endocrine disorders that affect the thyroid gland, a small gland located at the base of the neck. The thyroid gland produces hormones that regulate the body's metabolism, growth, and development.\n\nHypothyroidism occurs when the thyroid gland does not produce enough hormones. This can lead to a range of symptoms, including fatigue, weight gain, cold intolerance, constipation, dry skin, and depression. In severe cases, hypothyroidism can cause muscle weakness, joint pain, and a slowed heart rate. Diagnosis of hypothyroidism typically involves blood tests to measure thyroid hormone levels. Treatment for hypothyroidism usually involves replacing the missing hormones with synthetic thyroid hormone, either through tablets or injections.\n\nHyperthy",
+        "output_full_len": 1676
       },
       "creative": {
         "label": "Creative Writing",
-        "gen_tps": 27.4,
-        "prompt_tps": 265.3,
-        "tokens_generated": 131,
-        "wall_time_s": 9.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3-dense-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /reg"
+        "gen_tps": 27.3,
+        "prompt_tps": 286.0,
+        "tokens_generated": 145,
+        "wall_time_s": 10.5,
+        "output_preview": "The remote lighthouse stood as a sentinel against the raging sea, its once-pristine white walls now grimed by the relentless spray of salty spray. The storm had descended upon the island with little warning, its howling winds and torrential rain battering the lighthouse with unrelenting force. The sea churned beneath the tempest, its churning surface a mirror to the turmoil within the lighthouse. The air was thick with the scent of salt and rain, the storm's fury evident in the gusts that whipped the lighthouse's flag. Inside, the lighthouse keeper, a man of few words and even fewer friends, was huddled in the small living quarters, his eyes fixed on the storm through the narrow window. The storm had always been a constant companion, but tonight, it felt as if it had a secret of its own, a",
+        "output_full_len": 848
       },
       "math": {
         "label": "Mathematical Proof",
-        "gen_tps": 27.2,
-        "prompt_tps": 300.2,
-        "tokens_generated": 306,
-        "wall_time_s": 13.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3-dense-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  "
+        "gen_tps": 27.3,
+        "prompt_tps": 296.0,
+        "tokens_generated": 250,
+        "wall_time_s": 17.1,
+        "output_preview": "Theorem: The square root of 2 is irrational.\n\nProof by contradiction:\n\nAssume, for the sake of contradiction, that the square root of 2 is rational. This means that it can be expressed as a fraction a/b, where a and b are integers with no common factors other than 1 (i.e., a and b are coprime), and b \u2260 0.\n\nSo, we have:\n\n\u221a2 = a/b\n\nSquaring both sides to eliminate the square root, we get:\n\n2 = a\u00b2/b\u00b2\n\nMultiplying both sides by b\u00b2 to clear the fraction, we have:\n\n2b\u00b2 = a\u00b2\n\nThis equation tells us that a\u00b2 is an even number because it is equal to 2 times another number (b\u00b2). Since the square of an odd number is always odd, and the square of an even number is always even, a must be even. Let's say a = 2k for some integer k.\n\nSubstituting a = 2k into the equation, we get:\n\n2b\u00b2 = (2k)\u00b2\n\nSimplifying,",
+        "output_full_len": 1275
       }
     },
     "smallthinker:3b": {
       "code": {
         "label": "Code Generation",
         "gen_tps": 19.2,
-        "prompt_tps": 288.7,
-        "tokens_generated": 49,
-        "wall_time_s": 23.2,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/sm"
+        "prompt_tps": 303.4,
+        "tokens_generated": 845,
+        "wall_time_s": 72.1,
+        "output_preview": "Alright, I need to write a Python function that takes a list of integers and returns a new list containing only the even numbers, and this new list should be sorted in ascending order. I also need to include a docstring and type hints.\n\nFirst, I should think about the function's signature. It should take a list of integers as input and return a list of integers. So, in Python, that would be something like:\n\n```python\ndef filter_even_sorted(numbers: List[int]) -> List[int]:\n    pass\n```\n\nI need to make sure to import `List` from `typing`, so I'll add that at the top:\n\n```python\nfrom typing import List\n```\n\nNow, inside the function, I need to filter out the even numbers from the input list. I know that in Python, I can use list comprehensions to filter elements based on a condition. So, I ca",
+        "output_full_len": 5111
       },
       "iambic": {
         "label": "Iambic Pentameter",
         "gen_tps": 19.2,
-        "prompt_tps": 367.1,
-        "tokens_generated": 49,
-        "wall_time_s": 23.2,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/sm"
+        "prompt_tps": 371.7,
+        "tokens_generated": 612,
+        "wall_time_s": 49.0,
+        "output_preview": "To answer this question, I need to write a poem about the changing of seasons from autumn to winter, and it must be strictly in iambic pentameter with exactly 8 lines. Let me think about this carefully.\n\nFirst, I should understand what iambic pentameter is. It's a poetic meter with five iambs per line, where an iamb is a metrical foot consisting of an unstressed syllable followed by a stressed syllable. So, each line should have 10 syllables, alternating stress. That's a bit challenging, but I'll give it a try.\n\nLet me start by brainstorming some ideas about the changing of seasons. Autumn is a time of harvest and change, with leaves falling and temperatures cooling. Winter, on the other hand, is a time of cold and darkness, with snowflakes falling gently. I want to capture the essence of ",
+        "output_full_len": 3323
       },
       "prose": {
         "label": "Clinical Prose",
-        "gen_tps": 19.3,
-        "prompt_tps": 298.9,
-        "tokens_generated": 49,
-        "wall_time_s": 23.2,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/sm"
+        "gen_tps": 19.2,
+        "prompt_tps": 316.3,
+        "tokens_generated": 380,
+        "wall_time_s": 36.7,
+        "output_preview": "To answer this question, I need to delve into the differences between hypothyroidism and hyperthyroidism, two conditions that affect the thyroid gland and its hormone production. Let me think about this carefully... \n\nFirst, I should start by understanding what hypothyroidism is. It's a condition where the thyroid gland does not produce enough thyroid hormones, which are crucial for regulating metabolism and many bodily functions. Let me check the common symptoms associated with hypothyroidism... Ah yes, these include fatigue, weight gain, cold intolerance, constipation, dry skin, hair loss, and depression. Now, let's consider the diagnostic approach for hypothyroidism. It typically involves a combination of thyroid-stimulating hormone (TSH) testing, thyroid hormone (T4) and thyroid-stimul",
+        "output_full_len": 2831
       },
       "creative": {
         "label": "Creative Writing",
         "gen_tps": 19.2,
-        "prompt_tps": 310.1,
-        "tokens_generated": 49,
-        "wall_time_s": 23.2,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/sm"
+        "prompt_tps": 309.7,
+        "tokens_generated": 779,
+        "wall_time_s": 56.8,
+        "output_preview": "To answer this question, I need to write a vivid opening paragraph for a mystery novel set in a remote lighthouse during a storm. Let me think about this carefully. \n\nThis means I have to create an immersive atmosphere, using sensory details to draw the reader into the story. In other words, I need to engage the reader's senses - sight, sound, smell, touch, and even taste - to make them feel like they're right there with the characters in the lighthouse. Wait, let me break this down first - what are the key elements I need to include? I'll need to describe the setting, the storm, and the characters, but I also want to create a sense of tension and mystery.\n\nLet's see... First, I'll tackle the setting. The lighthouse is remote, so it's probably isolated and maybe even a bit rundown. I can u",
+        "output_full_len": 4275
       },
       "math": {
         "label": "Mathematical Proof",
         "gen_tps": 19.2,
-        "prompt_tps": 269.1,
-        "tokens_generated": 49,
-        "wall_time_s": 23.2,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/sm"
+        "prompt_tps": 291.1,
+        "tokens_generated": 602,
+        "wall_time_s": 54.7,
+        "output_preview": "Alright, I need to prove that the square root of 2 is irrational using a proof by contradiction. I'm a bit rusty on this, but I remember that irrational numbers can't be expressed as a simple fraction, and their decimal representation goes on forever without repeating. So, if I can show that assuming the square root of 2 is rational leads to something impossible, then I've proven it's irrational.\n\nFirst, I should start by assuming the opposite, which is that the square root of 2 is rational. If it's rational, then it can be expressed as a fraction of two integers, say p and q, where p and q are coprime (meaning they have no common factors other than 1), and q is not zero. So, I'll assume that \u221a2 = p/q.\n\nNow, I need to manipulate this equation to find a contradiction. Let's square both side",
+        "output_full_len": 3089
       }
     },
     "granite3.2:2b": {
       "code": {
         "label": "Code Generation",
-        "gen_tps": 27.1,
-        "prompt_tps": 430.4,
-        "tokens_generated": 215,
-        "wall_time_s": 11.0,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3.2-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C"
+        "gen_tps": 27.2,
+        "prompt_tps": 489.4,
+        "tokens_generated": 106,
+        "wall_time_s": 11.6,
+        "output_preview": "```python\nfrom typing import List\n\ndef filter_and_sort_even_numbers(numbers: List[int]) -> List[int]:\n    \"\"\"\n    This function takes a list of integers as input and returns a new list containing only the even numbers, sorted in ascending order.\n\n    Args:\n        numbers (List[int]): A list of integers.\n\n    Returns:\n        List[int]: A new list containing only the even numbers from the input list, sorted in ascending order.\n    \"\"\"\n    return sorted([num for num in numbers if num % 2 == 0])\n```\n\nYou can use this function like this:\n\n```python\nnumbers = [1, 3, 5, 7, 8, 10, 12, 15, 18, 20]\nresult = filter_and_sort_even_numbers(numbers)\nprint(result)  # Output: [8, 10, 12, 18, 20]\n```\n\nExiting...",
+        "output_full_len": 705
       },
       "iambic": {
         "label": "Iambic Pentameter",
         "gen_tps": 27.3,
-        "prompt_tps": 525.4,
-        "tokens_generated": 159,
-        "wall_time_s": 12.6,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3.2-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /reg"
+        "prompt_tps": 461.9,
+        "tokens_generated": 153,
+        "wall_time_s": 13.6,
+        "output_preview": "In autumn's grand, resplendent reign,\nWhen leaves in crimson, gold, and amber stain,\nThe earth, with ripe and bountiful array,\nPrepares for winter's icy, silent ballet.\n\nThe trees, like sculptors, chisel down their crown,\nIn hues of fiery passion, they are dressed in brown.\nThe air, once warm, now chills with crisp delight,\nAs whispers of the season's end take flight.\n\nThe frost, a painter, daubs the window pane,\nWith dewdrops that in morning's light remain.\nSnowflakes, in their dance, begin to fall,\nEach one a unique, celestial call.\n\nThe world, now shrouded in a white veil,\nBids farewell to summer's vibrant tale.\nYet, in this silence, winter's promise lies,\nA season of stillness, under its icy guise.\n\nSo, as the year in slumber takes its hold,\nWe find in winter's grasp, a peace untold.\nT",
+        "output_full_len": 909
       },
       "prose": {
         "label": "Clinical Prose",
-        "gen_tps": 27.3,
-        "prompt_tps": 456.5,
-        "tokens_generated": 127,
-        "wall_time_s": 13.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3.2-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /reg"
+        "gen_tps": 26.9,
+        "prompt_tps": 459.8,
+        "tokens_generated": 691,
+        "wall_time_s": 49.6,
+        "output_preview": "Hypothyroidism and hyperthyroidism represent two distinct conditions that affect the thyroid gland's function, leading to imbalances in the body's metabolic processes. These conditions are often contrasting, with hypothyroidism characterized by underactivity and hyperthyroidism by overactivity of the thyroid gland.\n\n**Hypothyroidism** is a condition in which the thyroid gland does not produce enough thyroid hormones, primarily triiodothyronine (T3) and thyroxine (T4). This deficiency disrupts the regulation of metabolism, leading to a slowdown in the body's normal functions. Common symptoms of hypothyroidism can be subtle and may mimic those of other medical conditions. They typically include:\n\n- Fatigue and weakness\n- Slowing of the heart rate (bradycardia)\n- Dry, rough, and thinning hair",
+        "output_full_len": 5055
       },
       "creative": {
         "label": "Creative Writing",
-        "gen_tps": 27.3,
-        "prompt_tps": 486.4,
-        "tokens_generated": 245,
-        "wall_time_s": 13.5,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3.2-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /reg"
+        "gen_tps": 27.2,
+        "prompt_tps": 439.0,
+        "tokens_generated": 304,
+        "wall_time_s": 22.3,
+        "output_preview": "The relentless howl of the tempest lanced through the air, shattering the silence that had once enveloped the desolate coastline. A spectral fortress of weather-beaten stone, the lighthouse stood defiantly, its silhouette stark against the churning, ink-black sky. The sea, a tumultuous maelstrom, crashed against the jagged cliffs below, sending spray high into the frenzied heavens, where it mingled with the acrid scent of salt and ozone. The wind, a relentless, icy hand, whipped through the gnarled branches of the ancient trees that huddled around the lighthouse, tearing at their bark and sending leaves whirling in a frenzied dance.\n\nWithin this fortress of stone and time, the keeper, an enigmatic figure named Elijah, was entrenched. His breath, a plume of vapor, hung in the frigid air as ",
+        "output_full_len": 1858
       },
       "math": {
         "label": "Mathematical Proof",
-        "gen_tps": 27.3,
-        "prompt_tps": 481.1,
-        "tokens_generated": 278,
-        "wall_time_s": 13.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite3.2-2b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /reg"
+        "gen_tps": 27.2,
+        "prompt_tps": 494.6,
+        "tokens_generated": 296,
+        "wall_time_s": 20.5,
+        "output_preview": "Theorem: The square root of 2 is irrational.\n\nProof by Contradiction:\n\n1. Assume, to the contrary, that \u221a2 is rational. By definition, a rational number can be expressed as a fraction a/b, where a and b are integers with no common factors other than 1 (i.e., a and b are coprime), and b \u2260 0. So, let's assume \u221a2 = a/b, with a and b being such integers.\n\n2. Squaring both sides of the equation to eliminate the square root, we get:\n\n   (\u221a2)^2 = (a/b)^2\n   2 = a^2 / b^2\n\n3. Multiplying both sides by b^2 to clear the fraction, we have:\n\n   2 * b^2 = a^2\n\n4. This implies that a^2 is an even number (since it equals 2 * b^2). As a result, a must also be even (because the square of an odd number is odd, and the square of an even number is even).\n\n5. If a is even, then a can be written as 2k for some ",
+        "output_full_len": 1508
       }
     },
     "granite4:3b": {
       "code": {
         "label": "Code Generation",
-        "gen_tps": 19.6,
-        "prompt_tps": 329.2,
-        "tokens_generated": 246,
-        "wall_time_s": 13.6,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite4-3b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable comma"
+        "gen_tps": 19.7,
+        "prompt_tps": 306.6,
+        "tokens_generated": 121,
+        "wall_time_s": 13.8,
+        "output_preview": "Here is a Python function that does what you're asking for:\n\n```python\ndef get_sorted_even_numbers(numbers: list) -> list:\n    \"\"\"\n    This function takes a list of integers and returns a new list with only the even numbers,\n    sorted in ascending order.\n\n    Args:\n    numbers (list): A list of integers.\n\n    Returns:\n    list: A new list with only the even numbers from the input list, sorted in ascending order.\n    \"\"\"\n    return sorted([num for num in numbers if num % 2 == 0])\n```\n\nThis function uses a list comprehension to filter out the odd numbers from the input list, then sorts the remaining even numbers in ascending order using the `sorted()` function. The `num % 2 == 0` condition checks if a number is even.\n\nExiting...",
+        "output_full_len": 737
       },
       "iambic": {
         "label": "Iambic Pentameter",
-        "gen_tps": 19.7,
-        "prompt_tps": 335.2,
-        "tokens_generated": 136,
-        "wall_time_s": 8.0,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite4-3b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C  "
+        "gen_tps": 19.3,
+        "prompt_tps": 287.1,
+        "tokens_generated": 39,
+        "wall_time_s": 8.5,
+        "output_preview": "Autumn's hues, in gold and red, fade,\nWinter's touch, in white, is made.\nBeneath the moon's soft, silver glow,\nIn frosty night, the world will slow.\nBare branches bare, in silence stand,\nAwaiting spring's return, across the land.\n\nExiting...",
+        "output_full_len": 241
       },
       "prose": {
         "label": "Clinical Prose",
         "gen_tps": 19.7,
-        "prompt_tps": 333.5,
-        "tokens_generated": 248,
-        "wall_time_s": 18.8,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite4-3b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     s"
+        "prompt_tps": 312.8,
+        "tokens_generated": 254,
+        "wall_time_s": 21.9,
+        "output_preview": "Hypothyroidism and hyperthyroidism are two distinct thyroid disorders that result from imbalances in the production of thyroid hormones. Hypothyroidism, also known as underactive thyroid, occurs when the thyroid gland does not produce enough thyroid hormones. This can lead to a range of symptoms, including fatigue, weight gain, cold intolerance, constipation, dry skin, hair loss, depression, and slowed heart rate. In some cases, hypothyroidism can also lead to more serious conditions such as heart disease or peripheral neuropathy.\n\nHyperthyroidism, on the other hand, is characterized by excessive production of thyroid hormones. This can result in a variety of symptoms, including weight loss, rapid heartbeat, anxiety, tremors, heat intolerance, sweating, and increased appetite. Hyperthyroid",
+        "output_full_len": 1793
       },
       "creative": {
         "label": "Creative Writing",
         "gen_tps": 19.7,
-        "prompt_tps": 341.1,
-        "tokens_generated": 354,
-        "wall_time_s": 18.8,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite4-3b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     s"
+        "prompt_tps": 298.5,
+        "tokens_generated": 230,
+        "wall_time_s": 18.1,
+        "output_preview": "In the heart of a tempestuous sea, where the relentless waves crashed against the towering structure of the remote lighthouse, the air was thick with the scent of salt and the deafening roar of the storm. The lighthouse, an ancient sentinel, stood defiant against the onslaught of the sea, its beacon piercing the inky black sky, a solitary light amidst the chaos. The wind howled, whipping the sea spray in all directions, creating a spectacle of light and dark as it danced around the lighthouse. The rain lashed against the stone walls, creating a symphony of sound that echoed through the night, drowning out the cries of the sea. The lighthouse keeper, a man of few words, was busy tending to the light, his face etched with the lines of countless storms. His eyes, however, were not afraid of t",
+        "output_full_len": 1318
       },
       "math": {
         "label": "Mathematical Proof",
         "gen_tps": 19.7,
-        "prompt_tps": 313.0,
-        "tokens_generated": 316,
-        "wall_time_s": 18.7,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \b\n\n\u2584\u2584 \u2584\u2584\n\u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588  \u2580\u2580\u2588\u2584 \u2588\u2588\u2588\u2584\u2588\u2588\u2588\u2584  \u2580\u2580\u2588\u2584    \u2584\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2584 \u2588\u2588\u2588\u2588\u2584\n\u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2584\u2588\u2580\u2588\u2588    \u2588\u2588    \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588\n\u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2588\u2588 \u2588\u2588 \u2580\u2588\u2584\u2588\u2588 \u2588\u2588 \u2580\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2580 \u2588\u2588\u2588\u2588\u2580\n                                    \u2588\u2588    \u2588\u2588\n                                    \u2580\u2580    \u2580\u2580\n\nbuild      : b1-0b1bad1\nmodel      : /home/walker/models/bench-gguf/granite4-3b.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     s"
+        "prompt_tps": 312.9,
+        "tokens_generated": 249,
+        "wall_time_s": 22.2,
+        "output_preview": "Theorem: The square root of 2 is irrational.\n\nProof:\n\n1. Assume, for the sake of contradiction, that the square root of 2 is rational. This means that it can be expressed as a fraction a/b, where a and b are integers with no common factors other than 1 (i.e., they are coprime), and b is not zero.\n\n   So, \u221a2 = a/b.\n\n2. Square both sides of the equation to eliminate the square root.\n\n   This gives us 2 = a\u00b2/b\u00b2.\n\n3. Multiply both sides of the equation by b\u00b2 to get rid of the denominator.\n\n   This gives us 2b\u00b2 = a\u00b2.\n\n4. Since a\u00b2 is an even number (because it equals 2b\u00b2, which is clearly even), a must also be even (because the square of an odd number is odd).\n\n   Let's say a = 2k for some integer k.\n\n5. Substitute a = 2k into the equation from step 3.\n\n   This gives us 2b\u00b2 = (2k)\u00b2 = 4k\u00b2.\n\n6. Di",
+        "output_full_len": 1278
       }
     }
   },

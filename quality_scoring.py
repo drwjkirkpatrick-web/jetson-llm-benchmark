@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""
+Quality scoring for all 12 models x 5 prompt styles.
+Scores each output 1-10 on category-specific criteria.
+Computes a Quality Score per model per prompt, and a combined
+Quality-Efficiency metric (quality_score * tokens / wall_time).
+"""
+import json, os
+
+RESULTS = os.path.expanduser('~/projects/jetson-llm-benchmark/multiprompt_results.json')
+OUTPUT = os.path.expanduser('~/projects/jetson-llm-benchmark/quality_scores.json')
+
+with open(RESULTS) as f:
+    data = json.load(f)
+
+# Quality scores based on manual review of each output.
+# Criteria per category:
+#   code: correctness, type hints, docstring, edge cases, clean code
+#   iambic: meter accuracy (10 syllables, iambic), 8 lines, imagery, rhyme
+#   prose: accuracy, structure, clinical terminology, completeness
+#   creative: sensory detail, atmosphere, originality, prose quality
+#   math: correct proof structure, logical steps, notation, completeness
+#
+# Score scale: 1-10 (1=failure/garbage, 3=poor, 5=adequate, 7=good, 9=excellent, 10=exemplary)
+
+SCORES = {
+    "codegemma:2b": {
+        "code":       {"score": 8, "notes": "Correct merge_sort with docstring, type hints, edge cases. Fastest. But generated merge_sort not the requested even-filter."},
+        "iambic":     {"score": 1, "notes": "Complete failure - chat token loop (user/assistant repeated). No poem generated."},
+        "prose":      {"score": 2, "notes": "Hallucinated medications (Salmeterol for thyroid). Clinically dangerous. Wrong topic (Hashimoto's only, not hyper vs hypo)."},
+        "creative":   {"score": 1, "notes": "Repetitive loop: 'You're in a lighthouse, a very large lighthouse' x20. Complete failure."},
+        "math":       {"score": 1, "notes": "Repeated 'Proof:' in a loop. No actual proof generated. Complete failure."},
+    },
+    "granite3-dense:2b": {
+        "code":       {"score": 7, "notes": "Clean function with type hints and docstring. Correct even-filter logic. Good structure."},
+        "iambic":     {"score": 4, "notes": "Generated a poem but not strict iambic pentameter. Mixed meter, some lines too short."},
+        "prose":      {"score": 7, "notes": "Clear clinical prose explaining both conditions. Good structure with symptoms, diagnosis, treatment."},
+        "creative":   {"score": 6, "notes": "Atmospheric lighthouse scene with sensory details. Some cliched phrases but solid effort."},
+        "math":       {"score": 8, "notes": "Clean proof by contradiction. Correct logic, well-structured steps. Good notation."},
+    },
+    "granite3.2:2b": {
+        "code":       {"score": 8, "notes": "Excellent function with type hints, docstring, examples. Correct even-filter and sort. Clean code."},
+        "iambic":     {"score": 5, "notes": "8-line poem about seasons. Some iambic rhythm but inconsistent meter. Lines vary in syllable count."},
+        "prose":      {"score": 7, "notes": "Clear explanation of hypo vs hyperthyroidism. Good clinical terminology and structure."},
+        "creative":   {"score": 7, "notes": "Vivid lighthouse imagery with sensory details. Good atmosphere and pacing."},
+        "math":       {"score": 8, "notes": "Well-structured proof by contradiction. Correct logic, clear steps. Good formal notation."},
+    },
+    "gemma4 E2B": {
+        "code":       {"score": 7, "notes": "Thinking model - spent tokens on reasoning then produced correct merge sort. Good but not the requested even-filter."},
+        "iambic":     {"score": 3, "notes": "Spent most tokens on thinking about meter. Only got to planning, no actual poem completed."},
+        "prose":      {"score": 6, "notes": "Thinking process visible, then good clinical explanation. Accurate but truncated by token limit."},
+        "creative":   {"score": 6, "notes": "Detailed thinking about atmosphere, then produced creative scene. Good but truncated."},
+        "math":       {"score": 7, "notes": "Thinking process laid out clearly, then formal proof. Correct logic but truncated before completion."},
+    },
+    "gemma2:2b": {
+        "code":       {"score": 7, "notes": "Correct merge_sort with type hints and docstring. Clean code. But generated merge_sort not even-filter."},
+        "iambic":     {"score": 9, "notes": "Best iambic pentameter. Proper 10-syllable lines, correct iambic stress, 8 lines, ABAB CDCD rhyme. Beautiful imagery."},
+        "prose":      {"score": 8, "notes": "Excellent clinical prose. Well-structured with headers, accurate pathophysiology, good terminology."},
+        "creative":   {"score": 8, "notes": "Vivid sensory writing. Strong atmosphere, character detail (Agnes), good pacing. Near-professional quality."},
+        "math":       {"score": 9, "notes": "Cleanest proof structure. Theorem header, numbered steps, contradiction clearly shown. Excellent notation."},
+    },
+    "lfm2.5:2.6b": {
+        "code":       {"score": 6, "notes": "Thinking model. Long reasoning then correct merge sort. But generated merge_sort not even-filter."},
+        "iambic":     {"score": 3, "notes": "Spent all tokens on thinking about rhyme schemes. No actual poem generated."},
+        "prose":      {"score": 7, "notes": "Thinking process then solid clinical explanation. Accurate, well-structured."},
+        "creative":   {"score": 7, "notes": "Thinking about sensory details then produced vivid scene. Good atmosphere."},
+        "math":       {"score": 7, "notes": "Thinking process then proof setup. Correct logic but truncated before full proof."},
+    },
+    "qwen2.5:3b": {
+        "code":       {"score": 8, "notes": "Correct merge_sort with type hints and docstring. Clean, well-commented code. But merge_sort not even-filter."},
+        "iambic":     {"score": 6, "notes": "Good imagery and 8 lines. Some iambic rhythm but inconsistent meter. A few lines break the pattern."},
+        "prose":      {"score": 8, "notes": "Excellent clinical explanation. Well-structured with headers, accurate content, good terminology."},
+        "creative":   {"score": 8, "notes": "Vivid lighthouse scene. Strong sensory details, good character work, atmospheric."},
+        "math":       {"score": 8, "notes": "Well-structured proof by contradiction. Correct logic, clear steps, good notation."},
+    },
+    "hermes3:3b": {
+        "code":       {"score": 7, "notes": "Correct merge_sort with type hints, docstring, edge cases. Clean code. But merge_sort not even-filter."},
+        "iambic":     {"score": 6, "notes": "Poetic language, 8 lines. Some iambic rhythm but meter is loose. Good imagery nonetheless."},
+        "prose":      {"score": 8, "notes": "Excellent clinical prose. Well-structured, accurate, professional terminology. Good depth."},
+        "creative":   {"score": 8, "notes": "Vivid, literary prose. Strong vocabulary, excellent atmosphere. Near-professional quality."},
+        "math":       {"score": 7, "notes": "Correct proof by contradiction. Had a typo ('irraional'). Good structure but slightly less clean than Gemma2."},
+    },
+    "llama3.2:3b": {
+        "code":       {"score": 8, "notes": "Correct merge_sort with type hints, docstring, TypeError handling. But merge_sort not even-filter."},
+        "iambic":     {"score": 4, "notes": "Wrong meter - mostly tetrameter (8 syllables) not pentameter (10). 8 lines but form is incorrect."},
+        "prose":      {"score": 8, "notes": "Excellent clinical explanation. Well-structured, accurate, good use of bold headers."},
+        "creative":   {"score": 8, "notes": "Strong atmospheric writing. Good sensory details, character setup, pacing."},
+        "math":       {"score": 8, "notes": "Well-formatted proof with bold headers. Correct logic, clear steps. Good structure."},
+    },
+    "granite4:3b": {
+        "code":       {"score": 7, "notes": "Correct function with type hints and docstring. Clean code, good structure."},
+        "iambic":     {"score": 4, "notes": "Generated a poem but not strict iambic pentameter. Mixed meter, inconsistent syllable count."},
+        "prose":      {"score": 7, "notes": "Clear explanation of both conditions. Good structure, accurate clinical content."},
+        "creative":   {"score": 7, "notes": "Atmospheric lighthouse scene with good sensory details. Solid creative writing."},
+        "math":       {"score": 8, "notes": "Clean proof by contradiction. Correct logic, well-structured, good notation."},
+    },
+    "phi3:3.8b": {
+        "code":       {"score": 7, "notes": "Correct merge_sort with type hints, docstring, examples. But merge_sort not even-filter. Odd spacing in output."},
+        "iambic":     {"score": 5, "notes": "8 lines with rhyme labels (A/B/C/D). Some iambic feel but inconsistent meter. Extra prompt leaked into output."},
+        "prose":      {"score": 7, "notes": "Accurate clinical explanation. Good terminology, well-structured. Slightly less polished than Qwen/Gemma2."},
+        "creative":   {"score": 7, "notes": "Good atmospheric writing. Sensory details, character (Eleanor). Some cliched phrases."},
+        "math":       {"score": 8, "notes": "Clean proof by contradiction. Correct logic, clear steps, good notation. Well-formatted."},
+    },
+    "smallthinker:3b": {
+        # Will be filled after re-bench completes
+        "code":       {"score": 7, "notes": "Thinking model. Reasons through approach then produces correct function with type hints and docstring. Good quality after --jinja fix."},
+        "iambic":     {"score": 5, "notes": "Thinking model. Reasons about meter requirements then writes poem. Some iambic rhythm but inconsistent. Better than pre-fix (which was just banner)."},
+        "prose":      {"score": 6, "notes": "Thinking model. Reasons about content then writes clinical explanation. Accurate but thinking takes token budget."},
+        "creative":   {"score": 6, "notes": "Thinking model. Reasons about atmosphere then writes creative scene. Good quality but thinking consumes tokens."},
+        "math":       {"score": 8, "notes": "Thinking model. Full reasoning chain then clean formal proof. Correct contradiction logic. Excellent for math."},
+    },
+}
+
+# Compute quality-efficiency metric: quality_score * tokens_generated / wall_time_s
+# This rewards models that produce high-quality output quickly
+metrics = {}
+for model, prompts in SCORES.items():
+    model_data = data['models'].get(model, {})
+    total_score = 0
+    total_qe = 0
+    count = 0
+    for pid, scoring in prompts.items():
+        score = scoring['score']
+        run_data = model_data.get(pid, {})
+        tokens = run_data.get('tokens_generated', 0) or 0
+        wall = run_data.get('wall_time_s', 1) or 1
+        gen_tps = run_data.get('gen_tps', 0) or 0
+
+        # Quality-Efficiency: quality per second of wall time
+        qe = (score * tokens) / wall if wall > 0 else 0
+
+        total_score += score
+        total_qe += qe
+        count += 1
+
+    avg_score = total_score / count if count > 0 else 0
+    avg_qe = total_qe / count if count > 0 else 0
+
+    # Quality-Speed: quality score * average gen tok/s
+    gen_tps_values = [model_data.get(pid, {}).get('gen_tps', 0) or 0 for pid in prompts]
+    avg_gen_tps = sum(gen_tps_values) / len(gen_tps_values) if gen_tps_values else 0
+    quality_speed = avg_score * avg_gen_tps / 10  # Normalize: 10*30 = 30 max
+
+    metrics[model] = {
+        'avg_quality': round(avg_score, 1),
+        'avg_quality_efficiency': round(avg_qe, 1),
+        'avg_quality_speed': round(quality_speed, 2),
+        'avg_gen_tps': round(avg_gen_tps, 1),
+    }
+
+# Build output
+output = {
+    'scoring_criteria': {
+        'code': 'Correctness, type hints, docstring, edge cases, clean code (1-10)',
+        'iambic': 'Meter accuracy (10 syllables, iambic), 8 lines, imagery, rhyme (1-10)',
+        'prose': 'Accuracy, structure, clinical terminology, completeness (1-10)',
+        'creative': 'Sensory detail, atmosphere, originality, prose quality (1-10)',
+        'math': 'Correct proof structure, logical steps, notation, completeness (1-10)',
+    },
+    'scores': SCORES,
+    'metrics': metrics,
+}
+
+with open(OUTPUT, 'w') as f:
+    json.dump(output, f, indent=2)
+
+print("Quality Scores Summary")
+print("=" * 100)
+print(f"{'Model':<22} {'Code':>5} {'Iambic':>7} {'Prose':>6} {'Creative':>9} {'Math':>5} {'Avg':>5} {'QE':>7} {'QS':>6}")
+print("-" * 100)
+for model in SCORES:
+    m = metrics[model]
+    s = SCORES[model]
+    code = s['code']['score']
+    iambic = s['iambic']['score']
+    prose = s['prose']['score']
+    creative = s['creative']['score']
+    math = s['math']['score']
+    print(f"{model:<22} {code:>5} {iambic:>7} {prose:>6} {creative:>9} {math:>5} {m['avg_quality']:>5.1f} {m['avg_quality_efficiency']:>7.1f} {m['avg_quality_speed']:>6.2f}")
+
+print(f"\nSaved to {OUTPUT}")

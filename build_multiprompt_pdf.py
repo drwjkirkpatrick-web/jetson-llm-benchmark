@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 """
-Build a landscape PDF report for multi-prompt benchmark results.
-8 models x 5 prompt styles with gen tok/s, prompt eval tok/s, token counts,
-quality observations, and a summary recommendation table.
+Build the full multi-prompt benchmark PDF report with quality scores.
+Adds: quality score matrix, quality-speed metric, updated summary.
 """
-
 import json
 import os
 from reportlab.lib.pagesizes import A4, landscape
-from reportlab.lib.units import mm, cm
+from reportlab.lib.units import mm
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
@@ -18,10 +16,13 @@ from reportlab.platypus import (
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 
 RESULTS = os.path.expanduser("~/projects/jetson-llm-benchmark/multiprompt_results.json")
+QUALITY = os.path.expanduser("~/projects/jetson-llm-benchmark/quality_scores.json")
 OUTPUT = os.path.expanduser("~/projects/jetson-llm-benchmark/Multi_Prompt_Benchmark_Report.pdf")
 
 with open(RESULTS) as f:
     DATA = json.load(f)
+with open(QUALITY) as f:
+    QUAL = json.load(f)
 
 MODELS = [
     ("codegemma:2b",       "CodeGemma 2B",      "2.51B", "Q4_0",  "1.44 GiB"),
@@ -41,7 +42,6 @@ MODELS = [
 PROMPT_IDS = ["code", "iambic", "prose", "creative", "math"]
 PROMPT_LABELS = {"code": "Code", "iambic": "Iambic", "prose": "Prose", "creative": "Creative", "math": "Math"}
 
-# Color scheme
 HEADER_BG = colors.HexColor("#1a237e")
 HEADER_FG = colors.white
 BEST_BG = colors.HexColor("#e8f5e9")
@@ -65,13 +65,19 @@ small_note = ParagraphStyle("SmallNote", parent=styles["Normal"], fontSize=6.5, 
 def P(text, style=cell_style):
     return Paragraph(str(text), style)
 
-
 def get_data(model_key, prompt_id, field):
     return DATA["models"].get(model_key, {}).get(prompt_id, {}).get(field)
 
+def get_quality(model_key, prompt_id):
+    return QUAL["scores"].get(model_key, {}).get(prompt_id, {})
+
+def get_metric(model_key, metric):
+    return QUAL["metrics"].get(model_key, {}).get(metric, 0)
+
+
+# ---- Table builders ----
 
 def build_gen_speed_table():
-    """Generation speed table."""
     header = [P("Model", header_left), P("Params", header_cell), P("Quant", header_cell), P("Size", header_cell)]
     for pid in PROMPT_IDS:
         header.append(P(PROMPT_LABELS[pid], header_cell))
@@ -94,12 +100,9 @@ def build_gen_speed_table():
         row.append(P(f"{avg:.1f}"))
         rows.append(row)
 
-    # Find best for highlighting
     best_avg = max(all_avgs)
-
     col_widths = [32*mm, 14*mm, 14*mm, 16*mm] + [18*mm]*5 + [14*mm]
     t = Table(rows, colWidths=col_widths, repeatRows=1)
-
     style_cmds = [
         ("BACKGROUND", (0, 0), (-1, 0), HEADER_BG),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
@@ -110,21 +113,17 @@ def build_gen_speed_table():
         ("LEFTPADDING", (0, 0), (-1, -1), 3),
         ("RIGHTPADDING", (0, 0), (-1, -1), 3),
     ]
-    # Alternate row colors
     for i in range(1, len(rows)):
         if i % 2 == 0:
             style_cmds.append(("BACKGROUND", (0, i), (-1, i), ALT_ROW))
-    # Highlight best average
     for i, avg in enumerate(all_avgs, 1):
         if avg == best_avg:
             style_cmds.append(("BACKGROUND", (-1, i), (-1, i), BEST_BG))
-
     t.setStyle(TableStyle(style_cmds))
     return t
 
 
 def build_prompt_eval_table():
-    """Prompt eval speed table."""
     header = [P("Model", header_left)]
     for pid in PROMPT_IDS:
         header.append(P(PROMPT_LABELS[pid], header_cell))
@@ -148,10 +147,8 @@ def build_prompt_eval_table():
         rows.append(row)
 
     best_avg = max(all_avgs)
-
     col_widths = [36*mm] + [20*mm]*5 + [16*mm]
     t = Table(rows, colWidths=col_widths, repeatRows=1)
-
     style_cmds = [
         ("BACKGROUND", (0, 0), (-1, 0), HEADER_BG),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
@@ -166,13 +163,11 @@ def build_prompt_eval_table():
     for i, avg in enumerate(all_avgs, 1):
         if avg == best_avg:
             style_cmds.append(("BACKGROUND", (-1, i), (-1, i), BEST_BG))
-
     t.setStyle(TableStyle(style_cmds))
     return t
 
 
 def build_token_count_table():
-    """Tokens generated table — output completeness."""
     header = [P("Model", header_left)]
     for pid in PROMPT_IDS:
         header.append(P(PROMPT_LABELS[pid], header_cell))
@@ -196,10 +191,8 @@ def build_token_count_table():
         rows.append(row)
 
     best_avg = max(all_avgs)
-
     col_widths = [36*mm] + [20*mm]*5 + [16*mm]
     t = Table(rows, colWidths=col_widths, repeatRows=1)
-
     style_cmds = [
         ("BACKGROUND", (0, 0), (-1, 0), HEADER_BG),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
@@ -214,59 +207,174 @@ def build_token_count_table():
     for i, avg in enumerate(all_avgs, 1):
         if avg == best_avg:
             style_cmds.append(("BACKGROUND", (-1, i), (-1, i), BEST_BG))
-
     t.setStyle(TableStyle(style_cmds))
     return t
 
 
-def build_quality_table():
-    """Quality observations by prompt type."""
-    quality_data = [
-        ["Prompt Type", "Best Model", "Runner-Up", "Key Observation"],
-        ["Code Generation", "codegemma:2b", "granite3-dense:2b", "CodeGemma fastest + correct; Granite good general code"],
-        ["Iambic Pentameter", "gemma2:2b", "granite3-dense:2b", "Gemma2 best meter (10-syllable); Granite good form"],
-        ["Clinical Prose", "qwen2.5:3b", "gemma2:2b", "Qwen most detailed; Gemma2 best structured; all adequate"],
-        ["Creative Writing", "qwen2.5:3b", "lfm2.5:2.6b", "Qwen most vivid; LFM good narrative flow"],
-        ["Math Proof", "qwen2.5:3b", "gemma2:2b", "Qwen cleanest proof; Gemma2 proper theorem format"],
+def build_quality_score_table():
+    """Quality score matrix (1-10) for each model x prompt type."""
+    header = [P("Model", header_left)]
+    for pid in PROMPT_IDS:
+        header.append(P(PROMPT_LABELS[pid], header_cell))
+    header.append(P("Avg", header_cell))
+
+    rows = [header]
+    all_avgs = []
+    for key, name, params, quant, size in MODELS:
+        row = [P(name, cell_left)]
+        scores = []
+        for pid in PROMPT_IDS:
+            q = get_quality(key, pid)
+            score = q.get("score", 0)
+            row.append(P(str(score)))
+            scores.append(score)
+        avg = sum(scores) / len(scores) if scores else 0
+        all_avgs.append(avg)
+        row.append(P(f"{avg:.1f}"))
+        rows.append(row)
+
+    best_avg = max(all_avgs)
+    col_widths = [36*mm] + [20*mm]*5 + [16*mm]
+    t = Table(rows, colWidths=col_widths, repeatRows=1)
+    style_cmds = [
+        ("BACKGROUND", (0, 0), (-1, 0), HEADER_BG),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+        ("GRID", (0, 0), (-1, -1), 0.3, colors.grey),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("TOPPADDING", (0, 0), (-1, -1), 2),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+    ]
+    for i in range(1, len(rows)):
+        if i % 2 == 0:
+            style_cmds.append(("BACKGROUND", (0, i), (-1, i), ALT_ROW))
+    # Color-code cells: 8-10 green, 5-7 yellow, 1-4 red
+    for row_idx in range(1, len(rows)):
+        for col_idx in range(1, 6):
+            val = int(rows[row_idx][col_idx].text) if hasattr(rows[row_idx][col_idx], 'text') else 0
+            if val >= 8:
+                style_cmds.append(("BACKGROUND", (col_idx, row_idx), (col_idx, row_idx), BEST_BG))
+            elif val <= 4:
+                style_cmds.append(("BACKGROUND", (col_idx, row_idx), (col_idx, row_idx), BAD_BG))
+            elif val >= 5 and val <= 7:
+                style_cmds.append(("BACKGROUND", (col_idx, row_idx), (col_idx, row_idx), GOOD_BG))
+    # Highlight best average
+    for i, avg in enumerate(all_avgs, 1):
+        if avg == best_avg:
+            style_cmds.append(("BACKGROUND", (-1, i), (-1, i), BEST_BG))
+    t.setStyle(TableStyle(style_cmds))
+    return t
+
+
+def build_quality_speed_table():
+    """Quality-Speed metric: combines quality scores with generation speed."""
+    header = [
+        P("Model", header_left),
+        P("Avg Quality\n(1-10)", header_cell),
+        P("Avg Gen\n(tok/s)", header_cell),
+        P("Quality-Speed\n(Q x tps / 10)", header_cell),
+        P("Quality-Efficiency\n(Q x tok / wall_s)", header_cell),
+        P("Rank", header_cell),
     ]
 
-    rows = []
-    for r in quality_data:
-        if r == quality_data[0]:
-            rows.append([P(c, header_cell if i > 0 else header_left) for i, c in enumerate(r)])
-        else:
-            rows.append([P(c, cell_left if i == 0 else cell_style) for i, c in enumerate(r)])
+    # Sort by quality-speed descending
+    model_metrics = []
+    for key, name, params, quant, size in MODELS:
+        m = QUAL["metrics"].get(key, {})
+        qs = m.get("avg_quality_speed", 0)
+        model_metrics.append((key, name, m, qs))
+    model_metrics.sort(key=lambda x: x[3], reverse=True)
 
-    col_widths = [30*mm, 32*mm, 32*mm, 70*mm]
+    rows = [header]
+    for rank, (key, name, m, qs) in enumerate(model_metrics, 1):
+        rows.append([
+            P(name, cell_left),
+            P(f"{m.get('avg_quality', 0):.1f}"),
+            P(f"{m.get('avg_gen_tps', 0):.1f}"),
+            P(f"{qs:.2f}"),
+            P(f"{m.get('avg_quality_efficiency', 0):.1f}"),
+            P(f"#{rank}"),
+        ])
+
+    col_widths = [36*mm, 28*mm, 24*mm, 32*mm, 36*mm, 14*mm]
     t = Table(rows, colWidths=col_widths, repeatRows=1)
-    t.setStyle(TableStyle([
+    style_cmds = [
         ("BACKGROUND", (0, 0), (-1, 0), HEADER_BG),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
         ("GRID", (0, 0), (-1, -1), 0.3, colors.grey),
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("TOPPADDING", (0, 0), (-1, -1), 3),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
-        ("BACKGROUND", (0, 1), (-1, 1), BEST_BG),
-        ("BACKGROUND", (0, 2), (-1, 2), ALT_ROW),
-        ("BACKGROUND", (0, 3), (-1, 3), BEST_BG),
-        ("BACKGROUND", (0, 4), (-1, 4), ALT_ROW),
-        ("BACKGROUND", (0, 5), (-1, 5), BEST_BG),
-    ]))
+    ]
+    for i in range(1, len(rows)):
+        if i % 2 == 0:
+            style_cmds.append(("BACKGROUND", (0, i), (-1, i), ALT_ROW))
+    # Highlight top 3
+    for i in range(1, min(4, len(rows))):
+        style_cmds.append(("BACKGROUND", (0, i), (-1, i), BEST_BG))
+    t.setStyle(TableStyle(style_cmds))
+    return t
+
+
+def build_quality_notes_table():
+    """Per-model quality notes for each prompt type."""
+    header = [P("Prompt Type", header_left), P("Model", header_cell), P("Score", header_cell), P("Quality Notes", header_left)]
+
+    rows = [header]
+    # Show best and worst for each category
+    for pid in PROMPT_IDS:
+        label = PROMPT_LABELS[pid]
+        # Collect all scores for this prompt
+        model_scores = []
+        for key, name, params, quant, size in MODELS:
+            q = get_quality(key, pid)
+            score = q.get("score", 0)
+            notes = q.get("notes", "")
+            model_scores.append((key, name, score, notes))
+        # Sort by score descending
+        model_scores.sort(key=lambda x: x[2], reverse=True)
+
+        # Best
+        best = model_scores[0]
+        rows.append([P(label, cell_left), P(best[1], cell_left), P(f"{best[2]}/10"), P(best[3], cell_left)])
+        # Worst
+        worst = model_scores[-1]
+        rows.append([P("", cell_left), P(worst[1], cell_left), P(f"{worst[2]}/10"), P(worst[3], cell_left)])
+
+    col_widths = [22*mm, 30*mm, 14*mm, 100*mm]
+    t = Table(rows, colWidths=col_widths, repeatRows=1)
+    style_cmds = [
+        ("BACKGROUND", (0, 0), (-1, 0), HEADER_BG),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+        ("GRID", (0, 0), (-1, -1), 0.3, colors.grey),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("TOPPADDING", (0, 0), (-1, -1), 2),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+        ("LEFTPADDING", (0, 0), (-1, -1), 3),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 3),
+    ]
+    # Color best rows green, worst rows red
+    for i in range(1, len(rows)):
+        if i % 2 == 1:  # Best rows
+            style_cmds.append(("BACKGROUND", (0, i), (-1, i), BEST_BG))
+        else:  # Worst rows
+            style_cmds.append(("BACKGROUND", (0, i), (-1, i), BAD_BG))
+    t.setStyle(TableStyle(style_cmds))
     return t
 
 
 def build_summary_table():
-    """Summary recommendation table."""
+    """Updated summary with quality data."""
     rec_data = [
-        ["Use Case", "Best Model", "Gen tok/s", "Why"],
-        ["Fastest overall", "codegemma:2b", "30.7", "Fastest gen + prompt eval, but code-only quality"],
-        ["Best 2B generalist", "granite3-dense:2b", "27.3", "Consistent quality, fast, good code+prose"],
-        ["All-rounder (3B)", "qwen2.5:3b", "21.5", "Consistent quality across all 5 prompt styles"],
-        ["Code generation", "codegemma:2b", "30.7", "Correct output, code specialist architecture"],
-        ["Creative/prose", "gemma2:2b", "25.2", "Best poetry meter, strong clinical prose"],
-        ["Math/proofs", "qwen2.5:3b", "21.5", "Cleanest proof structure, correct reasoning"],
-        ["Reasoning/thinking", "gemma4 E2B", "26.7", "Thinking model with reasoning tokens"],
-        ["Most complete output", "lfm2.5:2.6b", "25.3", "Highest avg token count across prompts"],
+        ["Use Case", "Best Model", "Quality", "Gen tok/s", "Why"],
+        ["Best overall quality", "Gemma 2 2B", "8.2/10", "25.2", "Highest avg quality, best poetry+math, strong prose+creative"],
+        ["Code generation", "CodeGemma 2B", "8/10 (code)", "30.7", "Fastest + correct code, but fails on non-code prompts"],
+        ["Best 2B generalist", "Granite 3.2 2B", "7.0/10", "27.3", "Consistent quality, fast, good across all categories"],
+        ["All-rounder (3B)", "Qwen 2.5 3B", "7.6/10", "21.5", "Consistent 8/10 across prose, creative, math, code"],
+        ["Creative/prose", "Gemma 2 2B", "8/10", "25.2", "Best poetry meter, vivid creative writing, strong clinical prose"],
+        ["Math/proofs", "Gemma 2 2B", "9/10", "25.2", "Cleanest proof structure, correct contradiction logic"],
+        ["Reasoning/thinking", "Gemma 4 E2B", "5.8/10", "26.7", "Thinking model with reasoning tokens (truncated by 300-token limit)"],
+        ["Fastest overall", "CodeGemma 2B", "2.6/10 avg", "30.7", "Fastest gen + prompt eval, but code-only quality"],
+        ["Math reasoning (fixed)", "SmallThinker 3B", "8/10 (math)", "19.2", "Full thinking chain then clean formal proof (--jinja + 2000 tok)"],
     ]
 
     rows = []
@@ -276,7 +384,7 @@ def build_summary_table():
         else:
             rows.append([P(c, cell_left if i == 0 else cell_style) for i, c in enumerate(r)])
 
-    col_widths = [38*mm, 32*mm, 20*mm, 74*mm]
+    col_widths = [34*mm, 28*mm, 20*mm, 18*mm, 66*mm]
     t = Table(rows, colWidths=col_widths, repeatRows=1)
     t.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, 0), HEADER_BG),
@@ -292,32 +400,30 @@ def build_summary_table():
 def build_output_samples():
     """Output preview samples for quality comparison."""
     samples = [
-        ("Iambic Pentameter — gemma2:2b (best)", "iambic", "gemma2:2b"),
-        ("Iambic Pentameter — codegemma:2b (failed - chat loop)", "iambic", "codegemma:2b"),
-        ("Math Proof — qwen2.5:3b (best)", "math", "qwen2.5:3b"),
-        ("Math Proof — gemma2:2b (runner-up)", "math", "gemma2:2b"),
-        ("Code — codegemma:2b (specialist)", "code", "codegemma:2b"),
-        ("Creative — qwen2.5:3b (best)", "creative", "qwen2.5:3b"),
+        ("Iambic Pentameter - Gemma 2 2B (best: 9/10)", "iambic", "gemma2:2b"),
+        ("Iambic Pentameter - CodeGemma 2B (failed: 1/10)", "iambic", "codegemma:2b"),
+        ("Math Proof - Gemma 2 2B (best: 9/10)", "math", "gemma2:2b"),
+        ("Math Proof - SmallThinker 3B (thinking model, fixed: 8/10)", "math", "smallthinker:3b"),
+        ("Code - CodeGemma 2B (specialist: 8/10)", "code", "codegemma:2b"),
+        ("Creative - Gemma 2 2B (best: 8/10)", "creative", "gemma2:2b"),
     ]
 
     elements = []
     for title, pid, model_key in samples:
         elements.append(Paragraph(title, section_style))
         preview = get_data(model_key, pid, "output_preview") or "N/A"
-        # Clean up preview
         preview = preview.replace("<|im_start|>", "").replace("<|im_end|>", "").replace("<|channel|>", "")
-        # Truncate to ~400 chars
-        if len(preview) > 400:
-            preview = preview[:400] + "..."
+        if len(preview) > 500:
+            preview = preview[:500] + "..."
         pstyle = ParagraphStyle("Preview", parent=styles["Normal"], fontSize=7, leading=9,
                                 fontName="Courier", backColor=colors.HexColor("#f8f8f8"),
                                 borderPadding=4, spaceAfter=8)
-        elements.append(Paragraph(preview.replace("\n", "<br/>"), pstyle))
+        elements.append(Paragraph(preview.replace("\n", "<br/>").replace("<", "&lt;").replace(">", "&gt;"), pstyle))
 
     return elements
 
 
-# Build the document
+# ---- Build the document ----
 doc = SimpleDocTemplate(
     OUTPUT,
     pagesize=landscape(A4),
@@ -327,15 +433,14 @@ doc = SimpleDocTemplate(
 
 elements = []
 
-# Title
+# Page 1: Gen Speed + Prompt Eval Speed
 elements.append(Paragraph("Multi-Prompt Benchmark Report", title_style))
 elements.append(Paragraph(
     "12 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
-    "| NVIDIA Jetson Orin Nano 8GB | llama.cpp 0b1bad1 | GUI off | -ngl 99 -fa on --temp 0.3",
+    "| NVIDIA Jetson Nano 8GB | llama.cpp 0b1bad1 | GUI off | -ngl 99 -fa on --jinja --temp 0.3 | 2000 token limit",
     subtitle_style
 ))
 
-# Page 1: Generation Speed
 elements.append(Paragraph("1. Generation Speed (tok/s)", section_style))
 elements.append(Paragraph(
     "Tokens generated per second during inference. Consistent across prompt types because "
@@ -345,13 +450,12 @@ elements.append(Paragraph(
 elements.append(build_gen_speed_table())
 elements.append(Spacer(1, 4*mm))
 elements.append(Paragraph(
-    "Highlight: CodeGemma 2B leads at 30.7 tok/s avg. The 3B class (Qwen, Hermes, Llama, Phi) "
-    "clusters tightly at 20-22 tok/s. Gemma 4 E2B (MatFormer) and LFM 2.5 bridge the gap at 25-27 tok/s.",
+    "CodeGemma 2B leads at 30.7 tok/s avg. The 3B class (Qwen, Hermes, Llama, Phi) "
+    "clusters at 20-22 tok/s. Gemma 4 E2B and Granite 2B bridge the gap at 25-28 tok/s.",
     note_style
 ))
 
-# Prompt Eval Speed
-elements.append(Paragraph("2. Prompt Eval Speed (tok/s) — Context Ingestion", section_style))
+elements.append(Paragraph("2. Prompt Eval Speed (tok/s) - Context Ingestion", section_style))
 elements.append(Paragraph(
     "How fast the model processes the input prompt. Varies by prompt type due to token distribution "
     "and attention patterns. Higher = faster time-to-first-token.",
@@ -360,44 +464,82 @@ elements.append(Paragraph(
 elements.append(build_prompt_eval_table())
 elements.append(Spacer(1, 4*mm))
 elements.append(Paragraph(
-    "Highlight: CodeGemma leads at 482 tok/s avg. Gemma 4 E2B is slowest at 128 tok/s due to "
-    "thinking model overhead (processes internal reasoning context). Creative/prose prompts "
-    "generally process faster than code/math across all models.",
+    "CodeGemma leads at 482 tok/s avg. Gemma 4 E2B is slowest at 128 tok/s (thinking model overhead). "
+    "Creative/prose prompts generally process faster than code/math across all models.",
     note_style
 ))
 
-# Page 2: Token counts + quality
+# Page 2: Token counts + Quality Score Matrix
 elements.append(PageBreak())
-
-elements.append(Paragraph("3. Tokens Generated — Output Completeness", section_style))
+elements.append(Paragraph("3. Tokens Generated - Output Completeness", section_style))
 elements.append(Paragraph(
     "Word count of generated output. Lower counts may indicate truncated or incomplete responses. "
-    "Higher counts suggest more thorough answers (but not necessarily better quality).",
+    "Higher counts suggest more thorough answers (but not necessarily better quality). "
+    "Re-benchmarked with 2000 token limit and --jinja flag for thinking models.",
     small_note
 ))
 elements.append(build_token_count_table())
 elements.append(Spacer(1, 4*mm))
 elements.append(Paragraph(
-    "Highlight: LFM 2.5 and Qwen 2.5 produce the most output (219 avg). CodeGemma produces "
-    "the least (158 avg) and failed on iambic pentameter (40 tokens of chat template tokens). "
-    "Gemma 4 E2B and LFM 2.5 are thinking models that spend tokens on internal reasoning.",
+    "SmallThinker now produces full output (845 tokens on code) after --jinja fix. "
+    "Granite models produce clean output after banner-stripping fix. "
+    "Thinking models (Gemma4, LFM, SmallThinker) spend tokens on internal reasoning.",
     note_style
 ))
 
-# Quality observations
-elements.append(Paragraph("4. Quality Observations by Prompt Type", section_style))
-elements.append(build_quality_table())
-
-# Page 3: Summary + output samples
+# Page 3: Quality Score Matrix + Quality-Speed
 elements.append(PageBreak())
+elements.append(Paragraph("4. Quality Score Matrix (1-10)", section_style))
+elements.append(Paragraph(
+    "Each model's output scored 1-10 by category. Green = 8-10 (excellent), Yellow = 5-7 (adequate), Red = 1-4 (poor/failure). "
+    "Criteria: Code=correctness+hints+docstring; Iambic=meter+form+imagery; Prose=accuracy+structure+terminology; "
+    "Creative=sensory+atmosphere+originality; Math=proof+logic+notation.",
+    small_note
+))
+elements.append(build_quality_score_table())
+elements.append(Spacer(1, 4*mm))
+elements.append(Paragraph(
+    "Gemma 2 2B is the overall quality leader at 8.2/10 avg, winning or tying for best in 4 of 5 categories. "
+    "CodeGemma scores 8/10 on code but 1/10 on everything else (chat template loop on non-code prompts). "
+    "Qwen 2.5 3B is the most consistent 3B model (7.6/10 avg, no score below 6).",
+    note_style
+))
 
-elements.append(Paragraph("5. Summary Recommendations", section_style))
-elements.append(build_summary_table())
+elements.append(Paragraph("5. Quality-Speed Metric", section_style))
+elements.append(Paragraph(
+    "Combines quality scores with generation speed. Quality-Speed = (avg_quality x avg_gen_tps) / 10. "
+    "Quality-Efficiency = (quality x tokens) / wall_time. Higher is better. "
+    "Rewards models that produce high-quality output quickly.",
+    small_note
+))
+elements.append(build_quality_speed_table())
+elements.append(Spacer(1, 4*mm))
+elements.append(Paragraph(
+    "Gemma 2 2B wins Quality-Speed at 20.66 - excellent quality at 25.2 tok/s. "
+    "Granite 3.2 2B is second at 19.01 - best value 2B model. "
+    "CodeGemma's high speed can't compensate for poor non-code quality (QS=7.97).",
+    note_style
+))
+
+# Page 4: Quality notes + Summary
+elements.append(PageBreak())
+elements.append(Paragraph("6. Best vs Worst by Category", section_style))
+elements.append(Paragraph(
+    "Top and bottom performing model for each prompt type, with quality notes explaining the score.",
+    small_note
+))
+elements.append(build_quality_notes_table())
 elements.append(Spacer(1, 6*mm))
 
-elements.append(Paragraph("6. Output Samples", section_style))
+elements.append(Paragraph("7. Summary Recommendations", section_style))
+elements.append(build_summary_table())
+
+# Page 5: Output samples
+elements.append(PageBreak())
+elements.append(Paragraph("8. Output Samples", section_style))
 elements.append(Paragraph(
-    "Representative output previews for quality comparison. Truncated to ~400 chars.",
+    "Representative output previews for quality comparison. Truncated to ~500 chars. "
+    "Shows best and worst examples per category.",
     small_note
 ))
 elements.extend(build_output_samples())
@@ -405,8 +547,10 @@ elements.extend(build_output_samples())
 # Footer
 elements.append(Spacer(1, 8*mm))
 elements.append(Paragraph(
-    "Generated by multiprompt_bench.py | Hardware: Jetson Orin Nano 8GB (tegra234, sm_87, 32 Ampere TCs) "
-    "| llama.cpp build 0b1bad1 | Q4_0/Q4_K_M quantization | Flash attention ON | All layers on GPU (-ngl 99)",
+    "Generated by multiprompt_bench.py + rebench_fixed.py + quality_scoring.py | "
+    "Hardware: Jetson Nano 8GB (tegra234, sm_87, 32 Ampere TCs) | "
+    "llama.cpp build 0b1bad1 | Q4_0/Q4_K_M/Q8_0 quantization | Flash attention ON | "
+    "All layers on GPU (-ngl 99) | --jinja flag for chat templates | 2000 token limit",
     small_note
 ))
 
