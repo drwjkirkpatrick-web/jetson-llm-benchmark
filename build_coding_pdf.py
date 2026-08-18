@@ -22,22 +22,24 @@ with open(SCORES) as f:
     quality = json.load(f)
 
 MODELS = [
+    ("gemma3:1b",          "Gemma 3 1B",        "1.0B",  "Q4_K_M","0.76 GiB"),
     ("codegemma:2b",       "CodeGemma 2B",      "2.51B", "Q4_0",  "1.44 GiB"),
     ("granite3-dense:2b",  "Granite 3.0 2B",    "2.63B", "Q4_K_M","1.49 GiB"),
     ("granite3.2:2b",      "Granite 3.2 2B",    "2.63B", "Q4_K_M","1.44 GiB"),
     ("gemma4 E2B",         "Gemma 4 E2B",       "5.1B/2B","Q4_0", "2.63 GiB"),
     ("gemma2:2b",          "Gemma 2 2B",        "2.51B", "Q4_0",  "1.51 GiB"),
     ("lfm2.5:2.6b",        "LFM 2.5 2.6B",      "2.77B", "Q4_K_M","1.55 GiB"),
+    ("stablelm-zephyr",    "StableLM Zephyr",   "1.64B", "Q4_K_M","1.5 GiB"),
+    ("starcoder2:3b",      "StarCoder2 3B",     "3.03B", "Q4_K_M","1.6 GiB"),
     ("qwen2.5:3b",         "Qwen 2.5 3B",       "3.09B", "Q4_K_M","1.79 GiB"),
-    ("hermes3:3b",         "Hermes 3 3B",       "3.82B", "Q4_K_M","1.87 GiB"),
+    ("qwen2.5-coder:3b",   "Qwen2.5-Coder 3B",  "3.09B", "Q4_K_M","1.82 GiB"),
     ("llama3.2:3b",        "Llama 3.2 3B",      "3.21B", "Q4_K_M","1.87 GiB"),
+    ("hermes3:3b",         "Hermes 3 3B",       "3.82B", "Q4_K_M","1.87 GiB"),
     ("granite4:3b",        "Granite 4 3B",      "3.66B", "Q4_K_M","2.1 GiB"),
     ("granite4.1:3b",      "Granite 4.1 3B",    "3.66B", "Q4_K_M","2.0 GiB"),
-    ("phi3:3.8b",          "Phi-3 3.8B",        "3.82B", "Q4_K_M","2.03 GiB"),
-    ("stablelm-zephyr",    "StableLM Zephyr",   "1.64B", "Q4_K_M","1.5 GiB"),
-    ("smallthinker:3b",    "SmallThinker 3B",   "3.08B", "Q4_K_M","3.36 GiB"),
     ("orca-mini:3b",       "Orca-Mini 3B",      "2.75B", "Q4_K_M","1.9 GiB"),
-    ("starcoder2:3b",      "StarCoder2 3B",     "3.03B", "Q4_K_M","1.6 GiB"),
+    ("phi3:3.8b",          "Phi-3 3.8B",        "3.82B", "Q4_K_M","2.03 GiB"),
+    ("smallthinker:3b",    "SmallThinker 3B",   "3.08B", "Q4_K_M","3.36 GiB"),
 ]
 
 PROMPTS = ['html', 'python', 'c', 'basic', 'julia']
@@ -82,7 +84,7 @@ def build_pdf():
     # Title
     story.append(Paragraph("Jetson Edge LLM Coding Benchmark", title_style))
     story.append(Paragraph(
-        "16 models x 5 programming languages (HTML/CSS, Python, C, TRS-80 BASIC, Julia) "
+        "18 models x 5 programming languages (HTML/CSS, Python, C, TRS-80 BASIC, Julia) "
         "&mdash; NVIDIA Jetson Orin Nano 8GB, llama.cpp, Flash Attention ON, Auto MMQ, --jinja, 2000 tokens",
         subtitle_style))
     story.append(Spacer(1, 8))

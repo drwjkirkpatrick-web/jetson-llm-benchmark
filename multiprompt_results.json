@@ -711,6 +711,80 @@
         "output_preview": "Prove that the square root of 2 is irrational. Start with \"Theorem:\" and use a proof by contradiction. Show each step clearly.\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[proof]\n[",
         "output_full_len": 1121
       }
+    },
+    "gemma3:1b": {
+      "code": {
+        "gen_tps": 37.9,
+        "prompt_tps": 228.9,
+        "tokens_generated": 256,
+        "wall_time_s": 7.8,
+        "output_preview": "```python\ndef calculate_bmi(weight_kg: float, height_m: float) -> float:\n    \"\"\"Calculates the Body Mass Index (BMI).\n\n    Args:\n        weight_kg: The weight in kilograms.\n        height_m: The height in meters.\n\n    Returns:\n        The calculated BMI rounded to 1 decimal place.\n    \"\"\"\n    bmi = weight_kg / (height_m ** 2)\n    return round(bmi, 1)\n```\n\n[ Prompt: 228.9 t/s | Generation: 37.9 t/s ]\n\n\nExiting..."
+      },
+      "iambic": {
+        "gen_tps": 37.9,
+        "prompt_tps": 281.0,
+        "tokens_generated": 323,
+        "wall_time_s": 9.5,
+        "output_preview": "Okay, here\u2019s a poem of 14 lines in iambic pentameter about the changing seasons, with each line adhering to the specified syllable count and stressed pattern:\n\nThe spring arrives, a verdant, hopeful hue,\nAnd sunlight warms the earth with gentle grace,\nNew life awakens, bathed in morning dew,\nAnd blossoms burst, a vibrant, joyful space,\nWith birdsong filling breezes, sweet and free,\nA promise whispered, softly, to the tree,\nOf summer\u2019s warmth, a promise held for thee,\nThe fields expand, a tapestr"
+      },
+      "prose": {
+        "gen_tps": 38.2,
+        "prompt_tps": 258.6,
+        "tokens_generated": 626,
+        "wall_time_s": 17.4,
+        "output_preview": "Okay, here's a 3-paragraph clinical case discussion addressing a 45-year-old patient presenting with chronic fatigue, aiming for a professional and thoughtful approach.  It\u2019s structured to highlight key considerations and potential avenues for investigation.\n\n**Case Discussion: Chronic Fatigue \u2013 Mr. David Miller**\n\nThe patient, Mr. David Miller, a 45-year-old male, presents with a persistent and debilitating chronic fatigue, characterized by profound fatigue, sleep disturbances, and decreased fu"
+      },
+      "creative": {
+        "gen_tps": 38.2,
+        "prompt_tps": 288.9,
+        "tokens_generated": 517,
+        "wall_time_s": 14.6,
+        "output_preview": "The salt spray tasted like melancholy on Elias\u2019s lips as he polished the brass of the lighthouse lamp. Forty years he\u2019d spent on this solitary post, a sentinel against the relentless grey of the North Sea. The rhythmic pulse of the lamp was his only companion, a comforting, unwavering heartbeat. \n\nToday, a storm had ravaged the coastline, leaving a slick, emerald sheen on the waves. While clearing debris, Elias unearthed a bottle, thick with seaweed and barnacles. Inside, a tightly folded parchm"
+      },
+      "math": {
+        "gen_tps": 38.2,
+        "prompt_tps": 247.3,
+        "tokens_generated": 329,
+        "wall_time_s": 9.6,
+        "output_preview": "Okay, let's prove the statement:  For any positive integers a and b,  (a + b)\u00b2 = a\u00b2 + 2ab + b\u00b2.\n\n**Proof:**\n\nWe will use algebraic manipulation to demonstrate this.\n\n1. **Start with the left-hand side:**\n   (a + b)\u00b2 = (a + b)\u00b2\n\n2. **Expand the left-hand side:**\n   (a + b)\u00b2 = (a + b) * (a + b)\n\n3. **Expand the product:**\n   (a + b) * (a + b) = a\u00b2 + ab + ab + b\u00b2 = a\u00b2 + 2ab + b\u00b2\n\n4. **Therefore:**\n   (a\u00b2 + 2ab + b\u00b2) = a\u00b2 + 2ab + b\u00b2\n\n**Conclusion:**\n\nWe have shown that (a + b)\u00b2 = a\u00b2 + 2ab + b\u00b2 for a"
+      }
+    },
+    "qwen2.5-coder:3b": {
+      "code": {
+        "gen_tps": 21.4,
+        "prompt_tps": 342.5,
+        "tokens_generated": 292,
+        "wall_time_s": 14.7,
+        "output_preview": "```python\ndef calculate_bmi(weight: float, height: float) -> float:\n    \"\"\"\n    Calculate the Body Mass Index (BMI) given weight in kilograms and height in meters.\n    \n    Parameters:\n    weight (float): The weight in kilograms.\n    height (float): The height in meters.\n    \n    Returns:\n    float: The BMI rounded to 1 decimal place.\n    \"\"\"\n    bmi = weight / (height ** 2)\n    return round(bmi, 1)\n```\n\n**Explanation**:\nThe `calculate_bmi` function takes two parameters: `weight` and `height`, b"
+      },
+      "iambic": {
+        "gen_tps": 21.5,
+        "prompt_tps": 407.3,
+        "tokens_generated": 208,
+        "wall_time_s": 10.7,
+        "output_preview": "In spring, the earth awakens, its breaths renew,\nWith buds that bloom, a symphony of green.\nThe sun warms, and life's dance begins anew,\nIn summer's heat, the fields stretch wide and blue.\n\nThe leaves turn gold, a golden carpet spreads,\nCrisp air and honey-sweet, a bountiful feast.\nAutumn's chill, a gentle reminder of change,\nFalling leaves, a symphony of shades.\n\nWinter's snow, a blanket of white, covers the ground,\nSilence and peace, a time for reflection.\nThe earth sleeps, but dreams of sprin"
+      },
+      "prose": {
+        "gen_tps": 21.5,
+        "prompt_tps": 335.0,
+        "tokens_generated": 723,
+        "wall_time_s": 34.7,
+        "output_preview": "**Case Presentation:**\n\nA 45-year-old female patient presents with a 6-month history of persistent fatigue, accompanied by mild weight loss, decreased appetite, and occasional muscle aches. She has no history of significant trauma, surgery, or significant life changes. Her family history is non-contributory. The patient has no history of chronic diseases or medications that could potentially cause fatigue. She has been diagnosed with chronic fatigue syndrome (CFS) in the past, but her symptoms h"
+      },
+      "creative": {
+        "gen_tps": 21.5,
+        "prompt_tps": 358.2,
+        "tokens_generated": 501,
+        "wall_time_s": 24.3,
+        "output_preview": "In the quiet town of Lighthouse Cove, there was a lighthouse keeper named Jack. He had been keeping watch over the sea for over 20 years, his eyes trained on the horizon, his hands steady on the controls of the foghorn. He was a man of few words, but his presence was felt throughout the town.\n\nOne day, as Jack was about to go to bed, he noticed a small bottle floating in the water. It was a strange sight, and he couldn't resist the urge to investigate. He picked it up and opened it, revealing a "
+      },
+      "math": {
+        "gen_tps": 21.5,
+        "prompt_tps": 347.6,
+        "tokens_generated": 736,
+        "wall_time_s": 35.3,
+        "output_preview": "To prove that for any positive integers \\(a\\) and \\(b\\), the square of \\((a + b)\\) equals \\(a^2 + 2ab + b^2\\), we will use the binomial theorem. The binomial theorem states that for any real numbers \\(x\\) and \\(y\\),\n\n\\[\n(x + y)^n = \\sum_{k=0}^{n} \\binom{n}{k} x^{n-k} y^k\n\\]\n\nwhere \\(\\binom{n}{k}\\) is the binomial coefficient, defined as\n\n\\[\n\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\n\\]\n\nFor \\(n = 2\\), the binomial theorem gives us\n\n\\[\n(x + y)^2 = \\sum_{k=0}^{2} \\binom{2}{k} x^{2-k} y^k\n\\]\n\nLet's expand "
+      }
     }
   },
   "prompts": {

@@ -434,5 +434,49 @@
       "avg_gen_tps": 28.7,
       "quality_speed": 5.74
     }
+  },
+  "gemma3:1b": {
+    "html": {
+      "score": 8,
+      "notes": "Complete HTML with DOCTYPE, flexbox, media query, dark blue+gold. 1826 tokens."
+    },
+    "python": {
+      "score": 8,
+      "notes": "Full DataProcessor class with csv/json, type hints, docstrings. 2124 tokens."
+    },
+    "c": {
+      "score": 7,
+      "notes": "Thread-safe queue with pthread, linked list, init/push/pop/destroy. 2132 tokens."
+    },
+    "basic": {
+      "score": 7,
+      "notes": "TRS-80 BASIC with line numbers starting at 10, PRINT/INPUT/GOTO. 2131 tokens."
+    },
+    "julia": {
+      "score": 7,
+      "notes": "Newton-Raphson with type annotations, docstring, iteration output. 835 tokens."
+    }
+  },
+  "qwen2.5-coder:3b": {
+    "html": {
+      "score": 8,
+      "notes": "Complete portfolio page with all requested sections. 1320 tokens, clean code."
+    },
+    "python": {
+      "score": 7,
+      "notes": "DataProcessor with load/filter/export. 682 tokens. Less complete than gemma3 but cleaner."
+    },
+    "c": {
+      "score": 8,
+      "notes": "Thread-safe queue with proper pthread mutex, all 5 functions. 1022 tokens."
+    },
+    "basic": {
+      "score": 8,
+      "notes": "TRS-80 BASIC with proper line numbers, 3 rooms, key logic. 2067 tokens, thorough."
+    },
+    "julia": {
+      "score": 7,
+      "notes": "Newton-Raphson with type annotations and docstring. 811 tokens. Correct."
+    }
   }
 }

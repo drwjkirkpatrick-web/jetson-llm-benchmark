@@ -457,5 +457,49 @@
       "avg_quality_speed": 5.15,
       "avg_gen_tps": 28.6
     }
+  },
+  "gemma3:1b": {
+    "code": {
+      "score": 7,
+      "notes": "Correct BMI function with type hints and docstring. Clean output."
+    },
+    "iambic": {
+      "score": 5,
+      "notes": "Attempts 14 lines but syllable count and meter inconsistent for a 1B model."
+    },
+    "prose": {
+      "score": 6,
+      "notes": "Good clinical case structure. 626 tokens, covers diagnosis and workup."
+    },
+    "creative": {
+      "score": 6,
+      "notes": "Vivid lighthouse story with sensory details. 517 tokens, decent narrative."
+    },
+    "math": {
+      "score": 6,
+      "notes": "Correct algebraic proof, step-by-step. Short but valid."
+    }
+  },
+  "qwen2.5-coder:3b": {
+    "code": {
+      "score": 8,
+      "notes": "Clean BMI function, proper type hints, docstring with Parameters section."
+    },
+    "iambic": {
+      "score": 6,
+      "notes": "Good attempt, 208 tokens. Meter partially correct, some lines break pattern."
+    },
+    "prose": {
+      "score": 8,
+      "notes": "Excellent clinical case. 723 tokens, detailed history, differential, workup."
+    },
+    "creative": {
+      "score": 7,
+      "notes": "Solid lighthouse story with Jack character. 501 tokens, good narrative arc."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Uses binomial theorem approach, rigorous. 736 tokens, well-structured proof."
+    }
   }
 }
