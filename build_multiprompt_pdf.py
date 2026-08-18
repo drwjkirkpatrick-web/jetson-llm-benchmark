@@ -24,14 +24,16 @@ with open(RESULTS) as f:
     DATA = json.load(f)
 
 MODELS = [
-    ("codegemma:2b",   "CodeGemma 2B",   "2.51B", "Q4_0",  "1.44 GiB"),
-    ("gemma4 E2B",     "Gemma 4 E2B",    "4.63B", "Q4_0",  "2.63 GiB"),
-    ("lfm2.5:2.6b",    "LFM 2.5 2.6B",   "2.70B", "Q4_K_M","1.55 GiB"),
-    ("gemma2:2b",      "Gemma 2 2B",     "2.61B", "Q4_0",  "1.51 GiB"),
-    ("qwen2.5:3b",     "Qwen 2.5 3B",    "3.09B", "Q4_K_M","1.79 GiB"),
-    ("hermes3:3b",     "Hermes 3 3B",    "3.21B", "Q4_K_M","1.87 GiB"),
-    ("llama3.2:3b",    "Llama 3.2 3B",   "3.21B", "Q4_K_M","1.87 GiB"),
-    ("phi3:3.8b",      "Phi-3 3.8B",     "3.82B", "Q4_0",  "2.03 GiB"),
+    ("codegemma:2b",       "CodeGemma 2B",      "2.51B", "Q4_0",  "1.44 GiB"),
+    ("granite3-dense:2b",  "Granite 3.0 2B",    "2.63B", "Q4_K_M","1.49 GiB"),
+    ("gemma4 E2B",         "Gemma 4 E2B",       "4.63B", "Q4_0",  "2.63 GiB"),
+    ("gemma2:2b",          "Gemma 2 2B",        "2.61B", "Q4_0",  "1.51 GiB"),
+    ("lfm2.5:2.6b",        "LFM 2.5 2.6B",      "2.70B", "Q4_K_M","1.55 GiB"),
+    ("qwen2.5:3b",         "Qwen 2.5 3B",       "3.09B", "Q4_K_M","1.79 GiB"),
+    ("hermes3:3b",         "Hermes 3 3B",       "3.21B", "Q4_K_M","1.87 GiB"),
+    ("llama3.2:3b",        "Llama 3.2 3B",      "3.21B", "Q4_K_M","1.87 GiB"),
+    ("phi3:3.8b",          "Phi-3 3.8B",        "3.82B", "Q4_0",  "2.03 GiB"),
+    ("smallthinker:3b",    "SmallThinker 3B",   "3.40B", "Q8_0",  "3.36 GiB"),
 ]
 
 PROMPT_IDS = ["code", "iambic", "prose", "creative", "math"]
@@ -219,11 +221,11 @@ def build_quality_table():
     """Quality observations by prompt type."""
     quality_data = [
         ["Prompt Type", "Best Model", "Runner-Up", "Key Observation"],
-        ["Code Generation", "codegemma:2b", "qwen2.5:3b", "CodeGemma fastest + correct; Qwen best general code quality"],
-        ["Iambic Pentameter", "gemma2:2b", "qwen2.5:3b", "Gemma2 best meter (10-syllable lines); CodeGemma failed entirely"],
+        ["Code Generation", "codegemma:2b", "granite3-dense:2b", "CodeGemma fastest + correct; Granite good general code"],
+        ["Iambic Pentameter", "gemma2:2b", "granite3-dense:2b", "Gemma2 best meter (10-syllable); Granite good form"],
         ["Clinical Prose", "qwen2.5:3b", "gemma2:2b", "Qwen most detailed; Gemma2 best structured; all adequate"],
-        ["Creative Writing", "qwen2.5:3b", "lfm2.5:2.6b", "Qwen most vivid sensory detail; LFM good narrative flow"],
-        ["Math Proof", "qwen2.5:3b", "gemma2:2b", "Qwen cleanest proof structure; Gemma2 proper theorem format"],
+        ["Creative Writing", "qwen2.5:3b", "lfm2.5:2.6b", "Qwen most vivid; LFM good narrative flow"],
+        ["Math Proof", "qwen2.5:3b", "gemma2:2b", "Qwen cleanest proof; Gemma2 proper theorem format"],
     ]
 
     rows = []
@@ -256,7 +258,8 @@ def build_summary_table():
     rec_data = [
         ["Use Case", "Best Model", "Gen tok/s", "Why"],
         ["Fastest overall", "codegemma:2b", "30.7", "Fastest gen + prompt eval, but code-only quality"],
-        ["All-rounder", "qwen2.5:3b", "21.5", "Consistent quality across all 5 prompt styles"],
+        ["Best 2B generalist", "granite3-dense:2b", "27.3", "Consistent quality, fast, good code+prose"],
+        ["All-rounder (3B)", "qwen2.5:3b", "21.5", "Consistent quality across all 5 prompt styles"],
         ["Code generation", "codegemma:2b", "30.7", "Correct output, code specialist architecture"],
         ["Creative/prose", "gemma2:2b", "25.2", "Best poetry meter, strong clinical prose"],
         ["Math/proofs", "qwen2.5:3b", "21.5", "Cleanest proof structure, correct reasoning"],
@@ -325,7 +328,7 @@ elements = []
 # Title
 elements.append(Paragraph("Multi-Prompt Benchmark Report", title_style))
 elements.append(Paragraph(
-    "8 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
+    "10 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
     "| NVIDIA Jetson Orin Nano 8GB | llama.cpp 0b1bad1 | GUI off | -ngl 99 -fa on --temp 0.3",
     subtitle_style
 ))
