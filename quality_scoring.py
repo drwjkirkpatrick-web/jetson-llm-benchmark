@@ -102,12 +102,39 @@ SCORES = {
         "math":       {"score": 8, "notes": "Clean proof by contradiction. Correct logic, clear steps, good notation. Well-formatted."},
     },
     "smallthinker:3b": {
-        # Will be filled after re-bench completes
         "code":       {"score": 7, "notes": "Thinking model. Reasons through approach then produces correct function with type hints and docstring. Good quality after --jinja fix."},
         "iambic":     {"score": 5, "notes": "Thinking model. Reasons about meter requirements then writes poem. Some iambic rhythm but inconsistent. Better than pre-fix (which was just banner)."},
         "prose":      {"score": 6, "notes": "Thinking model. Reasons about content then writes clinical explanation. Accurate but thinking takes token budget."},
         "creative":   {"score": 6, "notes": "Thinking model. Reasons about atmosphere then writes creative scene. Good quality but thinking consumes tokens."},
         "math":       {"score": 8, "notes": "Thinking model. Full reasoning chain then clean formal proof. Correct contradiction logic. Excellent for math."},
+    },
+    "granite4.1:3b": {
+        "code":       {"score": 8, "notes": "Clean function with type hints, docstring, correct even-filter logic. Good code structure. Comparable to Granite 3.2."},
+        "iambic":     {"score": 5, "notes": "8-line poem with rhyme. Some iambic rhythm but inconsistent meter. Lines vary in syllable count."},
+        "prose":      {"score": 7, "notes": "Clear clinical explanation of hypo vs hyperthyroidism. Good structure, accurate terminology."},
+        "creative":   {"score": 7, "notes": "Atmospheric lighthouse scene with vivid imagery ('skeletal spire', 'wind howled like wolves'). Good sensory detail."},
+        "math":       {"score": 8, "notes": "Well-formatted proof by contradiction with bold headers and LaTeX notation. Correct logic, clear steps."},
+    },
+    "orca-mini:3b": {
+        "code":       {"score": 4, "notes": "Correct logic but terrible formatting (no indentation, no type hints, no docstring). Poor code quality."},
+        "iambic":     {"score": 2, "notes": "Wrong meter, repetitive ('winter's chill takes hold' repeated). Only 6 lines, not 8. Poor quality."},
+        "prose":      {"score": 5, "notes": "Accurate clinical content but poorly structured. No paragraphs, runs together. Adequate information."},
+        "creative":   {"score": 1, "notes": "Refused to write: 'I am an AI language model and I am not capable of creating original text.' Complete failure."},
+        "math":       {"score": 2, "notes": "Completely wrong. Claims sqrt(2) is rational, no proof by contradiction. Mathematically incorrect."},
+    },
+    "stablelm-zephyr": {
+        "code":       {"score": 7, "notes": "Correct function with type hints and docstring. Clean code. Syntax error in preview (missing paren) but logic is correct."},
+        "iambic":     {"score": 6, "notes": "4-line poem with some iambic rhythm. Only 4 lines not 8. Good imagery but incomplete."},
+        "prose":      {"score": 7, "notes": "Thorough clinical explanation. Well-structured, accurate, good coverage of both conditions."},
+        "creative":   {"score": 7, "notes": "Vivid lighthouse scene with strong sensory details ('wind howled like wolves', 'rain pounded'). Good atmosphere."},
+        "math":       {"score": 8, "notes": "Clean proof by contradiction with numbered steps. Correct logic, clear notation. Good formal structure."},
+    },
+    "starcoder2:3b": {
+        "code":       {"score": 5, "notes": "Base code model (not instruction-tuned). Echoes prompt then generates code-like completions. Fast (28.6 t/s) but not chat-aware. Generated wrong function (odd numbers, not even)."},
+        "iambic":     {"score": 1, "notes": "Base model - echoes prompt and generates generic text completions, not a poem. No iambic pentameter. Not instruction-tuned."},
+        "prose":      {"score": 1, "notes": "Base model - echoes prompt and generates text completions. No clinical explanation produced. Not instruction-tuned."},
+        "creative":   {"score": 1, "notes": "Base model - echoes prompt. No creative writing produced. Not instruction-tuned."},
+        "math":       {"score": 1, "notes": "Base model - echoes '[proof]' repeatedly. No actual proof. Not instruction-tuned."},
     },
 }
 

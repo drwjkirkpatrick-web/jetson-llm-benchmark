@@ -25,12 +25,12 @@ PROMPTS = {
         'Prove that the square root of 2 is irrational. Start with "Theorem:" and use a proof by contradiction. Show each step clearly.'),
 }
 
-# Models that need re-benchmarking (banner pollution or thinking model issues)
+# New models to benchmark with the fixed harness
 REBENCH = [
-    ('granite3-dense:2b', 'granite3-dense-2b.gguf'),
-    ('granite3.2:2b',     'granite3.2-2b.gguf'),
-    ('granite4:3b',       'granite4-3b.gguf'),
-    ('smallthinker:3b',   'smallthinker-3b.gguf'),
+    ('granite4.1:3b',      'granite4.1-3b.gguf'),
+    ('orca-mini:3b',       'orca-mini-3b.gguf'),
+    ('stablelm-zephyr',    'stablelm-zephyr.gguf'),
+    ('starcoder2:3b',      'starcoder2-3b.gguf'),
 ]
 
 def strip_banner(text):

@@ -35,8 +35,12 @@ MODELS = [
     ("hermes3:3b",         "Hermes 3 3B",       "3.21B", "Q4_K_M","1.87 GiB"),
     ("llama3.2:3b",        "Llama 3.2 3B",      "3.21B", "Q4_K_M","1.87 GiB"),
     ("granite4:3b",        "Granite 4 3B",      "3.40B", "Q4_K_M","1.95 GiB"),
+    ("granite4.1:3b",      "Granite 4.1 3B",    "3.40B", "Q4_K_M","2.00 GiB"),
     ("phi3:3.8b",          "Phi-3 3.8B",        "3.82B", "Q4_0",  "2.03 GiB"),
+    ("stablelm-zephyr",    "StableLM Zephyr",   "2.70B", "Q4_K_M","1.55 GiB"),
     ("smallthinker:3b",    "SmallThinker 3B",   "3.40B", "Q8_0",  "3.36 GiB"),
+    ("orca-mini:3b",       "Orca-Mini 3B",      "3.02B", "Q4_K_M","1.90 GiB"),
+    ("starcoder2:3b",      "StarCoder2 3B",     "3.03B", "Q4_K_M","1.60 GiB"),
 ]
 
 PROMPT_IDS = ["code", "iambic", "prose", "creative", "math"]
@@ -375,6 +379,10 @@ def build_summary_table():
         ["Reasoning/thinking", "Gemma 4 E2B", "5.8/10", "26.7", "Thinking model with reasoning tokens (truncated by 300-token limit)"],
         ["Fastest overall", "CodeGemma 2B", "2.6/10 avg", "30.7", "Fastest gen + prompt eval, but code-only quality"],
         ["Math reasoning (fixed)", "SmallThinker 3B", "8/10 (math)", "19.2", "Full thinking chain then clean formal proof (--jinja + 2000 tok)"],
+        ["Best Quality-Speed", "Gemma 2 2B", "QS=20.66", "25.2", "Best balance of quality and generation speed"],
+        ["Best value 2B", "StableLM Zephyr", "7.0/10", "27.5", "High quality at 2.7B params, good QS=19.25"],
+        ["Avoid", "Orca-Mini 3B", "2.8/10", "7.5", "Refused creative task, wrong math, poor formatting"],
+        ["Avoid (base model)", "StarCoder2 3B", "1.8/10", "28.6", "Base code model, not instruction-tuned, echoes prompts"],
     ]
 
     rows = []
@@ -436,7 +444,7 @@ elements = []
 # Page 1: Gen Speed + Prompt Eval Speed
 elements.append(Paragraph("Multi-Prompt Benchmark Report", title_style))
 elements.append(Paragraph(
-    "12 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
+    "16 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
     "| NVIDIA Jetson Nano 8GB | llama.cpp 0b1bad1 | GUI off | -ngl 99 -fa on --jinja --temp 0.3 | 2000 token limit",
     subtitle_style
 ))
