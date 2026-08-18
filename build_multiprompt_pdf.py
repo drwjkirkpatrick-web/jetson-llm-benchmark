@@ -75,10 +75,37 @@ def get_data(model_key, prompt_id, field):
     return DATA["models"].get(model_key, {}).get(prompt_id, {}).get(field)
 
 def get_quality(model_key, prompt_id):
-    return QUAL["scores"].get(model_key, {}).get(prompt_id, {})
+    # Support both flat {model: {prompt: {score}}} and nested {"scores": {model: ...}} formats
+    if "scores" in QUAL:
+        return QUAL["scores"].get(model_key, {}).get(prompt_id, {})
+    return QUAL.get(model_key, {}).get(prompt_id, {})
 
 def get_metric(model_key, metric):
-    return QUAL["metrics"].get(model_key, {}).get(metric, 0)
+    if "metrics" in QUAL:
+        return QUAL["metrics"].get(model_key, {}).get(metric, 0)
+    # Compute from flat scores if metrics not available
+    scores = []
+    for pid in PROMPT_IDS:
+        q = get_quality(model_key, pid)
+        if q and "score" in q:
+            scores.append(q["score"])
+    if not scores:
+        return 0
+    avg_q = sum(scores) / len(scores)
+    if metric == "avg_quality":
+        return round(avg_q, 1)
+    if metric == "quality_speed":
+        avg_s = 0
+        count = 0
+        for pid in PROMPT_IDS:
+            s = get_data(model_key, pid, "gen_tps")
+            if s:
+                avg_s += s
+                count += 1
+        if count:
+            avg_s /= count
+            return round((avg_q * avg_s) / 10, 1)
+    return 0
 
 
 # ---- Table builders ----
@@ -285,7 +312,10 @@ def build_quality_speed_table():
     # Sort by quality-speed descending
     model_metrics = []
     for key, name, params, quant, size in MODELS:
-        m = QUAL["metrics"].get(key, {})
+        if "metrics" in QUAL:
+            m = QUAL["metrics"].get(key, {})
+        else:
+            m = {"avg_quality": get_metric(key, "avg_quality"), "quality_speed": get_metric(key, "quality_speed")}
         qs = m.get("avg_quality_speed", 0)
         model_metrics.append((key, name, m, qs))
     model_metrics.sort(key=lambda x: x[3], reverse=True)

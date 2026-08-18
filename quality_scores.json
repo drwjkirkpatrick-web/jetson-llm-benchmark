@@ -1,461 +1,354 @@
 {
-  "scoring_criteria": {
-    "code": "Correctness, type hints, docstring, edge cases, clean code (1-10)",
-    "iambic": "Meter accuracy (10 syllables, iambic), 8 lines, imagery, rhyme (1-10)",
-    "prose": "Accuracy, structure, clinical terminology, completeness (1-10)",
-    "creative": "Sensory detail, atmosphere, originality, prose quality (1-10)",
-    "math": "Correct proof structure, logical steps, notation, completeness (1-10)"
-  },
-  "scores": {
-    "codegemma:2b": {
-      "code": {
-        "score": 8,
-        "notes": "Correct merge_sort with docstring, type hints, edge cases. Fastest. But generated merge_sort not the requested even-filter."
-      },
-      "iambic": {
-        "score": 1,
-        "notes": "Complete failure - chat token loop (user/assistant repeated). No poem generated."
-      },
-      "prose": {
-        "score": 2,
-        "notes": "Hallucinated medications (Salmeterol for thyroid). Clinically dangerous. Wrong topic (Hashimoto's only, not hyper vs hypo)."
-      },
-      "creative": {
-        "score": 1,
-        "notes": "Repetitive loop: 'You're in a lighthouse, a very large lighthouse' x20. Complete failure."
-      },
-      "math": {
-        "score": 1,
-        "notes": "Repeated 'Proof:' in a loop. No actual proof generated. Complete failure."
-      }
+  "codegemma:2b": {
+    "code": {
+      "score": 8,
+      "notes": "Correct merge_sort with docstring, type hints, edge cases. Fastest. But generated merge_sort not the requested even-filter."
     },
-    "granite3-dense:2b": {
-      "code": {
-        "score": 7,
-        "notes": "Clean function with type hints and docstring. Correct even-filter logic. Good structure."
-      },
-      "iambic": {
-        "score": 4,
-        "notes": "Generated a poem but not strict iambic pentameter. Mixed meter, some lines too short."
-      },
-      "prose": {
-        "score": 7,
-        "notes": "Clear clinical prose explaining both conditions. Good structure with symptoms, diagnosis, treatment."
-      },
-      "creative": {
-        "score": 6,
-        "notes": "Atmospheric lighthouse scene with sensory details. Some cliched phrases but solid effort."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Clean proof by contradiction. Correct logic, well-structured steps. Good notation."
-      }
+    "iambic": {
+      "score": 1,
+      "notes": "Complete failure - chat token loop (user/assistant repeated). No poem generated."
     },
-    "granite3.2:2b": {
-      "code": {
-        "score": 8,
-        "notes": "Excellent function with type hints, docstring, examples. Correct even-filter and sort. Clean code."
-      },
-      "iambic": {
-        "score": 5,
-        "notes": "8-line poem about seasons. Some iambic rhythm but inconsistent meter. Lines vary in syllable count."
-      },
-      "prose": {
-        "score": 7,
-        "notes": "Clear explanation of hypo vs hyperthyroidism. Good clinical terminology and structure."
-      },
-      "creative": {
-        "score": 7,
-        "notes": "Vivid lighthouse imagery with sensory details. Good atmosphere and pacing."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Well-structured proof by contradiction. Correct logic, clear steps. Good formal notation."
-      }
+    "prose": {
+      "score": 2,
+      "notes": "Hallucinated medications (Salmeterol for thyroid). Clinically dangerous. Wrong topic (Hashimoto's only, not hyper vs hypo)."
     },
-    "gemma4 E2B": {
-      "code": {
-        "score": 7,
-        "notes": "Thinking model - spent tokens on reasoning then produced correct merge sort. Good but not the requested even-filter."
-      },
-      "iambic": {
-        "score": 3,
-        "notes": "Spent most tokens on thinking about meter. Only got to planning, no actual poem completed."
-      },
-      "prose": {
-        "score": 6,
-        "notes": "Thinking process visible, then good clinical explanation. Accurate but truncated by token limit."
-      },
-      "creative": {
-        "score": 6,
-        "notes": "Detailed thinking about atmosphere, then produced creative scene. Good but truncated."
-      },
-      "math": {
-        "score": 7,
-        "notes": "Thinking process laid out clearly, then formal proof. Correct logic but truncated before completion."
-      }
+    "creative": {
+      "score": 1,
+      "notes": "Repetitive loop: 'You're in a lighthouse, a very large lighthouse' x20. Complete failure."
     },
-    "gemma2:2b": {
-      "code": {
-        "score": 7,
-        "notes": "Correct merge_sort with type hints and docstring. Clean code. But generated merge_sort not even-filter."
-      },
-      "iambic": {
-        "score": 9,
-        "notes": "Best iambic pentameter. Proper 10-syllable lines, correct iambic stress, 8 lines, ABAB CDCD rhyme. Beautiful imagery."
-      },
-      "prose": {
-        "score": 8,
-        "notes": "Excellent clinical prose. Well-structured with headers, accurate pathophysiology, good terminology."
-      },
-      "creative": {
-        "score": 8,
-        "notes": "Vivid sensory writing. Strong atmosphere, character detail (Agnes), good pacing. Near-professional quality."
-      },
-      "math": {
-        "score": 9,
-        "notes": "Cleanest proof structure. Theorem header, numbered steps, contradiction clearly shown. Excellent notation."
-      }
-    },
-    "lfm2.5:2.6b": {
-      "code": {
-        "score": 6,
-        "notes": "Thinking model. Long reasoning then correct merge sort. But generated merge_sort not even-filter."
-      },
-      "iambic": {
-        "score": 3,
-        "notes": "Spent all tokens on thinking about rhyme schemes. No actual poem generated."
-      },
-      "prose": {
-        "score": 7,
-        "notes": "Thinking process then solid clinical explanation. Accurate, well-structured."
-      },
-      "creative": {
-        "score": 7,
-        "notes": "Thinking about sensory details then produced vivid scene. Good atmosphere."
-      },
-      "math": {
-        "score": 7,
-        "notes": "Thinking process then proof setup. Correct logic but truncated before full proof."
-      }
-    },
-    "qwen2.5:3b": {
-      "code": {
-        "score": 8,
-        "notes": "Correct merge_sort with type hints and docstring. Clean, well-commented code. But merge_sort not even-filter."
-      },
-      "iambic": {
-        "score": 6,
-        "notes": "Good imagery and 8 lines. Some iambic rhythm but inconsistent meter. A few lines break the pattern."
-      },
-      "prose": {
-        "score": 8,
-        "notes": "Excellent clinical explanation. Well-structured with headers, accurate content, good terminology."
-      },
-      "creative": {
-        "score": 8,
-        "notes": "Vivid lighthouse scene. Strong sensory details, good character work, atmospheric."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Well-structured proof by contradiction. Correct logic, clear steps, good notation."
-      }
-    },
-    "hermes3:3b": {
-      "code": {
-        "score": 7,
-        "notes": "Correct merge_sort with type hints, docstring, edge cases. Clean code. But merge_sort not even-filter."
-      },
-      "iambic": {
-        "score": 6,
-        "notes": "Poetic language, 8 lines. Some iambic rhythm but meter is loose. Good imagery nonetheless."
-      },
-      "prose": {
-        "score": 8,
-        "notes": "Excellent clinical prose. Well-structured, accurate, professional terminology. Good depth."
-      },
-      "creative": {
-        "score": 8,
-        "notes": "Vivid, literary prose. Strong vocabulary, excellent atmosphere. Near-professional quality."
-      },
-      "math": {
-        "score": 7,
-        "notes": "Correct proof by contradiction. Had a typo ('irraional'). Good structure but slightly less clean than Gemma2."
-      }
-    },
-    "llama3.2:3b": {
-      "code": {
-        "score": 8,
-        "notes": "Correct merge_sort with type hints, docstring, TypeError handling. But merge_sort not even-filter."
-      },
-      "iambic": {
-        "score": 4,
-        "notes": "Wrong meter - mostly tetrameter (8 syllables) not pentameter (10). 8 lines but form is incorrect."
-      },
-      "prose": {
-        "score": 8,
-        "notes": "Excellent clinical explanation. Well-structured, accurate, good use of bold headers."
-      },
-      "creative": {
-        "score": 8,
-        "notes": "Strong atmospheric writing. Good sensory details, character setup, pacing."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Well-formatted proof with bold headers. Correct logic, clear steps. Good structure."
-      }
-    },
-    "granite4:3b": {
-      "code": {
-        "score": 7,
-        "notes": "Correct function with type hints and docstring. Clean code, good structure."
-      },
-      "iambic": {
-        "score": 4,
-        "notes": "Generated a poem but not strict iambic pentameter. Mixed meter, inconsistent syllable count."
-      },
-      "prose": {
-        "score": 7,
-        "notes": "Clear explanation of both conditions. Good structure, accurate clinical content."
-      },
-      "creative": {
-        "score": 7,
-        "notes": "Atmospheric lighthouse scene with good sensory details. Solid creative writing."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Clean proof by contradiction. Correct logic, well-structured, good notation."
-      }
-    },
-    "phi3:3.8b": {
-      "code": {
-        "score": 7,
-        "notes": "Correct merge_sort with type hints, docstring, examples. But merge_sort not even-filter. Odd spacing in output."
-      },
-      "iambic": {
-        "score": 5,
-        "notes": "8 lines with rhyme labels (A/B/C/D). Some iambic feel but inconsistent meter. Extra prompt leaked into output."
-      },
-      "prose": {
-        "score": 7,
-        "notes": "Accurate clinical explanation. Good terminology, well-structured. Slightly less polished than Qwen/Gemma2."
-      },
-      "creative": {
-        "score": 7,
-        "notes": "Good atmospheric writing. Sensory details, character (Eleanor). Some cliched phrases."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Clean proof by contradiction. Correct logic, clear steps, good notation. Well-formatted."
-      }
-    },
-    "smallthinker:3b": {
-      "code": {
-        "score": 7,
-        "notes": "Thinking model. Reasons through approach then produces correct function with type hints and docstring. Good quality after --jinja fix."
-      },
-      "iambic": {
-        "score": 5,
-        "notes": "Thinking model. Reasons about meter requirements then writes poem. Some iambic rhythm but inconsistent. Better than pre-fix (which was just banner)."
-      },
-      "prose": {
-        "score": 6,
-        "notes": "Thinking model. Reasons about content then writes clinical explanation. Accurate but thinking takes token budget."
-      },
-      "creative": {
-        "score": 6,
-        "notes": "Thinking model. Reasons about atmosphere then writes creative scene. Good quality but thinking consumes tokens."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Thinking model. Full reasoning chain then clean formal proof. Correct contradiction logic. Excellent for math."
-      }
-    },
-    "granite4.1:3b": {
-      "code": {
-        "score": 8,
-        "notes": "Clean function with type hints, docstring, correct even-filter logic. Good code structure. Comparable to Granite 3.2."
-      },
-      "iambic": {
-        "score": 5,
-        "notes": "8-line poem with rhyme. Some iambic rhythm but inconsistent meter. Lines vary in syllable count."
-      },
-      "prose": {
-        "score": 7,
-        "notes": "Clear clinical explanation of hypo vs hyperthyroidism. Good structure, accurate terminology."
-      },
-      "creative": {
-        "score": 7,
-        "notes": "Atmospheric lighthouse scene with vivid imagery ('skeletal spire', 'wind howled like wolves'). Good sensory detail."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Well-formatted proof by contradiction with bold headers and LaTeX notation. Correct logic, clear steps."
-      }
-    },
-    "orca-mini:3b": {
-      "code": {
-        "score": 4,
-        "notes": "Correct logic but terrible formatting (no indentation, no type hints, no docstring). Poor code quality."
-      },
-      "iambic": {
-        "score": 2,
-        "notes": "Wrong meter, repetitive ('winter's chill takes hold' repeated). Only 6 lines, not 8. Poor quality."
-      },
-      "prose": {
-        "score": 5,
-        "notes": "Accurate clinical content but poorly structured. No paragraphs, runs together. Adequate information."
-      },
-      "creative": {
-        "score": 1,
-        "notes": "Refused to write: 'I am an AI language model and I am not capable of creating original text.' Complete failure."
-      },
-      "math": {
-        "score": 2,
-        "notes": "Completely wrong. Claims sqrt(2) is rational, no proof by contradiction. Mathematically incorrect."
-      }
-    },
-    "stablelm-zephyr": {
-      "code": {
-        "score": 7,
-        "notes": "Correct function with type hints and docstring. Clean code. Syntax error in preview (missing paren) but logic is correct."
-      },
-      "iambic": {
-        "score": 6,
-        "notes": "4-line poem with some iambic rhythm. Only 4 lines not 8. Good imagery but incomplete."
-      },
-      "prose": {
-        "score": 7,
-        "notes": "Thorough clinical explanation. Well-structured, accurate, good coverage of both conditions."
-      },
-      "creative": {
-        "score": 7,
-        "notes": "Vivid lighthouse scene with strong sensory details ('wind howled like wolves', 'rain pounded'). Good atmosphere."
-      },
-      "math": {
-        "score": 8,
-        "notes": "Clean proof by contradiction with numbered steps. Correct logic, clear notation. Good formal structure."
-      }
-    },
-    "starcoder2:3b": {
-      "code": {
-        "score": 5,
-        "notes": "Base code model (not instruction-tuned). Echoes prompt then generates code-like completions. Fast (28.6 t/s) but not chat-aware. Generated wrong function (odd numbers, not even)."
-      },
-      "iambic": {
-        "score": 1,
-        "notes": "Base model - echoes prompt and generates generic text completions, not a poem. No iambic pentameter. Not instruction-tuned."
-      },
-      "prose": {
-        "score": 1,
-        "notes": "Base model - echoes prompt and generates text completions. No clinical explanation produced. Not instruction-tuned."
-      },
-      "creative": {
-        "score": 1,
-        "notes": "Base model - echoes prompt. No creative writing produced. Not instruction-tuned."
-      },
-      "math": {
-        "score": 1,
-        "notes": "Base model - echoes '[proof]' repeatedly. No actual proof. Not instruction-tuned."
-      }
+    "math": {
+      "score": 1,
+      "notes": "Repeated 'Proof:' in a loop. No actual proof generated. Complete failure."
     }
   },
-  "metrics": {
-    "codegemma:2b": {
-      "avg_quality": 2.6,
-      "avg_quality_efficiency": 26.0,
-      "avg_quality_speed": 7.97,
-      "avg_gen_tps": 30.7
+  "granite3-dense:2b": {
+    "code": {
+      "score": 7,
+      "notes": "Clean function with type hints and docstring. Correct even-filter logic. Good structure."
     },
-    "granite3-dense:2b": {
-      "avg_quality": 6.4,
-      "avg_quality_efficiency": 80.9,
-      "avg_quality_speed": 17.42,
-      "avg_gen_tps": 27.2
+    "iambic": {
+      "score": 4,
+      "notes": "Generated a poem but not strict iambic pentameter. Mixed meter, some lines too short."
     },
-    "granite3.2:2b": {
-      "avg_quality": 7.0,
-      "avg_quality_efficiency": 87.6,
-      "avg_quality_speed": 19.01,
-      "avg_gen_tps": 27.2
+    "prose": {
+      "score": 7,
+      "notes": "Clear clinical prose explaining both conditions. Good structure with symptoms, diagnosis, treatment."
     },
-    "gemma4 E2B": {
-      "avg_quality": 5.8,
-      "avg_quality_efficiency": 48.5,
-      "avg_quality_speed": 15.51,
-      "avg_gen_tps": 26.7
+    "creative": {
+      "score": 6,
+      "notes": "Atmospheric lighthouse scene with sensory details. Some cliched phrases but solid effort."
     },
-    "gemma2:2b": {
-      "avg_quality": 8.2,
-      "avg_quality_efficiency": 90.1,
-      "avg_quality_speed": 20.66,
-      "avg_gen_tps": 25.2
+    "math": {
+      "score": 8,
+      "notes": "Clean proof by contradiction. Correct logic, well-structured steps. Good notation."
+    }
+  },
+  "granite3.2:2b": {
+    "code": {
+      "score": 8,
+      "notes": "Excellent function with type hints, docstring, examples. Correct even-filter and sort. Clean code."
     },
-    "lfm2.5:2.6b": {
-      "avg_quality": 6.0,
-      "avg_quality_efficiency": 66.5,
-      "avg_quality_speed": 15.16,
-      "avg_gen_tps": 25.3
+    "iambic": {
+      "score": 5,
+      "notes": "8-line poem about seasons. Some iambic rhythm but inconsistent meter. Lines vary in syllable count."
     },
-    "qwen2.5:3b": {
-      "avg_quality": 7.6,
-      "avg_quality_efficiency": 81.0,
-      "avg_quality_speed": 16.32,
-      "avg_gen_tps": 21.5
+    "prose": {
+      "score": 7,
+      "notes": "Clear explanation of hypo vs hyperthyroidism. Good clinical terminology and structure."
     },
-    "hermes3:3b": {
-      "avg_quality": 7.2,
-      "avg_quality_efficiency": 70.3,
-      "avg_quality_speed": 14.98,
-      "avg_gen_tps": 20.8
+    "creative": {
+      "score": 7,
+      "notes": "Vivid lighthouse imagery with sensory details. Good atmosphere and pacing."
     },
-    "llama3.2:3b": {
-      "avg_quality": 7.2,
-      "avg_quality_efficiency": 71.8,
-      "avg_quality_speed": 14.95,
-      "avg_gen_tps": 20.8
+    "math": {
+      "score": 8,
+      "notes": "Well-structured proof by contradiction. Correct logic, clear steps. Good formal notation."
+    }
+  },
+  "gemma4 E2B": {
+    "code": {
+      "score": 7,
+      "notes": "Thinking model - spent tokens on reasoning then produced correct merge sort. Good but not the requested even-filter."
     },
-    "granite4:3b": {
-      "avg_quality": 6.6,
-      "avg_quality_efficiency": 67.9,
-      "avg_quality_speed": 12.95,
-      "avg_gen_tps": 19.6
+    "iambic": {
+      "score": 3,
+      "notes": "Spent most tokens on thinking about meter. Only got to planning, no actual poem completed."
     },
-    "phi3:3.8b": {
-      "avg_quality": 6.8,
-      "avg_quality_efficiency": 55.8,
-      "avg_quality_speed": 14.16,
-      "avg_gen_tps": 20.8
+    "prose": {
+      "score": 6,
+      "notes": "Thinking process visible, then good clinical explanation. Accurate but truncated by token limit."
     },
-    "smallthinker:3b": {
-      "avg_quality": 6.4,
-      "avg_quality_efficiency": 75.4,
-      "avg_quality_speed": 12.29,
-      "avg_gen_tps": 19.2
+    "creative": {
+      "score": 6,
+      "notes": "Detailed thinking about atmosphere, then produced creative scene. Good but truncated."
     },
-    "granite4.1:3b": {
-      "avg_quality": 7.0,
-      "avg_quality_efficiency": 64.8,
-      "avg_quality_speed": 13.72,
-      "avg_gen_tps": 19.6
+    "math": {
+      "score": 7,
+      "notes": "Thinking process laid out clearly, then formal proof. Correct logic but truncated before completion."
+    }
+  },
+  "gemma2:2b": {
+    "code": {
+      "score": 7,
+      "notes": "Correct merge_sort with type hints and docstring. Clean code. But generated merge_sort not even-filter."
     },
-    "orca-mini:3b": {
-      "avg_quality": 2.8,
-      "avg_quality_efficiency": 12.1,
-      "avg_quality_speed": 2.18,
-      "avg_gen_tps": 7.8
+    "iambic": {
+      "score": 9,
+      "notes": "Best iambic pentameter. Proper 10-syllable lines, correct iambic stress, 8 lines, ABAB CDCD rhyme. Beautiful imagery."
     },
-    "stablelm-zephyr": {
-      "avg_quality": 7.0,
-      "avg_quality_efficiency": 99.9,
-      "avg_quality_speed": 19.25,
-      "avg_gen_tps": 27.5
+    "prose": {
+      "score": 8,
+      "notes": "Excellent clinical prose. Well-structured with headers, accurate pathophysiology, good terminology."
     },
-    "starcoder2:3b": {
-      "avg_quality": 1.8,
-      "avg_quality_efficiency": 22.1,
-      "avg_quality_speed": 5.15,
-      "avg_gen_tps": 28.6
+    "creative": {
+      "score": 8,
+      "notes": "Vivid sensory writing. Strong atmosphere, character detail (Agnes), good pacing. Near-professional quality."
+    },
+    "math": {
+      "score": 9,
+      "notes": "Cleanest proof structure. Theorem header, numbered steps, contradiction clearly shown. Excellent notation."
+    }
+  },
+  "lfm2.5:2.6b": {
+    "code": {
+      "score": 6,
+      "notes": "Thinking model. Long reasoning then correct merge sort. But generated merge_sort not even-filter."
+    },
+    "iambic": {
+      "score": 3,
+      "notes": "Spent all tokens on thinking about rhyme schemes. No actual poem generated."
+    },
+    "prose": {
+      "score": 7,
+      "notes": "Thinking process then solid clinical explanation. Accurate, well-structured."
+    },
+    "creative": {
+      "score": 7,
+      "notes": "Thinking about sensory details then produced vivid scene. Good atmosphere."
+    },
+    "math": {
+      "score": 7,
+      "notes": "Thinking process then proof setup. Correct logic but truncated before full proof."
+    }
+  },
+  "qwen2.5:3b": {
+    "code": {
+      "score": 8,
+      "notes": "Correct merge_sort with type hints and docstring. Clean, well-commented code. But merge_sort not even-filter."
+    },
+    "iambic": {
+      "score": 6,
+      "notes": "Good imagery and 8 lines. Some iambic rhythm but inconsistent meter. A few lines break the pattern."
+    },
+    "prose": {
+      "score": 8,
+      "notes": "Excellent clinical explanation. Well-structured with headers, accurate content, good terminology."
+    },
+    "creative": {
+      "score": 8,
+      "notes": "Vivid lighthouse scene. Strong sensory details, good character work, atmospheric."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Well-structured proof by contradiction. Correct logic, clear steps, good notation."
+    }
+  },
+  "hermes3:3b": {
+    "code": {
+      "score": 7,
+      "notes": "Correct merge_sort with type hints, docstring, edge cases. Clean code. But merge_sort not even-filter."
+    },
+    "iambic": {
+      "score": 6,
+      "notes": "Poetic language, 8 lines. Some iambic rhythm but meter is loose. Good imagery nonetheless."
+    },
+    "prose": {
+      "score": 8,
+      "notes": "Excellent clinical prose. Well-structured, accurate, professional terminology. Good depth."
+    },
+    "creative": {
+      "score": 8,
+      "notes": "Vivid, literary prose. Strong vocabulary, excellent atmosphere. Near-professional quality."
+    },
+    "math": {
+      "score": 7,
+      "notes": "Correct proof by contradiction. Had a typo ('irraional'). Good structure but slightly less clean than Gemma2."
+    }
+  },
+  "llama3.2:3b": {
+    "code": {
+      "score": 8,
+      "notes": "Correct merge_sort with type hints, docstring, TypeError handling. But merge_sort not even-filter."
+    },
+    "iambic": {
+      "score": 4,
+      "notes": "Wrong meter - mostly tetrameter (8 syllables) not pentameter (10). 8 lines but form is incorrect."
+    },
+    "prose": {
+      "score": 8,
+      "notes": "Excellent clinical explanation. Well-structured, accurate, good use of bold headers."
+    },
+    "creative": {
+      "score": 8,
+      "notes": "Strong atmospheric writing. Good sensory details, character setup, pacing."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Well-formatted proof with bold headers. Correct logic, clear steps. Good structure."
+    }
+  },
+  "granite4:3b": {
+    "code": {
+      "score": 7,
+      "notes": "Correct function with type hints and docstring. Clean code, good structure."
+    },
+    "iambic": {
+      "score": 4,
+      "notes": "Generated a poem but not strict iambic pentameter. Mixed meter, inconsistent syllable count."
+    },
+    "prose": {
+      "score": 7,
+      "notes": "Clear explanation of both conditions. Good structure, accurate clinical content."
+    },
+    "creative": {
+      "score": 7,
+      "notes": "Atmospheric lighthouse scene with good sensory details. Solid creative writing."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Clean proof by contradiction. Correct logic, well-structured, good notation."
+    }
+  },
+  "phi3:3.8b": {
+    "code": {
+      "score": 7,
+      "notes": "Correct merge_sort with type hints, docstring, examples. But merge_sort not even-filter. Odd spacing in output."
+    },
+    "iambic": {
+      "score": 5,
+      "notes": "8 lines with rhyme labels (A/B/C/D). Some iambic feel but inconsistent meter. Extra prompt leaked into output."
+    },
+    "prose": {
+      "score": 7,
+      "notes": "Accurate clinical explanation. Good terminology, well-structured. Slightly less polished than Qwen/Gemma2."
+    },
+    "creative": {
+      "score": 7,
+      "notes": "Good atmospheric writing. Sensory details, character (Eleanor). Some cliched phrases."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Clean proof by contradiction. Correct logic, clear steps, good notation. Well-formatted."
+    }
+  },
+  "smallthinker:3b": {
+    "code": {
+      "score": 7,
+      "notes": "Thinking model. Reasons through approach then produces correct function with type hints and docstring. Good quality after --jinja fix."
+    },
+    "iambic": {
+      "score": 5,
+      "notes": "Thinking model. Reasons about meter requirements then writes poem. Some iambic rhythm but inconsistent. Better than pre-fix (which was just banner)."
+    },
+    "prose": {
+      "score": 6,
+      "notes": "Thinking model. Reasons about content then writes clinical explanation. Accurate but thinking takes token budget."
+    },
+    "creative": {
+      "score": 6,
+      "notes": "Thinking model. Reasons about atmosphere then writes creative scene. Good quality but thinking consumes tokens."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Thinking model. Full reasoning chain then clean formal proof. Correct contradiction logic. Excellent for math."
+    }
+  },
+  "granite4.1:3b": {
+    "code": {
+      "score": 8,
+      "notes": "Clean function with type hints, docstring, correct even-filter logic. Good code structure. Comparable to Granite 3.2."
+    },
+    "iambic": {
+      "score": 5,
+      "notes": "8-line poem with rhyme. Some iambic rhythm but inconsistent meter. Lines vary in syllable count."
+    },
+    "prose": {
+      "score": 7,
+      "notes": "Clear clinical explanation of hypo vs hyperthyroidism. Good structure, accurate terminology."
+    },
+    "creative": {
+      "score": 7,
+      "notes": "Atmospheric lighthouse scene with vivid imagery ('skeletal spire', 'wind howled like wolves'). Good sensory detail."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Well-formatted proof by contradiction with bold headers and LaTeX notation. Correct logic, clear steps."
+    }
+  },
+  "orca-mini:3b": {
+    "code": {
+      "score": 4,
+      "notes": "Correct logic but terrible formatting (no indentation, no type hints, no docstring). Poor code quality."
+    },
+    "iambic": {
+      "score": 2,
+      "notes": "Wrong meter, repetitive ('winter's chill takes hold' repeated). Only 6 lines, not 8. Poor quality."
+    },
+    "prose": {
+      "score": 5,
+      "notes": "Accurate clinical content but poorly structured. No paragraphs, runs together. Adequate information."
+    },
+    "creative": {
+      "score": 1,
+      "notes": "Refused to write: 'I am an AI language model and I am not capable of creating original text.' Complete failure."
+    },
+    "math": {
+      "score": 2,
+      "notes": "Completely wrong. Claims sqrt(2) is rational, no proof by contradiction. Mathematically incorrect."
+    }
+  },
+  "stablelm-zephyr": {
+    "code": {
+      "score": 7,
+      "notes": "Correct function with type hints and docstring. Clean code. Syntax error in preview (missing paren) but logic is correct."
+    },
+    "iambic": {
+      "score": 6,
+      "notes": "4-line poem with some iambic rhythm. Only 4 lines not 8. Good imagery but incomplete."
+    },
+    "prose": {
+      "score": 7,
+      "notes": "Thorough clinical explanation. Well-structured, accurate, good coverage of both conditions."
+    },
+    "creative": {
+      "score": 7,
+      "notes": "Vivid lighthouse scene with strong sensory details ('wind howled like wolves', 'rain pounded'). Good atmosphere."
+    },
+    "math": {
+      "score": 8,
+      "notes": "Clean proof by contradiction with numbered steps. Correct logic, clear notation. Good formal structure."
+    }
+  },
+  "starcoder2:3b": {
+    "code": {
+      "score": 5,
+      "notes": "Base code model (not instruction-tuned). Echoes prompt then generates code-like completions. Fast (28.6 t/s) but not chat-aware. Generated wrong function (odd numbers, not even)."
+    },
+    "iambic": {
+      "score": 1,
+      "notes": "Base model - echoes prompt and generates generic text completions, not a poem. No iambic pentameter. Not instruction-tuned."
+    },
+    "prose": {
+      "score": 1,
+      "notes": "Base model - echoes prompt and generates text completions. No clinical explanation produced. Not instruction-tuned."
+    },
+    "creative": {
+      "score": 1,
+      "notes": "Base model - echoes prompt. No creative writing produced. Not instruction-tuned."
+    },
+    "math": {
+      "score": 1,
+      "notes": "Base model - echoes '[proof]' repeatedly. No actual proof. Not instruction-tuned."
     }
   },
   "gemma3:1b": {

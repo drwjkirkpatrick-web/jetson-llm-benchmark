@@ -113,39 +113,39 @@
     },
     "gemma4 E2B": {
       "html": {
-        "gen_tps": 0,
-        "prompt_tps": 0,
-        "tokens_generated": 106,
-        "wall_time_s": 3.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.682.740 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.683.025 E llama_model_load_from_file_impl: failed to load model\n0.01.683.817 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.167.256 E llama_model_load: error loading mo"
+        "gen_tps": 26.8,
+        "prompt_tps": 169.9,
+        "tokens_generated": 763,
+        "wall_time_s": 82.2,
+        "output_preview": "[Start thinking]\n\nHere's a thinking process that leads to the suggested HTML/CSS code:\n\n1.  **Understand the Goal:** The request is to create a complete, single-file HTML page (with embedded CSS) for a personal portfolio website.\n    *   **Required Elements:**\n        *   Header (with navigation).\n        *   Hero section (Name and Tagline).\n        *   About section.\n        *   Projects grid (3 sample cards).\n        *   Footer (Contact links).\n    *   **Styling Requirements:**\n        *   Mod"
       },
       "python": {
-        "gen_tps": 0,
-        "prompt_tps": 0,
-        "tokens_generated": 106,
-        "wall_time_s": 3.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.639.934 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.639.968 E llama_model_load_from_file_impl: failed to load model\n0.01.640.070 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.110.848 E llama_model_load: error loading mo"
+        "gen_tps": 26.8,
+        "prompt_tps": 192.4,
+        "tokens_generated": 858,
+        "wall_time_s": 81.9,
+        "output_preview": "[Start thinking]\n\nHere's a plan to fulfill the request:\n1.  **Define the Class Structure:** Create the `DataProcessor` class.\n2.  **Initialization (`__init__`):** The class should probably take the input CSV file path.\n3.  **Loading Data (`load_data`):** Use the `csv` module to read the file. Handle file not found and parsing errors.\n4.  **Filtering Data (`filter_hired_after`):** Filter records where `hire_date` is after 2020. This requires date parsing.\n5.  **Calculating Average Salary (`calcul"
       },
       "c": {
-        "gen_tps": 0,
-        "prompt_tps": 0,
-        "tokens_generated": 106,
-        "wall_time_s": 3.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.648.317 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.648.350 E llama_model_load_from_file_impl: failed to load model\n0.01.648.467 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.120.578 E llama_model_load: error loading mo"
+        "gen_tps": 26.8,
+        "prompt_tps": 178.0,
+        "tokens_generated": 951,
+        "wall_time_s": 81.8,
+        "output_preview": "[Start thinking]\n\nHere's a plan to implement the thread-safe queue:\n\n1.  **Define the Node Structure:** The linked list nodes will store the data and pointers to the next node.\n2.  **Define the Queue Structure:** The queue structure needs pointers to the `front` and `rear` nodes, and a mutex for thread safety.\n3.  **Initialization (`queue_init`):** Allocate memory for the queue structure and initialize the pointers (front/rear) and the mutex.\n4.  **Push (`queue_push`):**\n    *   Allocate a new n"
       },
       "basic": {
-        "gen_tps": 0,
-        "prompt_tps": 0,
-        "tokens_generated": 106,
-        "wall_time_s": 3.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.635.244 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.635.279 E llama_model_load_from_file_impl: failed to load model\n0.01.635.387 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.111.974 E llama_model_load: error loading mo"
+        "gen_tps": 26.8,
+        "prompt_tps": 176.7,
+        "tokens_generated": 1032,
+        "wall_time_s": 78.8,
+        "output_preview": "[Start thinking]\n\nHere's a plan to create the TRS-80 Model III BASIC program:\n\n1.  **Understand the Constraints:**\n    *   TRS-80 Model III BASIC syntax (simple, line numbers, specific commands).\n    *   Need to handle room descriptions (strings).\n    *   Need player input (commands).\n    *   Need navigation (GOTO).\n    *   Need inventory tracking (string variables).\n    *   Need a win condition (taking the key in the Treasure Room).\n    *   Need number lines (starting at 10, increment of 10).\n\n"
       },
       "julia": {
-        "gen_tps": 0,
-        "prompt_tps": 0,
-        "tokens_generated": 106,
-        "wall_time_s": 3.4,
-        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.644.828 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.644.863 E llama_model_load_from_file_impl: failed to load model\n0.01.644.968 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.125.020 E llama_model_load: error loading mo"
+        "gen_tps": 26.8,
+        "prompt_tps": 235.4,
+        "tokens_generated": 780,
+        "wall_time_s": 78.6,
+        "output_preview": "[Start thinking]\n\nHere's a plan to fulfill the request:\n1.  **Define the function and its derivative:** The target function is $f(x) = x^3 - 2x - 5$. The derivative is $f'(x) = 3x^2 - 2$.\n2.  **Implement the `newton_raphson` function:** This function needs to take $f$, $f'$, $x_0$, tolerance ($\\text{tol}$), and maximum iterations ($\\text{max\\_iter}$).\n3.  **Implement the Newton-Raphson logic:**\n    *   Start with $x_n = x_0$.\n    *   Iterate: $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$.\n    *   Che"
       }
     },
     "gemma2:2b": {

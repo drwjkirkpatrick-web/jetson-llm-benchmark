@@ -181,11 +181,37 @@ def build_pdf():
     q_header = ["Model"] + [PROMPT_LABELS[p] for p in PROMPTS] + ["Avg", "QS"]
     q_data = [q_header]
 
-    q_scores = quality['scores']
-    q_summary = quality['summary']
+    # Support both flat {model: {prompt: {score}}} and nested {"scores": ..., "summary": ...} formats
+    if 'scores' in quality:
+        q_scores = quality['scores']
+        q_summary = quality['summary']
+    else:
+        q_scores = quality
+        q_summary = {}
+
+    def get_avg_quality(model_key):
+        if model_key in q_summary:
+            return q_summary[model_key].get('avg_quality', 0)
+        cats = q_scores.get(model_key, {})
+        scores = [cats.get(p, {}).get('score', 0) for p in PROMPTS]
+        return sum(scores) / len(scores) if scores else 0
+
+    def get_qs(model_key):
+        if model_key in q_summary:
+            return q_summary[model_key].get('quality_speed', 0)
+        avg_q = get_avg_quality(model_key)
+        if avg_q == 0:
+            return 0
+        speeds = []
+        for p in PROMPTS:
+            s = bench['models'].get(model_key, {}).get(p, {}).get('gen_tps', 0)
+            if s:
+                speeds.append(s)
+        avg_s = sum(speeds) / len(speeds) if speeds else 0
+        return round((avg_q * avg_s) / 10, 1)
 
     # Sort by avg quality descending
-    sorted_models = sorted(MODELS, key=lambda m: q_summary.get(m[0], {}).get('avg_quality', 0), reverse=True)
+    sorted_models = sorted(MODELS, key=lambda m: get_avg_quality(m[0]), reverse=True)
 
     for model_key, display, _, _, _ in sorted_models:
         cats = q_scores.get(model_key, {})
@@ -195,8 +221,8 @@ def build_pdf():
             s = cats.get(pid, {}).get('score', 0)
             scores.append(s)
             row.append(Paragraph(f"<b>{s}</b>", cell_bold_center))
-        avg = q_summary.get(model_key, {}).get('avg_quality', 0)
-        qs = q_summary.get(model_key, {}).get('quality_speed', 0)
+        avg = get_avg_quality(model_key)
+        qs = get_qs(model_key)
         row.append(Paragraph(f"<b>{avg:.1f}</b>", cell_bold_center))
         row.append(Paragraph(f"<b>{qs:.1f}</b>", cell_bold_center))
         q_data.append(row)
