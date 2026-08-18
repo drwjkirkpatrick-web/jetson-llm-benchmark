@@ -1,0 +1,176 @@
+#!/usr/bin/env python3
+"""
+Quality-score the 16-model coding benchmark outputs (5 languages x 16 models = 80 runs).
+Scores 1-10 based on: correctness, completeness, language syntax accuracy,
+code structure, and adherence to prompt requirements.
+Writes coding_quality_scores.json.
+"""
+import json, os
+
+RESULTS = os.path.expanduser('~/projects/jetson-llm-benchmark/coding_benchmark_results.json')
+OUTPUT = os.path.expanduser('~/projects/jetson-llm-benchmark/coding_quality_scores.json')
+
+with open(RESULTS) as f:
+    data = json.load(f)
+
+# Scoring criteria per language:
+# - HTML: complete page, nav/hero/about/projects/footer sections, CSS flexbox, responsive, color scheme
+# - Python: class with type hints, docstrings, csv+json, error handling, example usage
+# - C: linked list queue, pthread mutex, all 5 functions, main demo, memory management
+# - BASIC: line numbers (10,20,30...), PRINT/INPUT/GOTO, 3 rooms, golden key, win condition
+# - Julia: newton_raphson function, type annotations, docstring, iteration printing, x^3-2x-5 example
+
+SCORES = {
+    "codegemma:2b": {
+        "html":   {"score": 3, "notes": "Echoes prompt text, doesn't generate actual HTML page. Chat template not applied properly for code generation."},
+        "python": {"score": 6, "notes": "Only shows example usage, not the class definition itself. Code looks correct but incomplete."},
+        "c":      {"score": 7, "notes": "Produces correct C with linked list, pthread mutex, proper structure. Good but verbose explanation."},
+        "basic":  {"score": 1, "notes": "Total failure - generates 'user/assistant' chat loop with no BASIC code."},
+        "julia":  {"score": 5, "notes": "Produces a basic Julia function but missing docstring, type annotations, and iteration printing. Repeats prompt after."},
+    },
+    "granite3-dense:2b": {
+        "html":   {"score": 8, "notes": "Complete HTML with DOCTYPE, head, meta, title. Embedded CSS. Has portfolio structure. Good."},
+        "python": {"score": 8, "notes": "Clean class with type hints, docstrings, csv+json imports. Well-structured. Good error handling."},
+        "c":      {"score": 8, "notes": "Proper linked list queue with pthread mutex. All required functions present. Clean structure."},
+        "basic":  {"score": 7, "notes": "TRS-80 BASIC with line numbers, PRINT/INPUT, room descriptions. Has the adventure structure but abbreviated."},
+        "julia":  {"score": 8, "notes": "Newton-Raphson with docstring, parameters documented. Clean implementation. Missing type annotations."},
+    },
+    "granite3.2:2b": {
+        "html":   {"score": 9, "notes": "Complete HTML page with embedded CSS, meta viewport, proper structure. Adheres to specifications well."},
+        "python": {"score": 8, "notes": "Class with type hints (List, Dict, Tuple), docstrings, csv+json. Well-structured with all required methods."},
+        "c":      {"score": 8, "notes": "Thread-safe queue with pthread mutex, all functions present. Good explanation and clean code."},
+        "basic":  {"score": 8, "notes": "TRS-80 BASIC with line numbers, room strings, PRINT/INPUT/GOTO. Good adventure game structure with 3 rooms."},
+        "julia":  {"score": 9, "notes": "Excellent - type annotations (Function, Number, Int), detailed docstring, proper tuple return type. Best Julia output."},
+    },
+    "gemma4 E2B": {
+        "html":   {"score": 0, "notes": "FAILED: wrong tensor count error (601 vs 2012). Model file incompatible with this llama.cpp build."},
+        "python": {"score": 0, "notes": "FAILED: same tensor count error."},
+        "c":      {"score": 0, "notes": "FAILED: same tensor count error."},
+        "basic":  {"score": 0, "notes": "FAILED: same tensor count error."},
+        "julia":  {"score": 0, "notes": "FAILED: same tensor count error."},
+    },
+    "gemma2:2b": {
+        "html":   {"score": 9, "notes": "Complete HTML with embedded CSS in style tag, meta viewport, flexbox. Proper portfolio with all sections. Excellent."},
+        "python": {"score": 9, "notes": "Excellent class with type hints (Dict, List, Tuple), detailed docstrings, csv+json, proper init. Very clean code."},
+        "c":      {"score": 9, "notes": "Complete C program with struct Node, queue struct, pthread mutex. All 5 functions present. Memory management with free()."},
+        "basic":  {"score": 7, "notes": "TRS-80 BASIC with line numbers, PRINT/INPUT, room navigation. Has the game structure but IF/THEN syntax modernized."},
+        "julia":  {"score": 9, "notes": "Excellent Julia with docstring, Args/Returns documented, proper function signature. Clean Newton-Raphson implementation."},
+    },
+    "lfm2.5:2.6b": {
+        "html":   {"score": 7, "notes": "Starts with [Start thinking] reasoning, then produces HTML. Good quality but thinking tokens eat into output space."},
+        "python": {"score": 7, "notes": "Thinking prefix then Python class. Code quality good but thinking overhead reduces completeness."},
+        "c":      {"score": 7, "notes": "Thinking then C code. Proper structure with linked list and mutex. Good quality."},
+        "basic":  {"score": 7, "notes": "Thinking then BASIC code. Understands TRS-80 constraints. Good adventure game."},
+        "julia":  {"score": 7, "notes": "Thinking then Julia implementation. Newton-Raphson correct. Thinking overhead limits output length."},
+    },
+    "qwen2.5:3b": {
+        "html":   {"score": 9, "notes": "Complete HTML with embedded CSS, flexbox, responsive design, dark blue and gold color scheme. All sections present. Excellent."},
+        "python": {"score": 9, "notes": "Clean class with type hints, docstrings, csv+json. All required methods. Well-structured. Excellent."},
+        "c":      {"score": 9, "notes": "Complete thread-safe queue with all 5 functions, pthread mutex, main demo, error handling, memory management. Excellent."},
+        "basic":  {"score": 8, "notes": "Good TRS-80 BASIC with line numbers, PRINT/INPUT, 3 rooms, golden key, win condition. Well-structured."},
+        "julia":  {"score": 8, "notes": "Newton-Raphson with function signature, iteration printing, x^3-2x-5 example. Good but missing type annotations."},
+    },
+    "hermes3:3b": {
+        "html":   {"score": 6, "notes": "Output starts mid-HTML (</main> tag) - missed the beginning. Has footer and CSS but incomplete page."},
+        "python": {"score": 7, "notes": "Class with type hints, csv+json, load_csv method. Good but output truncated - missing full implementation."},
+        "c":      {"score": 8, "notes": "Thread-safe queue with pthread, all functions, error handling, memory management. Good quality."},
+        "basic":  {"score": 7, "notes": "TRS-80 BASIC with CLS, PRINT, INPUT, string variables for rooms. Good structure but abbreviated."},
+        "julia":  {"score": 7, "notes": "Newton-Raphson with docstring. Clean but missing type annotations and iteration output detail."},
+    },
+    "llama3.2:3b": {
+        "html":   {"score": 8, "notes": "Complete HTML with embedded CSS, meta viewport, portfolio structure. Good quality with all sections."},
+        "python": {"score": 8, "notes": "Class with type hints (Dict, List), docstrings, datetime import, csv+json. Well-structured."},
+        "c":      {"score": 8, "notes": "Thread-safe queue with linked list, pthread mutex, all functions. Clean and correct."},
+        "basic":  {"score": 7, "notes": "TRS-80 BASIC with line numbers, room strings, PRINT/INPUT/GOTO. Has adventure structure. Line numbering restarts."},
+        "julia":  {"score": 7, "notes": "Newton-Raphson with docstring and parameters. Clean but missing type annotations and iteration printing."},
+    },
+    "granite4:3b": {
+        "html":   {"score": 7, "notes": "Simple HTML page with embedded CSS. Has portfolio structure but less complete than 2B Granite models. Basic CSS."},
+        "python": {"score": 8, "notes": "Class with type hints, docstrings, csv+json, datetime. Good structure with all required methods."},
+        "c":      {"score": 7, "notes": "Thread-safe queue with pthread mutex. All functions present but simpler implementation than 2B models."},
+        "basic":  {"score": 6, "notes": "TRS-80 BASIC adventure game. Has rooms and key but less complete. Abbreviated output."},
+        "julia":  {"score": 7, "notes": "Newton-Raphson with docstring. Clean but basic. Missing type annotations and iteration detail."},
+    },
+    "granite4.1:3b": {
+        "html":   {"score": 8, "notes": "Complete HTML with embedded CSS, flexbox, responsive design, color scheme. All sections present. Good improvement over 4.0."},
+        "python": {"score": 8, "notes": "Class with type hints (List, Dict, Any), docstrings, csv+json, datetime. Well-structured."},
+        "c":      {"score": 8, "notes": "Clean C with struct Node, Queue, pthread mutex. All 5 functions. Good structure."},
+        "basic":  {"score": 7, "notes": "TRS-80 BASIC with REM comments, line numbers, room descriptions. Good structure with PRINT/INPUT/GOTO."},
+        "julia":  {"score": 8, "notes": "Newton-Raphson with docstring, parameters documented. Clean implementation. Better than 4.0."},
+    },
+    "phi3:3.8b": {
+        "html":   {"score": 8, "notes": "Complete HTML with embedded CSS, meta viewport, portfolio structure. Extra spacing in output but code is solid."},
+        "python": {"score": 8, "notes": "Class with type hints (List, Dict, Tuple), docstrings, datetime, csv+json. Well-structured."},
+        "c":      {"score": 8, "notes": "Thread-safe queue with QUEUE_SIZE define, linked list, pthread mutex, all functions. Good structure."},
+        "basic":  {"score": 6, "notes": "TRS-80 BASIC with PRINT/INPUT but uses GOSUB instead of GOTO for navigation. Line numbering issues. Abbreviated."},
+        "julia":  {"score": 7, "notes": "Newton-Raphson with type annotations (Function, Float64, Int), docstring. Uses SpecialFunctions (unnecessary). Missing iteration print."},
+    },
+    "stablelm-zephyr": {
+        "html":   {"score": 7, "notes": "HTML with meta viewport, header/nav structure. Links external CSS file instead of embedded. Good but not fully embedded."},
+        "python": {"score": 7, "notes": "Class with type hints, csv+json, dataclass import. Good but output truncated - missing full implementation."},
+        "c":      {"score": 8, "notes": "Thread-safe queue with pthread mutex, all functions present. Clean implementation."},
+        "basic":  {"score": 7, "notes": "TRS-80 BASIC adventure game. Has rooms and navigation. Mentions grid representation (unusual for TRS-80)."},
+        "julia":  {"score": 6, "notes": "Newton-Raphson with type annotations but uses is_function() check (invalid Julia). Some syntax issues."},
+    },
+    "smallthinker:3b": {
+        "html":   {"score": 7, "notes": "Thinking model - reasons through approach then generates HTML. Good quality but thinking takes 1000+ tokens, reducing output space."},
+        "python": {"score": 7, "notes": "Thinking then Python class. Code quality good but thinking overhead limits completeness."},
+        "c":      {"score": 7, "notes": "Thinking then C code. Proper structure. Good quality but truncated by token limit."},
+        "basic":  {"score": 7, "notes": "Thinking then BASIC adventure. Understands TRS-80 constraints. Good quality."},
+        "julia":  {"score": 7, "notes": "Thinking then Julia. Newton-Raphson correct. Thinking overhead reduces output length."},
+    },
+    "orca-mini:3b": {
+        "html":   {"score": 1, "notes": "REFUSED: 'I cannot complete this task. I am an AI language model and I am not capable of creating HTML.' Total failure."},
+        "python": {"score": 3, "notes": "Produces a bare function (not a class), no type hints, no docstrings, no error handling. Missing most requirements."},
+        "c":      {"score": 5, "notes": "Produces C code with pthread but uses global array instead of linked list. Missing queue_destroy. Uses macros oddly."},
+        "basic":  {"score": 1, "notes": "Total failure - generates 'user' repeated 60+ times. No BASIC code at all."},
+        "julia":  {"score": 3, "notes": "Describes Newton-Raphson method in prose but doesn't produce actual Julia code. More of an explanation than code."},
+    },
+    "starcoder2:3b": {
+        "html":   {"score": 2, "notes": "Base code model - echoes prompt then generates HTML-like completion. Not instruction-tuned, no chat response format."},
+        "python": {"score": 2, "notes": "Ignores the prompt entirely, generates a different Python class (Assistant, not DataProcessor). Base model completion behavior."},
+        "c":      {"score": 2, "notes": "Echoes prompt text as code comment. Generates some C but not following the instructions. Base model behavior."},
+        "basic": {"score": 2, "notes": "Echoes prompt. No actual BASIC adventure game generated. Base model, not instruction-tuned."},
+        "julia": {"score": 2, "notes": "Ignores prompt, generates a different problem (bisection method, not Newton-Raphson). Base model completion behavior."},
+    },
+}
+
+# Compute summary stats
+summary = {}
+for model, cats in SCORES.items():
+    scores = [v["score"] for v in cats.values()]
+    avg = sum(scores) / len(scores) if scores else 0
+    
+    # Get gen speed from results
+    m = data['models'].get(model, {})
+    gen_speeds = [m.get(pid, {}).get('gen_tps', 0) for pid in ['html', 'python', 'c', 'basic', 'julia']]
+    avg_gen = sum(gen_speeds) / len(gen_speeds) if gen_speeds else 0
+    
+    # Quality-Speed metric: (avg_quality * avg_gen_tps) / 10
+    qs = (avg * avg_gen) / 10 if avg_gen > 0 else 0
+    
+    summary[model] = {
+        'avg_quality': round(avg, 1),
+        'avg_gen_tps': round(avg_gen, 1),
+        'quality_speed': round(qs, 2),
+    }
+
+output = {'scores': SCORES, 'summary': summary}
+
+with open(OUTPUT, 'w') as f:
+    json.dump(output, f, indent=2)
+
+# Print summary table sorted by quality
+print(f"\n{'Model':<22} {'HTML':>5} {'Python':>7} {'C':>5} {'BASIC':>6} {'Julia':>6} {'Avg':>5} {'Gen t/s':>8} {'QS':>6}")
+print(f"{'-'*82}")
+sorted_models = sorted(summary.items(), key=lambda x: x[1]['avg_quality'], reverse=True)
+for model, s in sorted_models:
+    cats = SCORES[model]
+    h = cats['html']['score']
+    p = cats['python']['score']
+    c = cats['c']['score']
+    b = cats['basic']['score']
+    j = cats['julia']['score']
+    print(f"{model:<22} {h:>5} {p:>7} {c:>5} {b:>6} {j:>6} {s['avg_quality']:>5.1f} {s['avg_gen_tps']:>8.1f} {s['quality_speed']:>6.2f}")
+
+print(f"\nSaved to {OUTPUT}")

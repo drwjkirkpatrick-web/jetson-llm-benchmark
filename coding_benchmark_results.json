@@ -1,0 +1,596 @@
+{
+  "models": {
+    "codegemma:2b": {
+      "html": {
+        "gen_tps": 30.7,
+        "prompt_tps": 615.7,
+        "tokens_generated": 2142,
+        "wall_time_s": 70.8,
+        "output_preview": "user\nCreate a complete HTML page with embedded CSS for a personal portfolio website. Include a header with navigation, a hero section with name and tagline, an about section, a projects grid with 3 sample project cards, and a footer with contact links. Use modern CSS with flexbox, a color scheme of dark blue and gold, and responsive design with a media query for mobile.\nassistant\nuser\nCreate a complete HTML page with embedded CSS for a personal portfolio website. Include a header with navigation"
+      },
+      "python": {
+        "gen_tps": 30.7,
+        "prompt_tps": 577.3,
+        "tokens_generated": 1861,
+        "wall_time_s": 61.6,
+        "output_preview": "Sure, here is an example usage of the DataProcessor class:\n\n```python\nprocessor = DataProcessor('employees.csv')\nprocessor.filter_employees_after_2020()\nprocessor.calculate_avg_salary_by_department()\nprocessor.find_top_3_highest_paid_employees()\nprocessor.export_results_to_json('results.json')\n```\n\n\nuser\nSure, here is an example usage of the DataProcessor class:\n\n```python\nprocessor = DataProcessor('employees.csv')\nprocessor.filter_employees_after_2020()\nprocessor.calculate_avg_salary_by_departm"
+      },
+      "c": {
+        "gen_tps": 30.6,
+        "prompt_tps": 690.7,
+        "tokens_generated": 2098,
+        "wall_time_s": 69.6,
+        "output_preview": "Sure, here is a C program that implements a simple thread-safe queue using a linked list. I'll explain the code step by step:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\n// Node structure for the linked list\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\n// Queue structure\ntypedef struct {\n    Node* front;\n    Node* rear;\n    pthread_mutex_t mutex;\n    int size;\n} Queue;\n\n// Function to initialize the queue\nvoid queue_init(Queue* queue) {\n    queue->fr"
+      },
+      "basic": {
+        "gen_tps": 30.7,
+        "prompt_tps": 721.9,
+        "tokens_generated": 2115,
+        "wall_time_s": 69.9,
+        "output_preview": "user\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\nassistant\n\nuser\n\na"
+      },
+      "julia": {
+        "gen_tps": 30.7,
+        "prompt_tps": 651.9,
+        "tokens_generated": 2110,
+        "wall_time_s": 69.7,
+        "output_preview": "function newton_raphson(f, df, x0, tol, max_iter)\n    x = x0\n    for i in 1:max_iter\n        x_new = x - f(x) / df(x)\n        if abs(x_new - x) < tol\n            return x_new, i\n        end\n        x = x_new\n    end\n    return x, max_iter\nend\n\nuser\nfunction newton_raphson(f, df, x0, tol, max_iter)\n    x = x0\n    for i in 1:max_iter\n        x_new = x - f(x) / df(x)\n        if abs(x_new - x) < tol\n            return x_new, i\n        end\n        x = x_new\n    end\n    return x, max_iter\nend\n\nassista"
+      }
+    },
+    "granite3-dense:2b": {
+      "html": {
+        "gen_tps": 26.9,
+        "prompt_tps": 400.2,
+        "tokens_generated": 1332,
+        "wall_time_s": 50.5,
+        "output_preview": "Here's a complete HTML page with embedded CSS for a personal portfolio website:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Personal Portfolio</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n<body>\n  <header>\n    <nav>\n      <ul>\n        <li><a href=\"#home\">Home</a></li>\n        <li><a href=\"#about\">About</a></li>\n        <li><a href=\"#projects\">Projects</a></li>\n        <l"
+      },
+      "python": {
+        "gen_tps": 27.0,
+        "prompt_tps": 481.9,
+        "tokens_generated": 1027,
+        "wall_time_s": 39.1,
+        "output_preview": "```python\nimport csv\nimport json\nfrom typing import List, Dict\n\nclass DataProcessor:\n    \"\"\"\n    A class to process employee data from a CSV file and export results to a JSON file.\n    \"\"\"\n\n    def __init__(self, csv_file: str, json_file: str):\n        \"\"\"\n        Initialize the DataProcessor with the paths to the input and output files.\n\n        :param csv_file: The path to the input CSV file.\n        :param json_file: The path to the output JSON file.\n        \"\"\"\n        self.csv_file = csv_fi"
+      },
+      "c": {
+        "gen_tps": 27.1,
+        "prompt_tps": 439.0,
+        "tokens_generated": 897,
+        "wall_time_s": 34.1,
+        "output_preview": "Here's a simple implementation of a thread-safe queue using a linked list in C:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\ntypedef struct Queue {\n    Node* front;\n    Node* rear;\n    pthread_mutex_t mutex;\n} Queue;\n\nvoid queue_init(Queue* q) {\n    q->front = q->rear = NULL;\n    pthread_mutex_init(&q->mutex, NULL);\n}\n\nvoid queue_push(Queue* q, int data) {\n    pthread_mutex_lock(&q->mutex);\n    Node* newNod"
+      },
+      "basic": {
+        "gen_tps": 27.2,
+        "prompt_tps": 530.4,
+        "tokens_generated": 534,
+        "wall_time_s": 20.6,
+        "output_preview": "Here's a simple text adventure game in TRS-80 Model III BASIC:\n\n```basic\n10 REM Text Adventure Game\n20 CLS\n30 PRINT \"You are in the Entrance Hall. There are doors leading to the Library and the Treasure Room.\"\n40 PRINT \"You see a golden key on the table.\"\n50 INPUT \"What do you want to do? GO NORTH, GO SOUTH, TAKE KEY, EXAMINE \";\n60 IF STR$5 = \"GO NORTH\" THEN GOTO 70\n70 IF STR$5 = \"GO SOUTH\" THEN GOTO 80\n80 IF STR$5 = \"TAKE KEY\" THEN GOTO 90\n90 IF STR$5 = \"EXAMINE\" THEN GOTO 100\n100 PRINT \"You ca"
+      },
+      "julia": {
+        "gen_tps": 27.2,
+        "prompt_tps": 534.9,
+        "tokens_generated": 701,
+        "wall_time_s": 26.8,
+        "output_preview": "Here's a Julia program that implements the Newton-Raphson method for finding roots of a function:\n\n```julia\n\"\"\"\nNewton-Raphson method for finding roots of a function.\n\nParameters:\n- f: The function for which to find the root.\n- df: The derivative of the function.\n- x0: The initial guess for the root.\n- tol: The tolerance for the error.\n- max_iter: The maximum number of iterations.\n\nReturns:\n- The root of the function and the number of iterations taken.\n\"\"\"\nfunction newton_raphson(f, df, x0, tol,"
+      }
+    },
+    "granite3.2:2b": {
+      "html": {
+        "gen_tps": 26.9,
+        "prompt_tps": 478.6,
+        "tokens_generated": 1326,
+        "wall_time_s": 50.3,
+        "output_preview": "Here's a complete HTML page with embedded CSS for a personal portfolio website, adhering to your specifications:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Your Name - Portfolio</title>\n<style>\n  /* General reset and reset for better consistency */\n  * {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n  }\n\n  body {\n    font-family: Arial, sans-serif;\n    line-height: 1.6;\n    col"
+      },
+      "python": {
+        "gen_tps": 27.0,
+        "prompt_tps": 507.7,
+        "tokens_generated": 1147,
+        "wall_time_s": 43.5,
+        "output_preview": "```python\nimport csv\nimport json\nfrom typing import List, Dict, Tuple\n\nclass DataProcessor:\n    \"\"\"\n    A class to process employee data from a CSV file, filter by hire date, calculate average salary by department,\n    find top 3 highest paid employees, and export results to a JSON file.\n    \"\"\"\n\n    def __init__(self, csv_file: str):\n        \"\"\"\n        Initialize the DataProcessor with the path to the CSV file containing employee records.\n\n        :param csv_file: str, path to the CSV file\n   "
+      },
+      "c": {
+        "gen_tps": 27.0,
+        "prompt_tps": 500.1,
+        "tokens_generated": 977,
+        "wall_time_s": 37.2,
+        "output_preview": "Here's a C program that implements a simple thread-safe queue using a linked list with pthread mutex for thread safety. The program includes the required functions and a main function to demonstrate its usage.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\ntypedef struct Queue {\n    Node* front;\n    Node* rear;\n    pthread_mutex_t mutex;\n} Queue;\n\nQueue* queue_init() {\n    Queue* q = (Queue*)malloc(sizeof(Que"
+      },
+      "basic": {
+        "gen_tps": 27.0,
+        "prompt_tps": 578.2,
+        "tokens_generated": 838,
+        "wall_time_s": 32.1,
+        "output_preview": "10 REM TRS-80 Model III BASIC Text Adventure Game: \"The Golden Key\"\n\n10 REM Define strings for room descriptions\n20 LET Rooms$ = \"Entrance Hall: You are in a wide, dimly lit hall with bookshelves on both sides.\"\n30 LET Library$ = \"Library: A vast room filled with towering books, a large table, and a golden key on a pedestal.\"\n40 LET TreasureRoom$ = \"Treasure Room: A small, secure chamber with a chest at its center, guarded by a stone statue.\"\n\n20 REM Initialize variables\n30 LET PlayerInventory$ "
+      },
+      "julia": {
+        "gen_tps": 27.0,
+        "prompt_tps": 577.7,
+        "tokens_generated": 911,
+        "wall_time_s": 34.8,
+        "output_preview": "```julia\n\"\"\"\nnewton_raphson(f::Function, df::Function, x0::Number, tol::Number, max_iter::Int) -> Tuple{Int, Number, Number, Number}\n\nThis function implements the Newton-Raphson method for finding roots of a given function.\n\n# Arguments\n- `f::Function`: The function for which we want to find a root.\n- `df::Function`: The derivative of the function `f`.\n- `x0::Number`: Initial guess for the root.\n- `tol::Number`: Tolerance for convergence.\n- `max_iter::Int`: Maximum number of iterations.\n\n# Retur"
+      }
+    },
+    "gemma4 E2B": {
+      "html": {
+        "gen_tps": 0,
+        "prompt_tps": 0,
+        "tokens_generated": 106,
+        "wall_time_s": 3.4,
+        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.682.740 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.683.025 E llama_model_load_from_file_impl: failed to load model\n0.01.683.817 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.167.256 E llama_model_load: error loading mo"
+      },
+      "python": {
+        "gen_tps": 0,
+        "prompt_tps": 0,
+        "tokens_generated": 106,
+        "wall_time_s": 3.4,
+        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.639.934 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.639.968 E llama_model_load_from_file_impl: failed to load model\n0.01.640.070 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.110.848 E llama_model_load: error loading mo"
+      },
+      "c": {
+        "gen_tps": 0,
+        "prompt_tps": 0,
+        "tokens_generated": 106,
+        "wall_time_s": 3.4,
+        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.648.317 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.648.350 E llama_model_load_from_file_impl: failed to load model\n0.01.648.467 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.120.578 E llama_model_load: error loading mo"
+      },
+      "basic": {
+        "gen_tps": 0,
+        "prompt_tps": 0,
+        "tokens_generated": 106,
+        "wall_time_s": 3.4,
+        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.635.244 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.635.279 E llama_model_load_from_file_impl: failed to load model\n0.01.635.387 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.111.974 E llama_model_load: error loading mo"
+      },
+      "julia": {
+        "gen_tps": 0,
+        "prompt_tps": 0,
+        "tokens_generated": 106,
+        "wall_time_s": 3.4,
+        "output_preview": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b \bError: the server exited before becoming ready\n0.01.644.828 E llama_model_load: error loading model: done_getting_tensors: wrong number of tensors; expected 2012, got 601\n0.01.644.863 E llama_model_load_from_file_impl: failed to load model\n0.01.644.968 E common_fit_params: encountered an error while trying to fit params to free device memory: failed to load model\n0.03.125.020 E llama_model_load: error loading mo"
+      }
+    },
+    "gemma2:2b": {
+      "html": {
+        "gen_tps": 24.9,
+        "prompt_tps": 279.0,
+        "tokens_generated": 1663,
+        "wall_time_s": 67.8,
+        "output_preview": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>My Portfolio</title>\n    <style>\n        /* Basic Styles */\n        body {\n            font-family: 'Arial', sans-serif;\n            margin: 0;\n            background-color: #121212;\n            color: #f0f0f0;\n        }\n\n        .container {\n            max-width: 960px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n\n"
+      },
+      "python": {
+        "gen_tps": 24.9,
+        "prompt_tps": 314.1,
+        "tokens_generated": 1484,
+        "wall_time_s": 60.6,
+        "output_preview": "```python\nfrom typing import Dict, List, Tuple\nimport csv\nimport json\n\nclass DataProcessor:\n    \"\"\"\n    Processes employee data from a CSV file, performs calculations, and exports results to JSON.\n    \"\"\"\n\n    def __init__(self, csv_file_path: str):\n        \"\"\"\n        Initializes the DataProcessor with the path to the CSV file.\n\n        Args:\n            csv_file_path (str): The path to the CSV file.\n        \"\"\"\n        self.csv_file_path = csv_file_path\n        self.employees: List[Dict[str, s"
+      },
+      "c": {
+        "gen_tps": 25.0,
+        "prompt_tps": 345.2,
+        "tokens_generated": 1492,
+        "wall_time_s": 60.7,
+        "output_preview": "```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\n// Define the structure for a node in the linked list\nstruct Node {\n    int data;\n    struct Node* next;\n};\n\n// Define the queue structure\ntypedef struct {\n    pthread_mutex_t mutex;\n    struct Node* head;\n    struct Node* tail;\n    int size;\n} Queue;\n\n// Function to initialize the queue\nQueue* queue_init() {\n    Queue* queue = (Queue*)malloc(sizeof(Queue));\n    pthread_mutex_init(&queue->mutex, NULL);\n    queue->head = NULL;\n    "
+      },
+      "basic": {
+        "gen_tps": 25.2,
+        "prompt_tps": 445.7,
+        "tokens_generated": 779,
+        "wall_time_s": 32.0,
+        "output_preview": "```basic\n10 REM Simple Text Adventure Game for TRS-80 Model III\n\n20 PRINT \"Welcome to the Adventure!\"\n30 PRINT \"You are in the Entrance Hall.\"\n\n40 PRINT \"What do you want to do?\"\n50 PRINT \"GO NORTH, GO SOUTH, TAKE KEY, EXAMINE\"\n60 INPUT CHOICE\n\n70 IF CHOICE = \"GO NORTH\" THEN\n80 PRINT \"You are in the Library.\"\n90 PRINT \"What do you want to do?\"\n100 PRINT \"GO SOUTH, TAKE KEY, EXAMINE\"\n110 INPUT CHOICE\n120 IF CHOICE = \"GO SOUTH\" THEN\n130 PRINT \"You are in the Treasure Room!\"\n140 PRINT \"You found th"
+      },
+      "julia": {
+        "gen_tps": 25.1,
+        "prompt_tps": 489.0,
+        "tokens_generated": 908,
+        "wall_time_s": 37.2,
+        "output_preview": "```julia\n\"\"\"\nNewton-Raphson method for finding roots of a function.\n\nArgs:\n    f: The function for which to find the root.\n    df: The derivative of the function f.\n    x0: Initial guess for the root.\n    tol: Tolerance for the error.\n    max_iter: Maximum number of iterations.\n\nReturns:\n    A tuple containing the root and the number of iterations.\n\"\"\"\n\nfunction newton_raphson(f, df, x0, tol, max_iter)\n    \"\"\"\n    Finds the root of the function f using the Newton-Raphson method.\n\n    Args:\n     "
+      }
+    },
+    "lfm2.5:2.6b": {
+      "html": {
+        "gen_tps": 25.2,
+        "prompt_tps": 289.2,
+        "tokens_generated": 2108,
+        "wall_time_s": 84.7,
+        "output_preview": "[Start thinking]\n\n\nThe user wants a complete HTML page with embedded CSS for a personal portfolio website. Let me break down the requirements:\n\n1. **Header with navigation** - Needs a nav bar with links\n2. **Hero section** - Name and tagline\n3. **About section** - About the creator\n4. **Projects grid** - 3 sample project cards\n5. **Footer** - Contact links\n6. **Modern CSS** - Flexbox layout\n7. **Color scheme** - Dark blue and gold\n8. **Responsive design** - Media query for mobile\n\nLet me create "
+      },
+      "python": {
+        "gen_tps": 25.3,
+        "prompt_tps": 325.7,
+        "tokens_generated": 2090,
+        "wall_time_s": 83.6,
+        "output_preview": "[Start thinking]\n\n\nThe user wants a Python class `DataProcessor` that:\n1. Loads a CSV file of employee records (columns: name, department, salary, hire_date)\n2. Filters employees hired after 2020\n3. Calculates average salary by department\n4. Finds the top 3 highest paid employees\n5. Exports results to a JSON file\n6. Includes type hints, docstrings, error handling\n7. Uses csv and json standard library modules\n8. Shows example usage\n\nLet me break this down:\n\n**Class Structure:**\n- `DataProcessor` "
+      },
+      "c": {
+        "gen_tps": 25.3,
+        "prompt_tps": 349.8,
+        "tokens_generated": 2110,
+        "wall_time_s": 84.4,
+        "output_preview": "[Start thinking]\n\n\nThe user wants a C program that implements a simple thread-safe queue using a linked list. The required functions are:\n\n- queue_init: Initialize the queue (create head and tail pointers, set them to NULL)\n- queue_push: Add an element to the rear of the queue (thread-safe)\n- queue_pop: Remove and return an element from the front of the queue (thread-safe)\n- queue_size: Return the number of elements in the queue (thread-safe)\n- queue_destroy: Free all memory allocated by the que"
+      },
+      "basic": {
+        "gen_tps": 25.3,
+        "prompt_tps": 428.8,
+        "tokens_generated": 2090,
+        "wall_time_s": 83.6,
+        "output_preview": "[Start thinking]\n\nThe user wants a TRS-80 Model III BASIC program. This is a classic home computer from the 1980s. The program should be a simple text adventure game with three rooms: Entrance Hall, Library, Treasure Room. The player looks for a golden key. Use PRINT for room descriptions, INPUT for player commands (GO NORTH, GO SOUTH, TAKE KEY, EXAMINE), string variables for room descriptions, and GOTO for navigation. Include inventory tracking and a win condition when the player takes the key "
+      },
+      "julia": {
+        "gen_tps": 25.3,
+        "prompt_tps": 420.6,
+        "tokens_generated": 2083,
+        "wall_time_s": 83.3,
+        "output_preview": "[Start thinking]\n\nThe user wants a Julia program implementing Newton-Raphson method. The function newton_raphson(f, df, x0, tol, max_iter) should take a function f, its derivative df, initial guess x0, tolerance tol, and max iterations max_iter. It should iterate until |x_{n+1} - x_n| < tol or max_iter reached. It should print each iteration showing step number, current x, f(x), and error (presumably error = |x - x_{next}| or maybe |f(x)|? Usually Newton-Raphson error is difference between succe"
+      }
+    },
+    "qwen2.5:3b": {
+      "html": {
+        "gen_tps": 21.4,
+        "prompt_tps": 452.1,
+        "tokens_generated": 1724,
+        "wall_time_s": 81.6,
+        "output_preview": "Below is a complete HTML page with embedded CSS for a personal portfolio website, including a header with navigation, a hero section with name and tagline, an about section, a projects grid with 3 sample project cards, and a footer with contact links. The color scheme is dark blue and gold, and the design is responsive with a media query for mobile devices.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-s"
+      },
+      "python": {
+        "gen_tps": 21.5,
+        "prompt_tps": 424.4,
+        "tokens_generated": 999,
+        "wall_time_s": 47.5,
+        "output_preview": "Below is the Python class `DataProcessor` that performs the specified operations:\n\n```python\nimport csv\nimport json\nfrom typing import List, Dict\n\nclass DataProcessor:\n    \"\"\"\n    A class to process employee records from a CSV file. It loads the CSV, filters records based on hire date,\n    calculates the average salary by department, finds the top 3 highest paid employees, and exports the results to a JSON file.\n    \"\"\"\n    \n    def __init__(self, csv_file: str):\n        self.csv_file = csv_file"
+      },
+      "c": {
+        "gen_tps": 21.4,
+        "prompt_tps": 457.9,
+        "tokens_generated": 1137,
+        "wall_time_s": 54.1,
+        "output_preview": "Certainly! Below is a C program that implements a simple thread-safe queue using a linked list. The program includes the necessary functions: `queue_init`, `queue_push`, `queue_pop`, `queue_size`, and `queue_destroy`. It also includes a `main` function to demonstrate the usage of these functions. Error handling and memory management are included to ensure proper cleanup.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n#include <stdbool.h>\n\ntypedef struct Node {\n    int value;\n "
+      },
+      "basic": {
+        "gen_tps": 21.5,
+        "prompt_tps": 464.2,
+        "tokens_generated": 988,
+        "wall_time_s": 47.0,
+        "output_preview": "Certainly! Below is a simple text adventure game for the TRS-80 Model III using BASIC. The game includes three rooms: the Entrance Hall, the Library, and the Treasure Room. The player's goal is to find the golden key and reach the Treasure Room. The game uses PRINT for room descriptions, INPUT for player commands, and GOTO for navigation.\n\n```basic\n10 PRINT \"Welcome to the Text Adventure Game for the TRS-80 Model III!\"\n20 PRINT \"You are in the Entrance Hall. There is a door to the north.\"\n30 PRI"
+      },
+      "julia": {
+        "gen_tps": 21.4,
+        "prompt_tps": 468.2,
+        "tokens_generated": 1024,
+        "wall_time_s": 48.9,
+        "output_preview": "Certainly! Below is a Julia program that implements the Newton-Raphson method to find the root of the function \\( f(x) = x^3 - 2x - 5 \\). The program includes a function `newton_raphson` that takes the function \\( f \\), its derivative \\( df \\), initial guess \\( x_0 \\), tolerance \\( \\text{tol} \\), and maximum number of iterations \\( \\text{max_iter} \\). It also includes a docstring and type annotations.\n\n```julia\n# Newton-Raphson method implementation\nfunction newton_raphson(f, df, x0, tol, max_it"
+      }
+    },
+    "hermes3:3b": {
+      "html": {
+        "gen_tps": 20.6,
+        "prompt_tps": 400.6,
+        "tokens_generated": 1157,
+        "wall_time_s": 57.2,
+        "output_preview": "</main\n\n    <footer>\n        <div class=\"contact\">\n            <h3>Contact Me</h3>\n            <p>Email: john.doe@example.com</p>\n            <p>Phone: 123-456-7890</p>\n        </div>\n    </footer>\n</body\n</html>\n```\n\nCSS (style.css):\n\n```css\n/* General styles */\nbody {\n    font-family: 'Arial', sans-serif;\n    margin: 0;\n    padding: 0;\n    color: #8a8a8a;\n    background-color: #1c1c2e;\n}\n\nh1, h2 {\n    color: gold;\n}\n\np {\n    line-height: 1.6;\n}\n\n/* Header styles */\nheader nav ul {\n    list-sty"
+      },
+      "python": {
+        "gen_tps": 20.7,
+        "prompt_tps": 451.0,
+        "tokens_generated": 976,
+        "wall_time_s": 48.2,
+        "output_preview": "Here is a Python class called `DataProcessor` with the required functionality:\n\n```python\nfrom typing import List, Dict\nimport csv\nimport json\nimport datetime\n\nclass DataProcessor:\n    def __init__(self):\n        self.employees: List[Dict] = []\n\n    def load_csv(self, file_path: str) -> None:\n        \"\"\"\n        Load employee records from a CSV file.\n\n        Args:\n            file_path (str): The file path to the CSV file.\n        \"\"\"\n        import csv\n\n        try:\n            with open(file_"
+      },
+      "c": {
+        "gen_tps": 20.7,
+        "prompt_tps": 414.0,
+        "tokens_generated": 963,
+        "wall_time_s": 47.5,
+        "output_preview": "Here's a C program that implements a thread-safe queue using a linked list and POSIX threads (pthreads). I've included the requested functions and proper error handling and memory management.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <pthread.h>\n\n// Queue node structure\ntypedef struct {\n    int value;\n    struct struct *next;\n} QueueNode;\n\n// Thread-safe queue structure\ntypedef struct {\n    QueueNode *head;\n    pthread_mutex_t mutex;\n} ThreadSafeQueue;\n\n// Functio"
+      },
+      "basic": {
+        "gen_tps": 20.7,
+        "prompt_tps": 493.9,
+        "tokens_generated": 624,
+        "wall_time_s": 31.2,
+        "output_preview": "Here's a TRS-80 Model III BASIC program for the text adventure game you requested. I've used string variables for room descriptions, INPUT for player commands, PRINT for displaying room descriptions and game messages, GOTO for navigation, and an inventory tracking variable.\n\n```basic\n10 CLS\n20 PRINT \"Welcome to the Golden Key Adventure!\"\n30 PRINT\n40 PRINT \"You are in the Entrance Hall.\"\n50 PRINT\n60 PRINT \"Inventory: \"\n70 I$ = \"\"\n80\n90 INPUT \"Enter a command (GO NORTH/SOUTH/TAKE EXAMINE): \", C$\n1"
+      },
+      "julia": {
+        "gen_tps": 20.8,
+        "prompt_tps": 510.0,
+        "tokens_generated": 600,
+        "wall_time_s": 29.9,
+        "output_preview": "Here is the Julia program based on your requirements:\n\n```julia\n\"\"\"\nNewton-Raphson method function.\n\n`newton_raphson(f, df, x0, tol, max_iter)`\nTakes a function `f`, its derivative `df`, an initial guess `x0`, tolerance `tol`, and maximum iterations `max_iter`. It finds the root of the given function using the Newton-Raphson method.\n\nArguments:\n- `f`: The function for which we are finding the root.\n- `df`: The derivative of the function `f`.\n- `x0`: The initial guess for the root.\n- `tol`: The t"
+      }
+    },
+    "llama3.2:3b": {
+      "html": {
+        "gen_tps": 20.5,
+        "prompt_tps": 499.0,
+        "tokens_generated": 1637,
+        "wall_time_s": 80.9,
+        "output_preview": "Here's a complete HTML page with embedded CSS for a personal portfolio website:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Personal Portfolio</title>\n    <link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n<body>\n    <header>\n        <nav>\n            <ul>\n                <li><a href=\"#hero\">Home</a></li>\n                <li><a href=\"#about\">About</a></li>\n                <li><a h"
+      },
+      "python": {
+        "gen_tps": 20.6,
+        "prompt_tps": 481.7,
+        "tokens_generated": 1142,
+        "wall_time_s": 56.5,
+        "output_preview": "```python\nimport csv\nimport json\nfrom datetime import datetime\nfrom typing import Dict, List\n\nclass DataProcessor:\n    \"\"\"\n    A class to process employee data from a CSV file.\n\n    Attributes:\n    csv_file (str): The path to the CSV file containing employee records.\n    \"\"\"\n\n    def __init__(self, csv_file: str):\n        \"\"\"\n        Initialize the DataProcessor with the path to the CSV file.\n\n        Args:\n        csv_file (str): The path to the CSV file containing employee records.\n        \"\"\""
+      },
+      "c": {
+        "gen_tps": 20.7,
+        "prompt_tps": 459.6,
+        "tokens_generated": 955,
+        "wall_time_s": 47.2,
+        "output_preview": "Here's an example C program that implements a thread-safe queue using a linked list with pthread mutex for synchronization:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\n// Define the structure for a linked list node\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\n// Define the structure for the queue\ntypedef struct {\n    Node* head;\n    Node* tail;\n    pthread_mutex_t mutex;\n    pthread_cond_t cond;\n} Queue;\n\n// Function to initialize the queue\nQueue* qu"
+      },
+      "basic": {
+        "gen_tps": 20.7,
+        "prompt_tps": 463.1,
+        "tokens_generated": 821,
+        "wall_time_s": 40.7,
+        "output_preview": "Here is a simple text adventure game written in TRS-80 Model III BASIC:\n```basic\n10 REM Simple Text Adventure Game\n20 REM Author: [Your Name]\n30 REM Date: [Today's Date]\n\n10 REM Define room descriptions\n20 ROOM1$ = \"You are in the Entrance Hall. There is a door to the North and a door to the South.\"\n30 ROOM2$ = \"You are in the Library. There is a bookshelf to the West and a door to the East.\"\n40 ROOM3$ = \"You are in the Treasure Room. You see a chest in the center of the room.\"\n\n50 REM Define pl"
+      },
+      "julia": {
+        "gen_tps": 20.7,
+        "prompt_tps": 508.2,
+        "tokens_generated": 653,
+        "wall_time_s": 32.6,
+        "output_preview": "Here's a Julia program that implements the Newton-Raphson method for finding roots of a function:\n\n```julia\n\"\"\"\n    newton_raphson(f, df, x0, tol, max_iter)\n    \n    Finds the root of a function using the Newton-Raphson method.\n    \n    Parameters:\n    f (function): The function to find the root of.\n    df (function): The derivative of the function.\n    x0 (float): The initial guess for the root.\n    tol (float): The tolerance for the error.\n    max_iter (int): The maximum number of iterations.\n"
+      }
+    },
+    "granite4:3b": {
+      "html": {
+        "gen_tps": 19.6,
+        "prompt_tps": 405.4,
+        "tokens_generated": 892,
+        "wall_time_s": 46.5,
+        "output_preview": "Here is a simple example of an HTML page with embedded CSS for a personal portfolio website:\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    <title>My Portfolio</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 0;\n            padding: 0;\n            color: #fff;\n            background-color: #0d0d0d;\n        }\n\n        header {\n            background-color: #0a0a0a;\n            display: flex;\n            justify-content: space-between;\n            alig"
+      },
+      "python": {
+        "gen_tps": 19.5,
+        "prompt_tps": 425.0,
+        "tokens_generated": 1032,
+        "wall_time_s": 53.9,
+        "output_preview": "Here's a Python class `DataProcessor` that meets your requirements:\n\n```python\nimport csv\nimport json\nfrom datetime import datetime\nfrom typing import List, Dict\n\nclass DataProcessor:\n    \"\"\"\n    A class to process employee data from a CSV file and export results to a JSON file.\n    \"\"\"\n\n    def __init__(self, csv_file_path: str):\n        \"\"\"\n        Initialize the DataProcessor with the path to the CSV file.\n\n        :param csv_file_path: Path to the CSV file containing employee records.\n      "
+      },
+      "c": {
+        "gen_tps": 19.6,
+        "prompt_tps": 418.8,
+        "tokens_generated": 712,
+        "wall_time_s": 37.3,
+        "output_preview": "Here is a simple C program that implements a thread-safe queue using a linked list:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\ntypedef struct Queue {\n    Node* front;\n    Node* rear;\n    pthread_mutex_t mutex;\n} Queue;\n\nvoid queue_init(Queue* q) {\n    q->front = q->rear = NULL;\n}\n\nvoid queue_push(Queue* q, int data) {\n    pthread_mutex_lock(&q->mutex);\n\n    Node* newNode = (Node*)malloc(sizeof(Node));\n   "
+      },
+      "basic": {
+        "gen_tps": 19.6,
+        "prompt_tps": 395.6,
+        "tokens_generated": 482,
+        "wall_time_s": 25.6,
+        "output_preview": "Here's a simple text adventure game for the TRS-80 Model III BASIC. This game will have a player exploring 3 rooms (Entrance Hall, Library, Treasure Room) looking for a golden key. The player can navigate between rooms, examine objects, and take the key. The win condition is when the player takes the key and reaches the Treasure Room.\n\n```basic\n10 REM Text Adventure Game\n20 PRINT \"Welcome to the Text Adventure Game!\"\n30 PRINT \"You are in the Entrance Hall.\"\n40 PRINT \"You see a door to the north."
+      },
+      "julia": {
+        "gen_tps": 19.6,
+        "prompt_tps": 429.0,
+        "tokens_generated": 653,
+        "wall_time_s": 34.3,
+        "output_preview": "Here is a Julia program that implements the Newton-Raphson method for finding roots of a function:\n\n```julia\n\"\"\"\n    newton_raphson(f, df, x0, tol, max_iter)\n\n    Finds the root of a function using the Newton-Raphson method.\n\n    Parameters:\n    f (function): The function for which to find the root.\n    df (function): The derivative of the function.\n    x0 (Float64): The initial guess.\n    tol (Float64): The tolerance for the root.\n    max_iter (Int): The maximum number of iterations.\n\n    Retur"
+      }
+    },
+    "granite4.1:3b": {
+      "html": {
+        "gen_tps": 19.5,
+        "prompt_tps": 364.9,
+        "tokens_generated": 1313,
+        "wall_time_s": 68.3,
+        "output_preview": "Below is a complete HTML page with embedded CSS for a personal portfolio website, adhering to your specifications. It includes a header with navigation, a hero section with name and tagline, an about section, a projects grid with 3 sample project cards, and a footer with contact links. The design uses modern CSS with flexbox, a color scheme of dark blue and gold, and responsive design with a media query for mobile.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <"
+      },
+      "python": {
+        "gen_tps": 19.6,
+        "prompt_tps": 421.2,
+        "tokens_generated": 946,
+        "wall_time_s": 49.3,
+        "output_preview": "```python\nimport csv\nimport json\nfrom datetime import datetime\nfrom typing import List, Dict, Any\n\nclass DataProcessor:\n    \"\"\"\n    A class to process employee data from a CSV file, filtering, calculating averages,\n    and exporting results to a JSON file.\n    \"\"\"\n\n    def __init__(self, csv_file_path: str):\n        \"\"\"\n        Initialize the DataProcessor with the path to the CSV file.\n\n        :param csv_file_path: Path to the CSV file containing employee records.\n        \"\"\"\n        self.csv_"
+      },
+      "c": {
+        "gen_tps": 19.6,
+        "prompt_tps": 353.7,
+        "tokens_generated": 612,
+        "wall_time_s": 32.3,
+        "output_preview": "```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\ntypedef struct Queue {\n    Node* front;\n    Node* rear;\n    pthread_mutex_t mutex;\n} Queue;\n\nvoid queue_init(Queue* q) {\n    q->front = q->rear = NULL;\n    pthread_mutex_init(&q->mutex, NULL);\n}\n\nvoid queue_push(Queue* q, int value) {\n    Node* newNode = (Node*)malloc(sizeof(Node));\n    if (newNode == NULL) {\n        perror(\"Memory allocation failed\");\n        exi"
+      },
+      "basic": {
+        "gen_tps": 19.7,
+        "prompt_tps": 409.3,
+        "tokens_generated": 608,
+        "wall_time_s": 31.9,
+        "output_preview": "```basic\n10 REM SIMPLE TEXT ADVENTURE GAME FOR TRS-80 MODEL III\n20 REM ROOMS: ENTRANCE HALL, LIBRARY, TREASURE ROOM\n30 REM OBJECTIVE: FIND THE GOLDEN KEY IN THE TREASURE ROOM\n40 REM USE PRINT FOR ROOM DESCRIPTIONS, INPUT FOR COMMANDS\n50 REM STRING VARIABLES FOR ROOM DESCRIPTIONS, GOTO FOR NAVIGATION\n60 REM INVENTORY TRACKING AND WIN CONDITION ON TAKING KEY IN TREASURE ROOM\n\n70 REM INITIALIZE VARIABLES\n80 DIM ROOM$(3), INVENTORY$(0)\n90 ROOM$(1) = \"You are in the Entrance Hall. There is a door to "
+      },
+      "julia": {
+        "gen_tps": 19.6,
+        "prompt_tps": 435.7,
+        "tokens_generated": 620,
+        "wall_time_s": 32.7,
+        "output_preview": "```julia\n\"\"\"\n    newton_raphson(f, df, x0, tol, max_iter)\n\nImplements the Newton-Raphson method to find a root of the function `f`.\n\nParameters:\n- f: The function for which we are finding the root.\n- df: The derivative of the function `f`.\n- x0: Initial guess for the root.\n- tol: Tolerance for convergence.\n- max_iter: Maximum number of iterations.\n\nReturns:\n- A tuple containing the final approximation of the root and the number of iterations taken.\n\"\"\"\n\nfunction newton_raphson(f::Function, df::F"
+      }
+    },
+    "phi3:3.8b": {
+      "html": {
+        "gen_tps": 17.2,
+        "prompt_tps": 424.3,
+        "tokens_generated": 2069,
+        "wall_time_s": 121.3,
+        "output_preview": "```html\n\n<!DOCTYPE html>\n\n<html lang=\"en\">\n\n<head>\n\n    <meta charset=\"UTF-8\">\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n    <title>Personal Portfolio</title>\n\n    <style>\n\n        body {\n\n            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n\n            background-color: #191919;\n\n            color: #f5f5f5;\n\n            margin: 0;\n\n        }\n\n        header {\n\n            background-color: #27ae60;\n\n            color: white;\n\n            "
+      },
+      "python": {
+        "gen_tps": 18.7,
+        "prompt_tps": 415.6,
+        "tokens_generated": 1281,
+        "wall_time_s": 69.5,
+        "output_preview": "```python\n\nimport csv\n\nimport json\n\nfrom typing import List, Dict, Tuple\n\nfrom datetime import datetime\n\n\nclass DataProcessor:\n\n    def __init__(self, file_path: str):\n\n        \"\"\"\n\n        Initialize the DataProcessor with a CSV file path.\n\n\n        :param file_path: str - The path to the CSV file containing employee records.\n\n        \"\"\"\n\n        self.file_path = fileth_path\n\n        self.employees = []\n\n\n    def load_data(self) -> None:\n\n        \"\"\"\n\n        Load employee data from the CSV fi"
+      },
+      "c": {
+        "gen_tps": 19.3,
+        "prompt_tps": 460.2,
+        "tokens_generated": 1008,
+        "wall_time_s": 53.2,
+        "output_preview": "```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\n#define QUEUE_SIZE 5\n\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\ntypedef struct Queue {\n    Node* front;\n    Node* rear;\n    int size;\n    pthread_mutex_t lock;\n} Queue;\n\nvoid queue_init(Queue* q) {\n    q->front = (Node*)malloc(sizeof(Node));\n    q->rear = (Node*)malloc(sizeof(Node));\n    q->front->next = q->rear;\n    q->rear->next = NULL;\n    q->size = 0;\n    pthread_mutex_init(&q->lock, NULL);\n}\n\nvoid qu"
+      },
+      "basic": {
+        "gen_tps": 18.7,
+        "prompt_tps": 450.9,
+        "tokens_generated": 1168,
+        "wall_time_s": 63.5,
+        "output_preview": "```basic\n\n10 PRINT \"Welcome to the Text Adventure Game!\"\n\n20 PRINT \"You are in the Entrance Hall. There are doors to the North and South.\"\n\n30 INPUT \"What do you want to do? \"; A$\n\n40 IF A$ = \"GO NORTH\" THEN GOSUB 10\n\n50 IF A$ = \"GO SOUTH\" THEN GOSUB 20\n\n60 GOTO 30\n\n70 PRINT \"You find a golden key on the floor.\"\n\n80 PRINT \"You can take the key. Do you want to take it? (YES/NO)\"\n\n90 INPUT \"Answer: \"; A$\n\n100 IF A$ = \"YES\" THEN GOSUB 110\n\n110 PRINT \"You now have the golden key.\"\n\n120 PRINT \"You ca"
+      },
+      "julia": {
+        "gen_tps": 19.7,
+        "prompt_tps": 425.8,
+        "tokens_generated": 731,
+        "wall_time_s": 38.1,
+        "output_preview": "```julia\n\nusing SpecialFunctions\n\n\n\"\"\"\n\n`newton_raphson(f::Function, df::Function, x0::Float64, tol::Float64, max_iter::Int) -> Tuple{Float64, Int}`\n\n\nFind a root of the function `f` using the Newton-Raphson method starting from an initial guess `x0`.\n\n\n# Arguments\n\n- `f::Function`: The function for which the root is to be found.\n\n- `df::Function`: The derivative of the function `f`.\n\n- `x0::Float64`: The initial guess for the root.\n\n- `tol::Float64`: The tolerance for the convergence of the met"
+      }
+    },
+    "stablelm-zephyr": {
+      "html": {
+        "gen_tps": 24.1,
+        "prompt_tps": 477.7,
+        "tokens_generated": 1328,
+        "wall_time_s": 56.1,
+        "output_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Your Name | Portfolio</title>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n<body>\n  <header>\n    <nav>\n      <ul>\n        <li><a href=\"#about\">About</a></li>\n        <li><a href=\"#projects\">Projects</a></li>\n        <li><a href=\"#contact\">Contact</a></li>\n      </ul>\n    </nav>\n  </header>\n  <section id=\"hero\">\n    <h1>Your Name</h1>\n    <h2>Ta"
+      },
+      "python": {
+        "gen_tps": 26.0,
+        "prompt_tps": 531.6,
+        "tokens_generated": 720,
+        "wall_time_s": 28.7,
+        "output_preview": "Here's a Python class called DataProcessor that fulfills the requirements:\n```python\nimport csv\nimport json\nfrom typing import Dict, List\nfrom dataclasses import dataclass\n\nclass DataProcessor:\n    def __init__(self, file_path: str):\n        self.file_path = file_path\n        self.employees = []\n\n    def load_data(self) -> None:\n        try:\n            with open(self.file_path, 'r') as file:\n                reader = csv.DictReader(file)\n                for row in reader:\n                    sel"
+      },
+      "c": {
+        "gen_tps": 25.6,
+        "prompt_tps": 521.3,
+        "tokens_generated": 817,
+        "wall_time_s": 32.9,
+        "output_preview": "```c\n#include <stdio.h>\n#include <stdlib.h>\n#include <pthread.h>\n\ntypedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n\ntypedef struct Queue {\n    Node* head;\n    Node* tail;\n    pthread_mutex_t mutex;\n} Queue;\n\nvoid queue_init(Queue* q) {\n    q->head = NULL;\n    q->tail = NULL;\n    pthread_mutex_init(&q->mutex, NULL);\n}\n\nvoid queue_push(Queue* q, int data) {\n    pthread_mutex_lock(&q->mutex);\n    Node* new_node = (Node*) malloc(sizeof(Node));\n    new_node->data = data;\n    new_nod"
+      },
+      "basic": {
+        "gen_tps": 25.8,
+        "prompt_tps": 479.2,
+        "tokens_generated": 687,
+        "wall_time_s": 27.7,
+        "output_preview": "Here's a simple text adventure game for the TRS-80 Model III in BASIC. This program assumes that the player starts in the Entrance Hall and the rooms are represented by 10x5 grid. The player can navigate using the commands \"GO NORTH\", \"GO SOUTH\", \"TAKE KEY\", and \"EXAMINE\". The inventory is tracked using a string variable. The win condition is when the player takes the key and reaches the Treasure Room.\n\n```\n10 REM Entrance Hall\n20 REM Library\n30 REM Treasure Room\n40 REM Inventory\n50 REM Game Loo"
+      },
+      "julia": {
+        "gen_tps": 25.3,
+        "prompt_tps": 485.8,
+        "tokens_generated": 805,
+        "wall_time_s": 32.8,
+        "output_preview": "Here's a Julia program that implements the Newton-Raphson method for finding roots of a function:\n\n```julia\nfunction newton_raphson(f::Function, df::Function, x0::Float64, tol::Float64, max_iter::Int64)\n    # Check if the given function and its derivative are valid\n    if is_function(f) && is_function(df)\n        # Initialize the step size and the current guess\n        step_size = 1.0\n        current_guess = x0\n        # Initialize the counter for the iterations\n        iter_counter = 0\n        "
+      }
+    },
+    "smallthinker:3b": {
+      "html": {
+        "gen_tps": 19.2,
+        "prompt_tps": 449.5,
+        "tokens_generated": 2141,
+        "wall_time_s": 112.5,
+        "output_preview": "Alright, I need to create a personal portfolio website using HTML and embedded CSS. It should have a header with navigation, a hero section with name and tagline, an about section, a projects grid with three sample project cards, and a footer with contact links. I also need to use modern CSS with flexbox, a dark blue and gold color scheme, and make it responsive with a media query for mobile devices.\n\nFirst, I'll start by setting up the basic HTML structure. I need to have the doctype, html tags"
+      },
+      "python": {
+        "gen_tps": 19.2,
+        "prompt_tps": 489.6,
+        "tokens_generated": 2128,
+        "wall_time_s": 111.9,
+        "output_preview": "Alright, I need to write a Python class called `DataProcessor` that handles some operations on employee records from a CSV file. The CSV has columns for name, department, salary, and hire date. The class needs to do several things:\n\n1. Load the CSV file.\n2. Filter employees hired after 2020.\n3. Calculate the average salary by department.\n4. Find the top 3 highest paid employees.\n5. Export the results to a JSON file.\n\nI need to make sure to include type hints, docstrings, error handling, and use "
+      },
+      "c": {
+        "gen_tps": 19.2,
+        "prompt_tps": 473.7,
+        "tokens_generated": 2127,
+        "wall_time_s": 111.8,
+        "output_preview": "Alright, I need to write a C program that implements a thread-safe queue using a linked list. I have to include functions like queue_init, queue_push, queue_pop, queue_size, and queue_destroy. And I have to use pthread mutex for thread safety. Also, there should be a main function that demonstrates creating the queue, pushing 5 integers, and popping them all. I need to make sure to handle errors and free memory properly when destroying the queue.\n\nFirst, I need to understand what a thread-safe q"
+      },
+      "basic": {
+        "gen_tps": 19.2,
+        "prompt_tps": 535.4,
+        "tokens_generated": 2128,
+        "wall_time_s": 111.9,
+        "output_preview": "Alright, I need to write a simple text adventure game for the TRS-80 Model III using BASIC. The game should have three rooms: the Entrance Hall, the Library, and the Treasure Room. The player's goal is to find a golden key and reach the Treasure Room. I need to use PRINT for room descriptions, INPUT for player commands, string variables for descriptions, and GOTO for navigation. Also, I need to track the player's inventory and have a win condition when they take the key and reach the Treasure Ro"
+      },
+      "julia": {
+        "gen_tps": 19.2,
+        "prompt_tps": 447.9,
+        "tokens_generated": 1492,
+        "wall_time_s": 78.7,
+        "output_preview": "Alright, I need to write a Julia program that implements the Newton-Raphson method for finding roots of a function. The function should be named `newton_raphson` and take five arguments: `f`, which is the function whose root we're trying to find; `df`, which is the derivative of `f`; `x0`, the initial guess for the root; `tol`, the tolerance within which we consider the root to have been found; and `max_iter`, the maximum number of iterations to perform.\n\nFirst, I need to understand what the New"
+      }
+    },
+    "orca-mini:3b": {
+      "html": {
+        "gen_tps": 14.0,
+        "prompt_tps": 139.5,
+        "tokens_generated": 110,
+        "wall_time_s": 8.9,
+        "output_preview": "I'm sorry, I cannot complete this task. I am an AI language model and I am not capable of creating HTML pages or embedding CSS code. My capabilities are limited to generating human-like text based on the input given to me.\n\n[ Prompt: 139.5 t/s | Generation: 14.0 t/s ]\n\n\nExiting..."
+      },
+      "python": {
+        "gen_tps": 13.4,
+        "prompt_tps": 152.0,
+        "tokens_generated": 434,
+        "wall_time_s": 33.4,
+        "output_preview": "import csv\nimport json\n\ndef data_processor(filename):\n with open(filename, 'r') as csv_file:\n csv_reader = csv.reader(csv_file)\n data = []\n for row in csv_reader:\n data.append(row)\n\n# filter employees hired after 2020\nemployees = []\nfor employee in data:\n if int(employee[4]) >= 2020:\n employees.append(employee)\n\n# calculate average salary by department\ndepartments = []\nfor employee in employees:\n if employee[0] in ['Sales', 'Support', 'Marketing']:\n departments.append(employee[1])\n\n# find the to"
+      },
+      "c": {
+        "gen_tps": 11.5,
+        "prompt_tps": 147.3,
+        "tokens_generated": 930,
+        "wall_time_s": 81.9,
+        "output_preview": "Here is a sample C program that implements a simple thread-safe queue using a linked list. It uses pthread mutex for thread safety.\nuser\nHere is the code:\n```\n#include <pthread.h>\n#include <stdio.h>\n#include <unistd.h>\n#include <string.h>\n\n#define QUEUE_SIZE 10\n\nvoid queue_init(void);\nvoid queue_push(void*, int);\nvoid queue_pop(void*, int);\nint queue_size(void);\nvoid queue_destroy(void);\n\nint main(void) {\n int i;\n\n pthread_mutex_t *mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));\n if ("
+      },
+      "basic": {
+        "gen_tps": 11.4,
+        "prompt_tps": 155.7,
+        "tokens_generated": 761,
+        "wall_time_s": 67.8,
+        "output_preview": "user\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\n\n[ Prompt: 155.7 t/s | Generation: 11.4 t/s ]\n\n\nExiting..."
+      },
+      "julia": {
+        "gen_tps": 12.4,
+        "prompt_tps": 151.8,
+        "tokens_generated": 644,
+        "wall_time_s": 53.0,
+        "output_preview": "The Newton-Raphson method is a numerical method for finding the roots of a function. It is an iterative algorithm that uses the function being evaluated at each iteration to update the initial guess. The algorithm is named after Sir Isaac Newton and John Raphson, who independently developed it in the 17th century.\nuser\nThe function newton_raphson takes four arguments:\n- f: a function of any type that needs to be evaluated for a given value of x.\n- df: a vector of derivatives of f evaluated at th"
+      }
+    },
+    "starcoder2:3b": {
+      "html": {
+        "gen_tps": 28.7,
+        "prompt_tps": 441.5,
+        "tokens_generated": 2073,
+        "wall_time_s": 73.3,
+        "output_preview": "Create a complete HTML page with embedded CSS for a personal portfolio website. Include a header with navigation, a hero section with name and tagline, an about section, a projects grid with 3 sample project cards, and a footer with contact links. Use modern CSS with flexbox, a color scheme of dark blue and gold, and responsive design with a media query for mobile.\ninstructor\nCreate a complete HTML page with embedded CSS for a personal portfolio website. Include a header with navigation, a hero "
+      },
+      "python": {
+        "gen_tps": 28.7,
+        "prompt_tps": 496.2,
+        "tokens_generated": 2044,
+        "wall_time_s": 72.2,
+        "output_preview": "Write a Python class called Assistant that takes a list of dictionaries as input and returns a dictionary of lists. The keys of the dictionary are the keys of the dictionaries. The values of the dictionary are lists of the values of the dictionaries. Include type hints, docstrings, error handling, and use the csv standard library module. Show example usage.\nuser\nWrite a Python class called DataProcessor that loads a CSV file of employee records (columns: name, department, salary, hire_date), fil"
+      },
+      "c": {
+        "gen_tps": 28.7,
+        "prompt_tps": 464.4,
+        "tokens_generated": 2037,
+        "wall_time_s": 72.0,
+        "output_preview": "Write a C program that implements a simple thread-safe queue using a linked list. Include functions: queue_init, queue_push, queue_pop, queue_size, and queue_destroy. Use pthread mutex for thread safety. Include a main function that demonstrates creating the queue, pushing 5 integers, and popping them all. Add proper error handling and memory management (free on destroy).\nuser\nWrite a C program that implements a simple thread-safe queue using a linked list. Include functions: queue_init, queue_p"
+      },
+      "basic": {
+        "gen_tps": 28.7,
+        "prompt_tps": 502.0,
+        "tokens_generated": 2040,
+        "wall_time_s": 72.1,
+        "output_preview": "Write a TRS-80 Model III BASIC program for a simple text adventure game. The player explores 3 rooms (Entrance Hall, Library, Treasure Room) looking for a golden key. Use PRINT for room descriptions, INPUT for player commands (GO NORTH, GO SOUTH, TAKE KEY, EXAMINE), string variables for room descriptions, and GOTO for navigation. Include inventory tracking and a win condition when the player takes the key and reaches the Treasure Room. Number lines starting at 10 with increments of 10.\nuser\nWrit"
+      },
+      "julia": {
+        "gen_tps": 28.7,
+        "prompt_tps": 481.1,
+        "tokens_generated": 2040,
+        "wall_time_s": 72.1,
+        "output_preview": "Write a Julia program that implements the bisection method for finding roots of a function. Create a function bisection(f, a, b, tol, max_iter) that takes a function, initial interval, tolerance, and max iterations. Use it to find the root of x^3  - 2x  - 5  (starting at [2.0, 3.0]). Print each iteration showing the step number, current interval, f(a), f(b), and the error. Include type annotations and a docstring. Show the final result.\nuser\nWrite a Julia program that implements the Secant metho"
+      }
+    }
+  }
+}
