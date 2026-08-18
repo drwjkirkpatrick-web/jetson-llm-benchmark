@@ -1,0 +1,4 @@
+=== Auto-benchmark watcher started Tue Aug 18 11:55:09 AM PDT 2026 ===
+hermes3:3b|OK|gen=20.7|prompt=180.3
+qwen3.5:2b|OK_OLLAMA|gen=8.7|prompt=120.9
+gemma4:e2b|OK_OLLAMA|gen=0.0|prompt=0.0
