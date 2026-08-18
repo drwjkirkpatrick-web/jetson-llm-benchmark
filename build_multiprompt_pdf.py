@@ -26,12 +26,14 @@ with open(RESULTS) as f:
 MODELS = [
     ("codegemma:2b",       "CodeGemma 2B",      "2.51B", "Q4_0",  "1.44 GiB"),
     ("granite3-dense:2b",  "Granite 3.0 2B",    "2.63B", "Q4_K_M","1.49 GiB"),
+    ("granite3.2:2b",      "Granite 3.2 2B",    "2.53B", "Q4_K_M","1.44 GiB"),
     ("gemma4 E2B",         "Gemma 4 E2B",       "4.63B", "Q4_0",  "2.63 GiB"),
     ("gemma2:2b",          "Gemma 2 2B",        "2.61B", "Q4_0",  "1.51 GiB"),
     ("lfm2.5:2.6b",        "LFM 2.5 2.6B",      "2.70B", "Q4_K_M","1.55 GiB"),
     ("qwen2.5:3b",         "Qwen 2.5 3B",       "3.09B", "Q4_K_M","1.79 GiB"),
     ("hermes3:3b",         "Hermes 3 3B",       "3.21B", "Q4_K_M","1.87 GiB"),
     ("llama3.2:3b",        "Llama 3.2 3B",      "3.21B", "Q4_K_M","1.87 GiB"),
+    ("granite4:3b",        "Granite 4 3B",      "3.40B", "Q4_K_M","1.95 GiB"),
     ("phi3:3.8b",          "Phi-3 3.8B",        "3.82B", "Q4_0",  "2.03 GiB"),
     ("smallthinker:3b",    "SmallThinker 3B",   "3.40B", "Q8_0",  "3.36 GiB"),
 ]
@@ -328,7 +330,7 @@ elements = []
 # Title
 elements.append(Paragraph("Multi-Prompt Benchmark Report", title_style))
 elements.append(Paragraph(
-    "10 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
+    "12 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
     "| NVIDIA Jetson Orin Nano 8GB | llama.cpp 0b1bad1 | GUI off | -ngl 99 -fa on --temp 0.3",
     subtitle_style
 ))
