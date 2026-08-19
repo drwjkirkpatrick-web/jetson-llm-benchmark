@@ -394,5 +394,39 @@
       "score": 8,
       "notes": "Uses binomial theorem approach, rigorous. 736 tokens, well-structured proof."
     }
+  },
+  "deepseek-r1-qwen-1.5b": {
+    "code": {
+      "score": 8
+    },
+    "iambic": {
+      "score": 8
+    },
+    "prose": {
+      "score": 9
+    },
+    "creative": {
+      "score": 9
+    },
+    "math": {
+      "score": 10
+    }
+  },
+  "deepseek-r1-qwen-7b": {
+    "code": {
+      "score": 8
+    },
+    "iambic": {
+      "score": 8
+    },
+    "prose": {
+      "score": 10
+    },
+    "creative": {
+      "score": 9
+    },
+    "math": {
+      "score": 10
+    }
   }
 }

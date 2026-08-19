@@ -665,6 +665,80 @@
         "wall_time_s": 38.9,
         "output_preview": "Certainly! Below is a Julia program that implements the Newton-Raphson method to find the root of the function \\( f(x) = x^3 - 2x - 5 \\). The program includes a function `newton_raphson` with type annotations and a docstring, and it prints each iteration showing the step number, current \\( x \\), \\( f(x) \\), and the error.\n\n```julia\n# Define the function and its derivative\nfunction f(x)\n    return x^3 - 2x - 5\nend\n\nfunction df(x)\n    return 3x^2 - 2\nend\n\n\"\"\"\n    newton_raphson(f, df, x0, tol, max"
       }
+    },
+    "deepseek-r1-qwen-1.5b": {
+      "html": {
+        "gen_tps": 7.13,
+        "prompt_tps": 0,
+        "tokens_generated": 1102,
+        "wall_time_s": 154.5,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Create a complete HTML page for a personal portfolio website. Include a header with navigation, a hero section with name and tagline, an about section, a projects section with 3 sample project cards using flexbox, and a footer. Add inline CSS with a modern color scheme, responsive design with a media query for mobile, and Google Fonts link.\n\n[Start thinking]\n\n\nAlright, I need to create a complete HTML page for a personal portfolio we"
+      },
+      "python": {
+        "gen_tps": 5.4,
+        "prompt_tps": 0,
+        "tokens_generated": 1250,
+        "wall_time_s": 231.5,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a Python class called `DataProcessor` that reads a CSV file, filters rows based on a column condition, computes summary statistics (mean, median, std dev) for numeric columns, and exports results to JSON. Include type hints, docstrings, proper error handling with try/except, and a `__main__` block with example usage.\n\n[Start thinking]\n\n\nOkay, I need to write a Python class called DataProcessor. The goal is to read a CSV file, f"
+      },
+      "c": {
+        "gen_tps": 10.0,
+        "prompt_tps": 0,
+        "tokens_generated": 1072,
+        "wall_time_s": 107.2,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a complete C program that implements a thread-safe queue using a linked list. Include: a struct for queue nodes, a struct for the queue with a pthread mutex, functions for enqueue, dequeue, peek, size, and free_queue. Add a main function that demonstrates usage with 3 producer threads and 1 consumer thread.\n\n[Start thinking]\n\n\nOkay, I need to write a complete C program that implements a thread-safe queue using a linked list. Th"
+      },
+      "basic": {
+        "gen_tps": 8.18,
+        "prompt_tps": 0,
+        "tokens_generated": 2331,
+        "wall_time_s": 285.1,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a complete TRS-80 Level II BASIC program that implements a simple text adventure game. Use line numbers (starting at 10, incrementing by 10). The game should have at least 3 rooms with descriptions, items the player can pick up with a GET command, and a goal to find a treasure. Use INPUT for player commands, PRINT for output, and GOTO for room navigation. Include CLEAR to reset the screen.\n\n[Start thinking]\n\n\nOkay, so the user "
+      },
+      "julia": {
+        "gen_tps": 9.65,
+        "prompt_tps": 0,
+        "tokens_generated": 2650,
+        "wall_time_s": 274.6,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a Julia function called `newton_raphson` that finds the root of a function using the Newton-Raphson method. Include: type annotations for all arguments, a docstring with usage examples, proper error handling for non-convergence, a maximum iteration parameter with default value, and a return type annotation. The function should take f (the function), f_prime (its derivative), x0 (initial guess), and optional parameters for toler"
+      }
+    },
+    "deepseek-r1-qwen-7b": {
+      "html": {
+        "gen_tps": 4.97,
+        "prompt_tps": 0,
+        "tokens_generated": 963,
+        "wall_time_s": 193.6,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Create a complete HTML page for a personal portfolio website. Include a header with navigation, a hero section with name and tagline, an about section, a projects section with 3 sample project cards using flexbox, and a footer. Add inline CSS with a modern color scheme, responsive design with a media query for mobile, and Google Fonts link.\n\n[Start thinking]\n\n\nOkay, I need to create a complete HTML page for a personal portfolio websi"
+      },
+      "python": {
+        "gen_tps": 6.49,
+        "prompt_tps": 0,
+        "tokens_generated": 826,
+        "wall_time_s": 127.3,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a Python class called `DataProcessor` that reads a CSV file, filters rows based on a column condition, computes summary statistics (mean, median, std dev) for numeric columns, and exports results to JSON. Include type hints, docstrings, proper error handling with try/except, and a `__main__` block with example usage.\n\n[Start thinking]\n\n\nOkay, I need to write a Python class called DataProcessor. The class should handle reading a"
+      },
+      "c": {
+        "gen_tps": 5.8,
+        "prompt_tps": 0,
+        "tokens_generated": 847,
+        "wall_time_s": 146.1,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a complete C program that implements a thread-safe queue using a linked list. Include: a struct for queue nodes, a struct for the queue with a pthread mutex, functions for enqueue, dequeue, peek, size, and free_queue. Add a main function that demonstrates usage with 3 producer threads and 1 consumer thread.\n\n[Start thinking]\n\n\nOkay, I need to write a complete C program that implements a thread-safe queue using a linked list. Th"
+      },
+      "basic": {
+        "gen_tps": 6.89,
+        "prompt_tps": 0,
+        "tokens_generated": 1042,
+        "wall_time_s": 151.3,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a complete TRS-80 Level II BASIC program that implements a simple text adventure game. Use line numbers (starting at 10, incrementing by 10). The game should have at least 3 rooms with descriptions, items the player can pick up with a GET command, and a goal to find a treasure. Use INPUT for player commands, PRINT for output, and GOTO for room navigation. Include CLEAR to reset the screen.\n\n[Start thinking]\n\n\nOkay, so I need to"
+      },
+      "julia": {
+        "gen_tps": 7.12,
+        "prompt_tps": 0,
+        "tokens_generated": 1033,
+        "wall_time_s": 145.0,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a Julia function called `newton_raphson` that finds the root of a function using the Newton-Raphson method. Include: type annotations for all arguments, a docstring with usage examples, proper error handling for non-convergence, a maximum iteration parameter with default value, and a return type annotation. The function should take f (the function), f_prime (its derivative), x0 (initial guess), and optional parameters for toler"
+      }
     }
   }
 }

@@ -40,6 +40,8 @@ MODELS = [
     ("orca-mini:3b",       "Orca-Mini 3B",      "2.75B", "Q4_K_M","1.9 GiB"),
     ("phi3:3.8b",          "Phi-3 3.8B",        "3.82B", "Q4_K_M","2.03 GiB"),
     ("smallthinker:3b",    "SmallThinker 3B",   "3.08B", "Q4_K_M","3.36 GiB"),
+    ("deepseek-r1-qwen-1.5b", "DeepSeek R1 1.5B", "1.5B",  "Q4_K_M","1.12 GiB"),
+    ("deepseek-r1-qwen-7b",   "DeepSeek R1 7B",   "7.62B", "Q2_K",  "2.80 GiB"),
 ]
 
 PROMPTS = ['html', 'python', 'c', 'basic', 'julia']
@@ -82,9 +84,10 @@ def build_pdf():
     story = []
 
     # Title
+    model_count = len(MODELS)
     story.append(Paragraph("Jetson Edge LLM Coding Benchmark", title_style))
     story.append(Paragraph(
-        "18 models x 5 programming languages (HTML/CSS, Python, C, TRS-80 BASIC, Julia) "
+        f"{model_count} models x 5 programming languages (HTML/CSS, Python, C, TRS-80 BASIC, Julia) "
         "&mdash; NVIDIA Jetson Orin Nano 8GB, llama.cpp, Flash Attention ON, Auto MMQ, --jinja, 2000 tokens",
         subtitle_style))
     story.append(Spacer(1, 8))

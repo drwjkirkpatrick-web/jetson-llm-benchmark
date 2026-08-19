@@ -43,6 +43,8 @@ MODELS = [
     ("orca-mini:3b",       "Orca-Mini 3B",      "3.02B", "Q4_K_M","1.90 GiB"),
     ("phi3:3.8b",          "Phi-3 3.8B",        "3.82B", "Q4_0",  "2.03 GiB"),
     ("smallthinker:3b",    "SmallThinker 3B",   "3.40B", "Q8_0",  "3.36 GiB"),
+    ("deepseek-r1-qwen-1.5b", "DeepSeek R1 1.5B", "1.5B",  "Q4_K_M","1.12 GiB"),
+    ("deepseek-r1-qwen-7b",   "DeepSeek R1 7B",   "7.62B", "Q2_K",  "2.80 GiB"),
 ]
 
 PROMPT_IDS = ["code", "iambic", "prose", "creative", "math"]
@@ -474,9 +476,10 @@ doc = SimpleDocTemplate(
 elements = []
 
 # Page 1: Gen Speed + Prompt Eval Speed
+model_count = len(MODELS)
 elements.append(Paragraph("Multi-Prompt Benchmark Report", title_style))
 elements.append(Paragraph(
-    "18 models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
+    f"{model_count} models x 5 prompt styles (code, iambic pentameter, clinical prose, creative writing, math proof) "
     "| NVIDIA Jetson Nano 8GB | llama.cpp 0b1bad1 | GUI off | -ngl 99 -fa on --jinja --temp 0.3 | 2000 token limit",
     subtitle_style
 ))

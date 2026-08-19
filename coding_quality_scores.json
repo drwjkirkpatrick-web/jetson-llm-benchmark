@@ -394,5 +394,39 @@
       "score": 7,
       "notes": "Newton-Raphson with type annotations and docstring. 811 tokens. Correct."
     }
+  },
+  "deepseek-r1-qwen-1.5b": {
+    "html": {
+      "score": 10
+    },
+    "python": {
+      "score": 10
+    },
+    "c": {
+      "score": 10
+    },
+    "basic": {
+      "score": 8
+    },
+    "julia": {
+      "score": 8
+    }
+  },
+  "deepseek-r1-qwen-7b": {
+    "html": {
+      "score": 9
+    },
+    "python": {
+      "score": 10
+    },
+    "c": {
+      "score": 10
+    },
+    "basic": {
+      "score": 10
+    },
+    "julia": {
+      "score": 10
+    }
   }
 }

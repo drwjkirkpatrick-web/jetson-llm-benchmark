@@ -785,6 +785,80 @@
         "wall_time_s": 35.3,
         "output_preview": "To prove that for any positive integers \\(a\\) and \\(b\\), the square of \\((a + b)\\) equals \\(a^2 + 2ab + b^2\\), we will use the binomial theorem. The binomial theorem states that for any real numbers \\(x\\) and \\(y\\),\n\n\\[\n(x + y)^n = \\sum_{k=0}^{n} \\binom{n}{k} x^{n-k} y^k\n\\]\n\nwhere \\(\\binom{n}{k}\\) is the binomial coefficient, defined as\n\n\\[\n\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\n\\]\n\nFor \\(n = 2\\), the binomial theorem gives us\n\n\\[\n(x + y)^2 = \\sum_{k=0}^{2} \\binom{2}{k} x^{2-k} y^k\n\\]\n\nLet's expand "
       }
+    },
+    "deepseek-r1-qwen-1.5b": {
+      "code": {
+        "gen_tps": 10.33,
+        "prompt_tps": 0,
+        "tokens_generated": 1213,
+        "wall_time_s": 117.5,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a Python function called `merge_sorted_lists` that takes two sorted lists of integers and returns a single merged sorted list. Include type hints, a docstring, and handle edge cases like empty lists.\n\n[Start thinking]\n\n\nOkay, I need to write a Python function called merge_sorted_lists that takes two sorted lists of integers and returns a single merged sorted list. Hmm, let's think about how to approach this.\n\nFirst, I remember "
+      },
+      "iambic": {
+        "gen_tps": 11.19,
+        "prompt_tps": 0,
+        "tokens_generated": 615,
+        "wall_time_s": 54.9,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a 14-line poem in strict iambic pentameter about the passage of seasons. Each line must have exactly ten syllables with the stress pattern: da-DUM da-DUM da-DUM da-DUM da-DUM.\n\n[Start thinking]\n\n\nOkay, so the user wants me to write a 14-line poem in strict iambic pentameter about the passage of seasons. Each line needs exactly ten syllables with the stress pattern da-DUM. Hmm, let me break this down.\n\nFirst, iambic pentameter m"
+      },
+      "prose": {
+        "gen_tps": 11.23,
+        "prompt_tps": 0,
+        "tokens_generated": 1193,
+        "wall_time_s": 106.3,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a concise clinical case writeup (approximately 200 words) for a 45-year-old female presenting with fatigue, weight gain, cold intolerance, and brittle nails. Include history, physical exam findings, assessment, and naturopathic treatment plan.\n\n[Start thinking]\n\n\nOkay, so I need to write a clinical case writeup for a 45-year-old female with several symptoms. Let me start by understanding the user's query. They want a concise wr"
+      },
+      "creative": {
+        "gen_tps": 13.35,
+        "prompt_tps": 0,
+        "tokens_generated": 1156,
+        "wall_time_s": 86.6,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a short story (300-500 words) about an old lighthouse keeper who discovers a message in a bottle that changes everything. Use vivid sensory details about the sea, the light, and the keeper`s isolation.\n\n[Start thinking]\n\n\nAlright, so the user has asked me to write a short story about an old lighthouse keeper who discovers a message in a bottle. They want it to be 300-500 words, with vivid sensory details about the sea, light, a"
+      },
+      "math": {
+        "gen_tps": 9.16,
+        "prompt_tps": 0,
+        "tokens_generated": 1032,
+        "wall_time_s": 112.7,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Prove that for any positive integer n, the sum 1 + 2 + 3 + ... + n equals n(n+1)/2. Provide a clear, step-by-step mathematical proof with proper notation.\n\n[Start thinking]\n\n\nOkay, so I need to prove that the sum of the first n positive integers, which is 1 + 2 + 3 + ... + n, equals n(n + 1)/2. Hmm, I remember hearing about this formula before, but I'm not entirely sure how to prove it. Maybe I can start by writing down the sum and s"
+      }
+    },
+    "deepseek-r1-qwen-7b": {
+      "code": {
+        "gen_tps": 6.71,
+        "prompt_tps": 0,
+        "tokens_generated": 1395,
+        "wall_time_s": 208.0,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a Python function called `merge_sorted_lists` that takes two sorted lists of integers and returns a single merged sorted list. Include type hints, a docstring, and handle edge cases like empty lists.\n\n[Start thinking]\n\n\nOkay, I need to write a Python function called merge_sorted_lists. The function takes two sorted lists of integers and returns a single merged sorted list. Hmm, I remember that merging two sorted lists is a comm"
+      },
+      "iambic": {
+        "gen_tps": 6.85,
+        "prompt_tps": 0,
+        "tokens_generated": 429,
+        "wall_time_s": 62.7,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a 14-line poem in strict iambic pentameter about the passage of seasons. Each line must have exactly ten syllables with the stress pattern: da-DUM da-DUM da-DUM da-DUM da-DUM.\n\n[Start thinking]\n\n\nAlright, so the user wants me to write a 14-line poem about the passage of seasons in strict iambic pentameter. Each line must have exactly ten syllables with the stress pattern da-DUM repeated five times per line.\n\nFirst, I need to un"
+      },
+      "prose": {
+        "gen_tps": 7.09,
+        "prompt_tps": 0,
+        "tokens_generated": 594,
+        "wall_time_s": 83.8,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a concise clinical case writeup (approximately 200 words) for a 45-year-old female presenting with fatigue, weight gain, cold intolerance, and brittle nails. Include history, physical exam findings, assessment, and naturopathic treatment plan.\n\n[Start thinking]\n\n\nOkay, I need to write a clinical case writeup for a 45-year-old female presenting with fatigue, weight gain, cold intolerance, and brittle nails. The user provided an "
+      },
+      "creative": {
+        "gen_tps": 7.86,
+        "prompt_tps": 0,
+        "tokens_generated": 1057,
+        "wall_time_s": 134.5,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Write a short story (300-500 words) about an old lighthouse keeper who discovers a message in a bottle that changes everything. Use vivid sensory details about the sea, the light, and the keeper`s isolation.\n\n[Start thinking]\n\n\nOkay, so I need to write a short story about an old lighthouse keeper who finds a message in a bottle that changes everything. The user wants vivid sensory details about the sea, the light, and the keeper's is"
+      },
+      "math": {
+        "gen_tps": 6.62,
+        "prompt_tps": 0,
+        "tokens_generated": 1365,
+        "wall_time_s": 206.1,
+        "output_preview": "/glob <pattern>     add text files using globbing pattern\n\n\n\n> Prove that for any positive integer n, the sum 1 + 2 + 3 + ... + n equals n(n+1)/2. Provide a clear, step-by-step mathematical proof with proper notation.\n\n[Start thinking]\n\n\nOkay, so I need to prove that the sum of the first n positive integers is equal to n(n+1)/2. Hmm, I remember hearing about this formula before, but I never really understood how it works. Let me think about how to approach this.\n\nFirst, let me write down the sum"
+      }
     }
   },
   "prompts": {
