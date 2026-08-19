@@ -14,7 +14,7 @@ Results stored as JSON, rendered to landscape A4 PDFs via reportlab, pushed to G
 
 1. **Never have two subagents patch the same file.** Parent handles all shared-file edits sequentially after subagents finish.
 2. **One subagent per file** when doing batch development.
-3. **Always use `--jinja` flag** for thinking models (Gemma 4 E2B, SmallThinker 3B). Without it, thinking models produce fewer than 50 tokens.
+3. **Always use `--jinja` flag** for thinking models (Gemma 4 E2B, SmallThinker 3B, DeepSeek R1-Distill 1.5B/7B/8B). Without it, thinking models produce fewer than 50 tokens. DeepSeek R1 models also need `-n 4000` (extensive reasoning blocks) and 7B/8B need `-c 2048` (memory constraint).
 4. **Always use `-fa on`** (flash attention). Turning it off causes 6-50x slowdown on prompt eval.
 5. **Never force MMQ or cuBLAS.** Auto-selection is optimal on Jetson.
 6. **Use `--no-conversation --no-display-prompt`** for clean output capture.

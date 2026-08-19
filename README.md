@@ -4,10 +4,10 @@
 ![CUDA](https://img.shields.io/badge/CUDA-12.6-76B900?logo=nvidia)
 ![llama.cpp](https://img.shields.io/badge/llama.cpp-0b1bad1-blue)
 ![JetPack](https://img.shields.io/badge/JetPack-6%20(R36.5.2)-orange)
-![Models](https://img.shields.io/badge/Models%20Benchmarked-18%20(1B--4B)-green)
+![Models](https://img.shields.io/badge/Models%20Benchmarked-20%20(1B--7B)-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-> Reproducible benchmarking toolkit for running LLMs (1B-4B) on NVIDIA Jetson Nano 8GB with llama.cpp CUDA builds. Includes fixes for JetPack memory bugs, CMA fragmentation, tensor core optimization, model download troubleshooting, and two 5-prompt benchmark suites with quality scoring.
+> Reproducible benchmarking toolkit for running LLMs (1B-7B) on NVIDIA Jetson Nano 8GB with llama.cpp CUDA builds. Includes fixes for JetPack memory bugs, CMA fragmentation, tensor core optimization, model download troubleshooting, and two 5-prompt benchmark suites with quality scoring.
 
 ---
 
@@ -21,7 +21,7 @@
 - [Pre-Inference Checklist](#pre-inference-checklist)
 - [Benchmarking](#benchmarking)
 - [Model Download Guide and Fixes](#model-download-guide-and-fixes)
-- [The 18 Benchmark Models](#the-18-benchmark-models)
+- [The 20 Benchmark Models](#the-20-benchmark-models)
 - [Two Benchmark Suites](#two-benchmark-suites)
 - [Quality Scoring](#quality-scoring)
 - [Gemma 4 E2B: Loading and OOM Fix](#gemma-4-e2b-loading-and-oom-fix)
@@ -35,7 +35,7 @@
 
 ## TL;DR Results
 
-### General 5-Prompt Benchmark (18 models, GUI off, `-ngl 99 -fa on --jinja`)
+### General 5-Prompt Benchmark (20 models, GUI off, `-ngl 99 -fa on --jinja`)
 
 | Model | Params | Quant | Size | Gen tok/s | Avg Quality | QS |
 |-------|--------|-------|------|-----------|-------------|-----|
@@ -57,12 +57,16 @@
 | **Granite 4.1 3B** | 3.3B | Q4_K_M | 2.0 GiB | 19.6 | 7.0 | 13.7 |
 | **SmallThinker 3B** | 3.4B | Q4_K_M | 3.36 GiB | 19.2 | 6.4 | 12.3 |
 | **Orca-Mini 3B** | 3.0B | Q4_K_M | 1.9 GiB | 7.8 | 2.8 | 2.2 |
+| **DeepSeek R1 1.5B** | 1.5B | Q4_K_M | 1.12 GiB | 27.2 | **8.8** | 23.9 |
+| **DeepSeek R1 7B** | 7.62B | Q2_K | 2.80 GiB | 7.0 | **9.0** | 6.3 |
 
 *Gemma 4 E2B is a MatFormer: 5.1B total params, 2B active per token.
 
 QS = Quality-Speed = (avg_quality x avg_gen_tps) / 10. Higher is better.
 
-### Coding 5-Prompt Benchmark (18 models, 5 languages)
+**DeepSeek R1 models are thinking models** — they reason step-by-step (`[Start thinking]` blocks) before producing answers. The 1.5B matches Gemma 3 1B's speed (27 tok/s) but with far higher quality (8.8 vs 6.0). The 7B has the highest general quality of any model tested (9.0/10) but is slow at 7 tok/s. Both need `--jinja` + 4000 tokens.
+
+### Coding 5-Prompt Benchmark (20 models, 5 languages)
 
 | Model | Gen tok/s | Avg Quality | QS | HTML | Python | C | BASIC | Julia |
 |-------|-----------|-------------|-----|------|--------|---|-------|-------|
@@ -85,6 +89,8 @@ QS = Quality-Speed = (avg_quality x avg_gen_tps) / 10. Higher is better.
 | **CodeGemma 2B** | 30.7 | 4.4 | 13.5 | 3 | 6 | 7 | 1 | 5 |
 | **Orca-Mini 3B** | 12.5 | 2.6 | 3.3 | 1 | 3 | 5 | 1 | 3 |
 | **StarCoder2 3B** | 28.7 | 2.0 | 5.7 | 2 | 2 | 2 | 2 | 2 |
+| **DeepSeek R1 1.5B** | 27.2 | **9.2** | 25.0 | 10 | 10 | 10 | 8 | 8 |
+| **DeepSeek R1 7B** | 7.0 | **9.8** | 6.9 | 9 | 10 | 10 | 10 | 10 |
 
 ### 7B Models (llama.cpp vs Ollama, from earlier testing)
 
@@ -114,6 +120,9 @@ QS = Quality-Speed = (avg_quality x avg_gen_tps) / 10. Higher is better.
 | Surprise performer | StableLM Zephyr | 27.5 | 1.6B params but 7.0/10 quality |
 | Best coding (with MTP) | Gemma 4 E2B | 42.7 | MTP gives 72% draft acceptance on code |
 | Best 7B quality | Qwen 2.5 7B | 12.4 | Most capable, needs GUI off |
+| Best reasoning 1.5B | DeepSeek R1 1.5B | 27.2 | R1 thinking model, 8.8/10 quality at 1.12 GB |
+| Best coding quality | DeepSeek R1 7B | 7.0 | 9.8/10 coding — highest coding quality tested |
+| Best quality-per-Watt | DeepSeek R1 1.5B | 27.2 | 1.12 GB, R1 reasoning, QS 23.9 general / 25.0 coding |
 
 **Models to avoid:**
 - **Orca-Mini 3B**: Refuses tasks, wrong math, very slow (7.8 tok/s)
@@ -285,7 +294,7 @@ curl -L -o ~/models/bench-gguf/<name>.gguf \
 
 ---
 
-## The 18 Benchmark Models
+## The 20 Benchmark Models
 
 | # | Model | Params | Quant | Size | Source | Notes |
 |---|-------|--------|-------|------|--------|-------|
@@ -307,8 +316,12 @@ curl -L -o ~/models/bench-gguf/<name>.gguf \
 | 16 | SmallThinker 3B | 3.4B | Q4_K_M | 3.36 GiB | HuggingFace | Thinking model, needs --jinja + 2000 tokens |
 | 17 | Orca-Mini 3B | 3.0B | Q4_K_M | 1.9 GiB | Ollama | Refuses tasks, very slow, unsuitable |
 | 18 | StarCoder2 3B | 3.3B | Q4_K_M | 1.6 GiB | Ollama | Base code model, not instruction-tuned |
+| 19 | DeepSeek R1 1.5B | 1.5B | Q4_K_M | 1.12 GiB | HuggingFace | R1-Distill-Qwen, thinking model, 8.8/10 quality at 27 tok/s |
+| 20 | DeepSeek R1 7B | 7.62B | Q2_K | 2.80 GiB | HuggingFace | R1-Distill-Qwen, thinking model, 9.8/10 coding, needs -c 2048 |
 
 *Gemma 4 E2B is a MatFormer: 5.1B total params, 2B active per token.
+
+DeepSeek R1-Distill-Llama-8B (Q2_K, 2.95 GiB) is also compatible but scheduled for overnight benchmarking.
 
 ---
 
@@ -408,7 +421,7 @@ At 2.63 GB with 4096 context, Gemma 4 E2B can OOM on longer prompts. The symptom
 
 ## Thinking Models: --jinja Flag
 
-**Thinking models** (Gemma 4 E2B, SmallThinker 3B) MUST use the `--jinja` flag. Without it, they produce fewer than 50 tokens because the chat template engine is not loaded, and the model cannot properly separate its reasoning content from the answer.
+**Thinking models** (Gemma 4 E2B, SmallThinker 3B, DeepSeek R1-Distill 1.5B/7B/8B) MUST use the `--jinja` flag. Without it, they produce fewer than 50 tokens because the chat template engine is not loaded, and the model cannot properly separate its reasoning content from the answer.
 
 ```bash
 # CORRECT: --jinja enables chat template processing
@@ -424,6 +437,8 @@ At 2.63 GB with 4096 context, Gemma 4 E2B can OOM on longer prompts. The symptom
 ```
 
 SmallThinker 3B also requires a clean GGUF from HuggingFace. The Ollama blob produces only 49 tokens regardless of the `-n` setting.
+
+DeepSeek R1-Distill models need `-n 4000` (instead of 2000) because they produce extensive `[Start thinking]` reasoning blocks before the answer. The 7B and 8B also need `-c 2048` to fit in 8 GB RAM with Q2_K quantization.
 
 ---
 
